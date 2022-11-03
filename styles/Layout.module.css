@@ -1,0 +1,23 @@
+.logo {
+    color: var(--accent-color-primary);
+    font-weight: var(--font-weight-bold) !important;
+}
+
+.logo__container > h2 {
+    font-weight: var(--font-weight-light);
+    display: inline;
+    cursor: pointer;
+}
+
+.logo__container {
+    text-align: center;
+    font-size: 1.5em;
+    padding-bottom: 24px;
+}
+
+.layout__container {
+    min-height: 100vh;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
