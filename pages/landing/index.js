@@ -62,6 +62,9 @@ function Landing() {
                     <div className="mt-3 sm:mt-0 sm:ml-3">
                       <Link href='/fixtures' className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium text-blue-700 hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg">fixtures</Link>
                     </div>
+                    <div className="mt-3 sm:mt-0 sm:ml-3">
+                      <Link href='/table' className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium text-blue-700 hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg">Table</Link>
+                    </div>
                 </div>
               </div>
             </div>
