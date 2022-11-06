@@ -3,15 +3,17 @@ import { CardGragiendStyled } from './styles';
 
 interface CardGradientProps {
     children?: React.ReactNode,
-    className?: String
+    className?: String,
+    borderless ?: boolean,
 }
 
 const CardGradient: FC<CardGradientProps> = ({
     children,
-    className
+    className,
+    borderless  = false
 }): JSX.Element => {
     return (
-        <CardGragiendStyled className={className}>
+        <CardGragiendStyled className={className} borderless={borderless }>
             {children}
         </CardGragiendStyled>
     )

@@ -1,22 +1,27 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CardGragiendStyled = styled.div`
     position: relative;
-    border: 11px solid transparent;
-    border-radius: 18px;
-    background: var(--dark-blue-color);
-    background-clip: padding-box;
     padding: 2rem;
+    display: inline-block;
+    width: 100%;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.12);
 
-    :after {
-        position: absolute;
-        top: -11px; 
-        bottom: -11px;
-        left: -11px; 
-        right: -11px;
-        background: linear-gradient(180deg, #00E5AE 0%, #7C3AED 100%);
-        content: '';
-        z-index: -1;
-        border-radius: 18px;
-    }
+    ${({ borderless  }) => !borderless  && css`
+        :before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            padding: 11px;
+            background: linear-gradient(180deg, #00E5AE, #7C3AED);
+            -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+            pointer-events: none;
+        }
+    `}
 `;
