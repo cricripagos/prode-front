@@ -22,6 +22,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     block?: boolean;
     /** onClick function */
     onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
+    /** classNames to Button component */
+    className?: string;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -32,10 +34,12 @@ const Button: FC<ButtonProps> = ({
     fontSize = '16px',
     block = false,
     onClick,
+    className,
     ...restProps
 }): JSX.Element => {
     return (
         <ButtonStyled
+            className={className}
             variant={variant}
             withtBorder={withtBorder}
             disabled={disabled}
