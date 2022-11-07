@@ -12,5 +12,6 @@ export const TagStyled = styled.p`
 
     @media (max-width: 768px) {
       font-size: ${(props) => props.fontSizeSm};
+      line-height: ${(props) => props.fontSizeSm};
     }
 `;
