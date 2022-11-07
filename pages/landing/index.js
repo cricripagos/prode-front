@@ -5,6 +5,7 @@ import Header from '@components/Header/Header';
 import CtaSeption from './components/CTASeption/CtaSeption';
 import { BackgroundCTAStyled } from './styles';
 import Blur from '@components/Blur/Blur';
+import InNumbers from './components/InNumbers/InNumbers';
 
 const LadingPage = () => {
     return (
@@ -14,8 +15,11 @@ const LadingPage = () => {
                     <Button>Launch App</Button>
                 </Header>
                 <CtaSeption />
-                <Blur />
+                <Blur left='-7%' top='50%' />
             </BackgroundCTAStyled>
+            <article className='w-full overflow-hidden'>
+                <InNumbers />
+            </article>
         </div>
     )
 }

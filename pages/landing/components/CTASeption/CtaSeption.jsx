@@ -4,8 +4,8 @@ import Text from '@components/Text/Text'
 
 const CtaSeption = () => {
     return (
-        <article className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
-            <seption className='flex flex-col'>
+        <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
+            <div className='flex flex-col'>
                 <Text
                     tag={'h1'}
                     fontSize={'90px'}
@@ -23,8 +23,8 @@ const CtaSeption = () => {
                 <div className='w-full md:w-3/4 my-8'>
                     <Button withtBorder={false} block>Launch App</Button>
                 </div>
-            </seption>
-        </article>
+            </div>
+        </div>
     )
 }
 
