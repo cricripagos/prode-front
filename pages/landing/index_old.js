@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from 'next/link';
 
 function Landing() {
   // Creating a function to connect user's wallet
@@ -20,6 +21,7 @@ function Landing() {
 
       // At last save the user's wallet address in browser's local storage
       localStorage.setItem("walletAddress", accounts[0]);
+
     } catch (error) {
       console.log(error);
     }
@@ -53,15 +55,14 @@ function Landing() {
                 Onboard friends to crypto with a fun excuse.
                 Have fun winning and loosing.
                 </p>
-                <button
-                  className="items-center  bg-white rounded-full font-medium  p-4 shadow-lg"
-                  onClick={() => {
-                    // Calling the connectWallet function when user clicks on the button
-                    connectWallet();
-                  }}
-                >
-                  <span>Connect wallet</span>
-                </button>
+                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-center">
+                    <div className="rounded-md shadow">
+                      <Link href="/blockchain" className="flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-8 py-3 text-base font-medium text-white hover:bg-blue-700 md:py-4 md:px-10 md:text-lg">web3</Link>
+                    </div>
+                    <div className="mt-3 sm:mt-0 sm:ml-3">
+                      <Link href='/fixtures' className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium text-blue-700 hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg">fixtures</Link>
+                    </div>
+                </div>
               </div>
             </div>
           </div>

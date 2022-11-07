@@ -1,11 +1,8 @@
 import React from "react";
-//import Blockchain from "./blockchain";
-import Landing from "./landing";
+import LadingPage from './landing';
 
 export default function index() {
   return (
-  <>
-   <Landing />
-   </>
+    <LadingPage />
   );
 }

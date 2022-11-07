@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import DataRow from '../../components/layout/DataRow'
-import Layout from '../../components/layout/Layout'
+import DataRow from '@components/layout/DataRow'
+import Layout from '@components/layout/Layout'
 import styles from "../../styles/Home.module.css"
 
 export default function Home({ teams }) {
