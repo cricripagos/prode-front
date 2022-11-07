@@ -8,7 +8,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
 export default function MediaControlCard(props) {
-    console.log(props.local.teams.away.name)
     return (
         <Card sx={{ display: 'flex', padding:'20px' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
