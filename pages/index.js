@@ -1,8 +1,8 @@
 import React from "react";
-import LadingPage from './landing';
+import LandingPage from './landing';
 
 export default function index() {
   return (
-    <LadingPage />
+    <LandingPage />
   );
 }

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { BlurColor } from './Blur';
-import imageBG from '../../assets/images/whistle.png';
 
 export const BlurStyled = styled.div`
     position: absolute;
@@ -11,15 +10,17 @@ export const BlurStyled = styled.div`
     right: ${({ right }) => right};
     bottom: ${({ bottom }) => bottom};
     z-index: 1;
-    background: ${({ variant, image }) => variant === BlurColor.primary
-        ? 'var(--primary-color)'
-        : 'var(--secondary-color)'};
+    background: ${({ variant }) => {
+        if(variant === BlurColor.primary) return 'var(--primary-color)'
+        if(variant === BlurColor.secondary) return 'var(--secondary-color)'
+        if(variant === BlurColor.tertiary) return 'var(--pink-color)'
+    }};
     filter: blur(100px);
 `;
 
 export const ImageStyled = styled.div`
     position: absolute;
-    background-image: url(${imageBG.src});
+    background-image: url(${({ image }) => image});
     z-index: 2;
     width: ${({ width }) => width};
     height: ${({ height }) => height};

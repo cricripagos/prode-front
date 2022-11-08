@@ -3,7 +3,8 @@ import { BlurStyled, ImageStyled } from './styles';
 
 export enum BlurColor {
     primary = 'primary',
-    secondary = 'secondary'
+    secondary = 'secondary',
+    tertiary = 'tertiary'
 }
 
 interface BlurProps {
@@ -61,6 +62,7 @@ const Blur: FC<BlurProps> = ({
                     bottom={bottomImage || bottom}
                     width={widthImage}
                     height={heightImage}
+                    image={image}
                 />}
         </>
     );
