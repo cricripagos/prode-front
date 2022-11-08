@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '@components/Button/Button'
 import Text from '@components/Text/Text'
 
-const CtaSeption = () => {
+const CtaSection = () => {
     return (
         <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
             <div className='flex flex-col'>
@@ -28,4 +28,4 @@ const CtaSeption = () => {
     )
 }
 
-export default CtaSeption
+export default CtaSection

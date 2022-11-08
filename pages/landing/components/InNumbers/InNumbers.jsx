@@ -4,7 +4,7 @@ import Text from '@components/Text/Text';
 import Number from './Number';
 import InNumberCss from './InNumber.module.css';
 import Blur, { BlurColor } from '@components/Blur/Blur';
-import imageBG from '../../../../assets/images/whistle.png';
+import imageBG from '@assets/images/whistle.png';
 import classNames from 'classnames';
 
 const InNumbers = () => {
