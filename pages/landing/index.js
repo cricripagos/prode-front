@@ -7,13 +7,14 @@ import { BackgroundCTAStyled } from './styles';
 import Blur from '@components/Blur/Blur';
 import InNumbers from './components/InNumbers/InNumbers';
 import BuiltWith from './components/BuiltWith/BuiltWith';
+import Link from 'next/link'
 
 const LandingPage = () => {
     return (
         <div className='w-full'>
             <BackgroundCTAStyled className="h-screen">
                 <Header>
-                    <Button>Launch App</Button>
+                    <Link href="/tournaments"><Button>Launch App</Button></Link>
                 </Header>
                 <CtaSection />
                 <Blur left='-7%' top='50%' />
