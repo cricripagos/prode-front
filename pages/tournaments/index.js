@@ -1,151 +1,71 @@
 
-import { ethers } from "ethers";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import Button, { Variant } from '@components/Button/Button';
 import Header from '@components/Header/Header';
 import Text from '@components/Text/Text';
 import CardGradient from '@components/CardGradient/CardGradient';
+import { connectWallet, getCurrentWalletConnected, } from '../../utils/interact'
 
 export default function Tournaments() {
-    const [isConnected, setIsConnected] = useState(false);
-    const [hasMetamask, setHasMetamask] = useState(false);
-    const [signer, setSigner] = useState(undefined);
+  //state variables
+    const [walletAddress, setWallet] = useState("");
+    const [status, setStatus] = useState("");
+    const [message, setMessage] = useState("No connection to the network."); //default message
 
+  //called only once
     useEffect(() => {
-        if (typeof window.ethereum !== "undefined") {
-            setHasMetamask(true);
+        async function initiate() {
+            const {address, status} = await getCurrentWalletConnected();
+            setWallet(address);
+            setStatus(status);
+            addWalletListener();
         }
-    });
+    initiate()
+    }, []);
 
-    async function connect() {
-        if (typeof window.ethereum !== "undefined") {
-            try {
-                await ethereum.request({ method: "eth_requestAccounts" });
-                setIsConnected(true);
-                const provider = new ethers.providers.Web3Provider(window.ethereum);
-                setSigner(provider.getSigner());
-            } catch (e) {
-                console.log(e);
+    function addWalletListener() {
+        if (window.ethereum) {
+            window.ethereum.on("accountsChanged", (accounts) => {
+            if (accounts.length > 0) {
+                setWallet(accounts[0]);
+                setStatus("👆🏽 Write a name for your tourney");
+            } else {
+                setWallet("");
+                setStatus("🦊 Connect to Metamask using the top right button.");
             }
+            });
         } else {
-            setIsConnected(false);
+            setStatus(
+            <p>
+                🦊
+                <a target="_blank" href={`https://metamask.io/download.html`}>
+                You must install Metamask, a virtual Ethereum wallet, in your
+                browser.
+                </a>
+            </p>
+            );
         }
     }
-
-    async function execute() {
-        if (typeof window.ethereum !== "undefined") {
-            const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-            const abi = [
-                {
-                    inputs: [
-                        {
-                            internalType: "string",
-                            name: "_name",
-                            type: "string",
-                        },
-                        {
-                            internalType: "uint256",
-                            name: "_favoriteNumber",
-                            type: "uint256",
-                        },
-                    ],
-                    name: "addPerson",
-                    outputs: [],
-                    stateMutability: "nonpayable",
-                    type: "function",
-                },
-                {
-                    inputs: [
-                        {
-                            internalType: "string",
-                            name: "",
-                            type: "string",
-                        },
-                    ],
-                    name: "nameToFavoriteNumber",
-                    outputs: [
-                        {
-                            internalType: "uint256",
-                            name: "",
-                            type: "uint256",
-                        },
-                    ],
-                    stateMutability: "view",
-                    type: "function",
-                },
-                {
-                    inputs: [
-                        {
-                            internalType: "uint256",
-                            name: "",
-                            type: "uint256",
-                        },
-                    ],
-                    name: "people",
-                    outputs: [
-                        {
-                            internalType: "uint256",
-                            name: "favoriteNumber",
-                            type: "uint256",
-                        },
-                        {
-                            internalType: "string",
-                            name: "name",
-                            type: "string",
-                        },
-                    ],
-                    stateMutability: "view",
-                    type: "function",
-                },
-                {
-                    inputs: [],
-                    name: "retrieve",
-                    outputs: [
-                        {
-                            internalType: "uint256",
-                            name: "",
-                            type: "uint256",
-                        },
-                    ],
-                    stateMutability: "view",
-                    type: "function",
-                },
-                {
-                    inputs: [
-                        {
-                            internalType: "uint256",
-                            name: "_favoriteNumber",
-                            type: "uint256",
-                        },
-                    ],
-                    name: "store",
-                    outputs: [],
-                    stateMutability: "nonpayable",
-                    type: "function",
-                },
-            ];
-            const contract = new ethers.Contract(contractAddress, abi, signer);
-            try {
-                await contract.store(42);
-            } catch (error) {
-                console.log(error);
-            }
-        } else {
-            console.log("Please install MetaMask");
-        }
-    }
-
-    if (!hasMetamask) {
-        return (
-            <Text tag="h1">Please install metamask</Text>
-        )
-    }
+        
+    const connectWalletPressed = async () => {
+        const walletResponse = await connectWallet();
+        setStatus(walletResponse.status);
+        setWallet(walletResponse.address);
+    };
 
     return (
         <div>
             <Header>
-                {!isConnected && <Button onClick={() => connect()}>Connect</Button>}
-                {isConnected && <Button onClick={() => execute()}>Execute</Button>}
+                <Button onClick={connectWalletPressed}>
+                    {walletAddress.length > 0 ? (
+                    "Connected: " +
+                    String(walletAddress).substring(0, 6) +
+                    "..." +
+                    String(walletAddress).substring(38)
+                    ) : (
+                    <span>Connect Wallet</span>
+                    )}
+                </Button>
             </Header>
             <div className='w-full container relative px-8 md:px-28 mx-auto pt-8'>
                 <CardGradient>
