@@ -6,7 +6,7 @@ import Header from '@components/Header/Header';
 import Text from '@components/Text/Text';
 import CardGradient from '@components/CardGradient/CardGradient';
 
-export default function Blockchain() {
+export default function Tournaments() {
     const [isConnected, setIsConnected] = useState(false);
     const [hasMetamask, setHasMetamask] = useState(false);
     const [signer, setSigner] = useState(undefined);
