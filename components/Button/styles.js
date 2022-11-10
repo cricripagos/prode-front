@@ -33,6 +33,13 @@ export const ButtonStyled = styled.button`
             box-shadow: 8px 8px 0px var(--dark-blue-color);
         `}
     `}
+    ${({variant, withtBorder}) => variant == Variant.quaternary && css`
+        background: var(--pink-color);
+        color: white;
+        ${withtBorder && css`
+            box-shadow: 8px 8px 0px var(--dark-blue-color);
+        `}
+    `}
     ${({block}) => block && css`
         width: 100%;
     `}

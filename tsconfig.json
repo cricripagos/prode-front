@@ -7,6 +7,12 @@
       ],
       "@assets/*": [
         "assets/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
       ]
     },
     "target": "ES6",

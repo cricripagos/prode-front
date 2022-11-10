@@ -4,7 +4,8 @@ import { ButtonStyled } from './styles';
 export enum Variant {
     primary = 'primary',
     secondary = 'secondary',
-    tertiary = 'tertiary'
+    tertiary = 'tertiary',
+    quaternary = 'quaternary'
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

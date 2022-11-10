@@ -1,141 +1,76 @@
 
-import React, { useEffect, useState } from 'react';
 import Button, { Variant } from '@components/Button/Button';
 import Header from '@components/Header/Header';
 import Text from '@components/Text/Text';
 import CardGradient from '@components/CardGradient/CardGradient';
-import { connectWallet, 
-        getCurrentWalletConnected,
-        loadCurrentMessage,
-    } from '../../utils/interact'
 import Link from 'next/link';
+import { useConnect } from '@hooks/useConnect';
+import SeatchSVG from '@assets/images/search.svg';
+import { ReactSVG } from 'react-svg';
+
+const columns = [
+    {
+        key: "name",
+        label: "Name",
+    },
+    {
+        key: "address",
+        label: "Address",
+    },
+    {
+        key: "buyin",
+        label: "Buy-in",
+    },
+];
 
 export default function Tournaments() {
-  //state variables
-    const [walletAddress, setWallet] = useState("");
-    const [status, setStatus] = useState("");
-    const [allProdes, setAllProdes] = useState([]);
+    const { walletAddress, allProdes, connectWalletPressed } = useConnect();
 
-  //called only once
-    useEffect(() => {
-        async function initiate() {
-            const {address, status} = await getCurrentWalletConnected();
-            setWallet(address);
-            setStatus(status);
-            addWalletListener();
-
-            getAllProdes();
-        }
-    initiate()
-    }, []);
-/////////// COMO LE HAGO PARA SACAR ESTA PARTE??? SE REUTILZA LO MISMO EN CREATE_TOURNAMENT \\\\\\\\\\
-    function addWalletListener() {
-        if (window.ethereum) {
-            window.ethereum.on("accountsChanged", (accounts) => {
-            if (accounts.length > 0) {
-                setWallet(accounts[0]);
-                setStatus("👆🏽 Write a name for your tourney");
-            } else {
-                setWallet("");
-                setStatus("🦊 Connect to Metamask using the top right button.");
-            }
-            });
-        } else {
-            setStatus(
-            <p>
-                🦊
-                <a target="_blank" href={`https://metamask.io/download.html`}>
-                You must install Metamask, a virtual Ethereum wallet, in your
-                browser.
-                </a>
-            </p>
-            );
-        }
-    }
-        
-    const connectWalletPressed = async () => {
-        const walletResponse = await connectWallet();
-        setStatus(walletResponse.status);
-        setWallet(walletResponse.address);
-    };
-
-////////     \\\\\\\\\\\\
-
-    const getAllProdes = async () => {
-        
-        const prodes = await loadCurrentMessage();
-
-        const prodesCleaned = prodes.map(prode => {
-            return {
-                prodeNickname: prode.prodeNickname,
-                prodeAddress: prode.prodeAddress,
-                buyIn: prode.buyIn,
-                hidden: prode.hidden,
-            };
-        });
-
-        setAllProdes(prodesCleaned)
-  };
-  
-
-    const columns = [
-        {
-          key: "name",
-          label: "Name",
-        },
-        {
-          key: "address",
-          label: "Address",
-        },
-        {
-          key: "buyin",
-          label: "Buy-in",
-        },
-      ];
-
-    const columnList = columns.map(item => 
-            <th className="px-4 py-2 text-emerald-600">{item.label}</th>
+    const columnList = columns.map(item =>
+        <th className="px-4 py-2 text-emerald-600">{item.label}</th>
     )
 
 
     return (
         <div>
             <Header>
-                <Button onClick={connectWalletPressed}>
-                    {walletAddress.length > 0 ? (
-                    "Connected: " +
-                    String(walletAddress).substring(0, 6) +
-                    "..." +
-                    String(walletAddress).substring(38)
-                    ) : (
-                    <span>Connect Wallet</span>
-                    )}
-                </Button>
+                {
+                    walletAddress.length > 0
+                        ? <Button
+                            withtBorder={false}
+                            variant={Variant.tertiary}>{
+                                "Connected: " +
+                                String(walletAddress).substring(0, 6) +
+                                "..." +
+                                String(walletAddress).substring(38)
+                            }</Button>
+                        : <Button onClick={connectWalletPressed}>
+                            Connect Wallet
+                        </Button>
+                }
             </Header>
             <div className='w-full container relative px-8 md:px-28 mx-auto pt-8'>
                 <CardGradient>
                     <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournament</Text>
-                        <div> 
-                        <form className='flex flex-col flex-grow'>
-                            <div className='flex w-full mt-5 px-5 py-3'>
-                                <input type="text" className='rounded-md flex-grow max-w-xs text-[#262333] focus:outline-none'/>
-                                <h2>or</h2>
-                                {walletAddress.length > 0 ? (
-                                <Link href="/create_tournament"><Button>Create your own</Button></Link> ) : (
-                                    <Button onClick={connectWalletPressed}>Connect Wallet</Button>
-                                )}
-                                
-                            </div>
+                    <div className='flex flex-row w-full justify-between mt-4'>
+                        <form className='flex flex-row'>
+                            <input type="text" className='rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3' />
+                            <Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
+                                <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
+                            </Button>
                         </form>
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>or</Text>
+                        {walletAddress.length > 0 
+                            ? (<Link href="/create_tournament"><Button>Create your own</Button></Link>) 
+                            : <Button onClick={connectWalletPressed}>Connect Wallet</Button>
+                        }
                     </div>
-                    <div>
-                        <div>
-                            <h2 className='pl-10 mt-5'>List of tourneys</h2>
-                        </div>
-                        <div className='flex flex-col md:flex-row gap-5'>
-                            <button className='bg-[#333647] text-white'  type="submit">Public tourneys</button>
-                            <button className='bg-[#333647] text-white' type="submit">My tourneys</button>
-                            <button className='bg-[#333647] text-white' type="submit">Created by me</button>
+                    <div className='flex flex-col gap-5 mt-5'>
+                        <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>List of tourneys</Text>
+                        <div className='flex flex-row w-full justify-between'>
+                            <Button variant={Variant.tertiary} withtBorder={false}>Public tourneys</Button>
+                            <Button variant={Variant.tertiary} withtBorder={false}>My tourneys</Button>
+                            <Button variant={Variant.tertiary} withtBorder={false}>Created by me</Button>
                         </div>
                     </div>
 
@@ -143,7 +78,7 @@ export default function Tournaments() {
 
                         <table className="table-auto">
                             <thead>
-                                <tr>{columnList}</tr>   
+                                <tr>{columnList}</tr>
                             </thead>
                             <tbody>
                                 {allProdes.slice(0).reverse().map((prode, index) => {
@@ -153,11 +88,11 @@ export default function Tournaments() {
                                             <td className="border border-emerald-500 px-4 py-2 text-emerald-600 font-medium">{prode.prodeAddress}</td>
                                             <td className="border border-emerald-500 px-4 py-2 text-emerald-600 font-medium">{prode.buyIn}</td>
                                         </tr>
-                                        )
-                                    })}
+                                    )
+                                })}
                             </tbody>
                         </table>
-                        </div>
+                    </div>
                 </CardGradient>
             </div>
 
