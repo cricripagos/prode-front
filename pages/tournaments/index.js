@@ -8,6 +8,7 @@ import { connectWallet,
         getCurrentWalletConnected,
         loadCurrentMessage,
     } from '../../utils/interact'
+import Link from 'next/link';
 
 export default function Tournaments() {
   //state variables
@@ -120,12 +121,11 @@ export default function Tournaments() {
                             <div className='flex w-full mt-5 px-5 py-3'>
                                 <input type="text" className='rounded-md flex-grow max-w-xs text-[#262333] focus:outline-none'/>
                                 <h2>or</h2>
-                                <Button onClick={connectWalletPressed}>
-                                    {walletAddress.length > 0 ? (
-                                    "Create your own" ) : (
-                                    <span>Connect Wallet</span>
-                                    )}
-                                </Button>
+                                {walletAddress.length > 0 ? (
+                                <Link href="/create_tournament"><Button>Create your own</Button></Link> ) : (
+                                    <Button onClick={connectWalletPressed}>Connect Wallet</Button>
+                                )}
+                                
                             </div>
                         </form>
                     </div>
