@@ -2,10 +2,10 @@ import React from 'react'
 import Text from '@components/Text/Text'
 
 const Matches = (props) => {
-    console.log(props.data)
     const { data } = props;
+    console.log(props.number)
     return (
-        <div className='flex flex-col  gap-10'>
+        <div className='flex flex-col  gap-10' style={{background: props.number%2 === 0 ? '#262333' : null, padding: '10px', borderRadius: '15px'}}>
             <div class="grid grid-cols-6">
                 <Text
                     fontSize='19px'

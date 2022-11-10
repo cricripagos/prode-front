@@ -61,7 +61,7 @@ const ContentTable = (props) => {
                             Betting Slip
                         </Text>
                     </div>
-                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i}/>)}
+                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i}/>)}
                 </div>
             </SimpleCard>
         </section>
