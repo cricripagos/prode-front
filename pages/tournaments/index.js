@@ -27,24 +27,30 @@ const columns = [
 
 export default function Tournaments() {
     const [filters, setFilters] = useState({ addressFilter: null, nicknameFilter: null, searchFilter: '' });
+    const [search, setSearch] = useState('');
     const { walletAddress, allProdes, connectWalletPressed } = useConnect();
 
     const columnList = columns.map(item =>
         <th className="px-4 py-2 text-emerald-600">{item.label}</th>
     )
 
-    const onChangeFilters = (event) => {
-        const { target: { value } } = event;
-        setFilters(prevFilters => ({ ...prevFilters, searchFilter: value }));
+    const onSubmitFilters = (event) => {
+        event.preventDefault();
+        setFilters(prevFilters => ({ ...prevFilters, searchFilter: search }));
     };
+
+    const onChangeSearch = (event) => {
+        const { target: { value } } = event;
+        setSearch(value);
+    }
 
     const handleOnClickFilters = (buttonName = MYTOURNEYSBUTTONNAME) => {
         setFilters(prevFilters => (
             {
                 ...prevFilters,
-                addressFilter: !filters.addressFilter 
+                addressFilter: !filters.addressFilter
                     ? buttonName === MYTOURNEYSBUTTONNAME ? walletAddress : "0x130f5E56220c218953824D2997C4870961CBdD24"
-                    : null 
+                    : null
             }
         ));
     }
@@ -71,20 +77,22 @@ export default function Tournaments() {
                 <CardGradient>
                     <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournament</Text>
                     <div className='flex flex-row w-full justify-between mt-4'>
-                        <form className='flex flex-row'>
-                            <input onChange={onChangeFilters} type="text" className='rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3' />
-                            <div>
-                                {allProdes.slice(0).reverse().map((prode, index) => {
-                                    if (filters.searchFilter !== null) {
-                                        if (filters.searchFilter !== '' && prode.prodeAddress?.includes(filters.searchFilter)) {
-                                            return <p>Address:  {prode.prodeAddress} click-prodeLanding</p>
+                        <form className='flex flex-row' onSubmit={onSubmitFilters}>
+                            <div className='h-full relative'>
+                                <input type="text" className='h-full rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3' onChange={onChangeSearch} />
+                                {filters.searchFilter && <div className='absolute z10 top-16 w-full bg-gray-500 rounded p-2'>
+                                    {allProdes.slice(0).reverse().map((prode, index) => {
+                                        if (filters.searchFilter !== null) {
+                                            if (filters.searchFilter !== '' && prode.prodeAddress?.includes(filters.searchFilter)) {
+                                                return <p>Address:  {prode.prodeAddress} click-prodeLanding</p>
+                                            }
+                                            if (filters.searchFilter !== '' && prode.prodeNickname?.includes(filters.searchFilter)) {
+                                                return <p>Nickname:  {prode.prodeNickname} click-prodeLanding</p>
+                                            }
                                         }
-                                        if (filters.searchFilter !== '' && prode.prodeNickname?.includes(filters.searchFilter)) {
-                                            return <p>Nickname:  {prode.prodeNickname} click-prodeLanding</p>
-                                        }
-                                    }
 
-                                })}
+                                    })}
+                                </div>}
                             </div>
                             <Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
                                 <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
