@@ -6,7 +6,7 @@ import Text from '@components/Text/Text';
 import CardGradient from '@components/CardGradient/CardGradient';
 import { connectWallet, 
         getCurrentWalletConnected,
-        loadCurrentMessage,
+        createProde,
     } from '../../utils/interact'
 import Link from 'next/link';
 
@@ -58,6 +58,27 @@ function CreateTournament() {
         setStatus(walletResponse.status);
         setWallet(walletResponse.address);
     };
+/*
+    const hardcodedProde = [
+        {
+          buyin: 43,
+          hidden: false,
+          nickname: 'Prode hardcodeado',
+        },
+      ];
+
+*/      
+    const hardcodedProde =  {
+          buyin: 43,
+          hidden: false,
+          nickname: 'Prode hardcodeado',
+        };
+
+    const onCreatePressed = async () => {
+
+        const { status } = await createProde(walletAddress, hardcodedProde);
+        setStatus(status);
+      };
 
     return (
         <title>Create Tournament</title>,
@@ -122,7 +143,7 @@ function CreateTournament() {
                     <h3 className="text-[22px] text-white pt-[30px]">Allowed addresses</h3>
                     <input type="text" name="email" class="mt-1 px-3 py-2 mt-[10px] bg-[#262333] drop-shadow-md placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="0x1973077Cc2Bac3C6622cf2D8383D71124A268acc" />
                     <div style={{display: "flex", justifyContent: 'center'}}>
-                        <Button style={{justifyContent: 'center', margin:30}}>Launch</Button>
+                        <Button style={{justifyContent: 'center', margin:30}} onClick={onCreatePressed}>Launch</Button>
                     </div>
                 </div>
                 <Blur className="absolute bottom-0 left-0" />
