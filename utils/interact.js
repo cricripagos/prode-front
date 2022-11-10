@@ -1,3 +1,34 @@
+const Web3 = require('web3');
+
+const options = {
+  // Enable auto reconnection
+  reconnect: {
+      auto: true,
+      delay: 5000, // ms
+      maxAttempts: 5,
+      onTimeout: false
+  }
+};
+
+const ws = new Web3.providers.WebsocketProvider("CHAINSTAK_WEBSOCKET_URL", options) 
+const web3 = new Web3(ws)
+
+const contractABI = require('./abi/prodeFactory.json');
+
+const contractAddress ='0xE3034D110cE1941BbF0c68377f0d7D57f600ECa9';
+
+const prodeContract = new web3.eth.Contract(
+    contractABI,
+    contractAddress
+)
+
+
+export const loadCurrentMessage = async () => { 
+    const prodes = await prodeContract.methods.retrieveProdes().call();
+
+    return prodes;  
+};
+
 
 export const connectWallet = async () => {
     if (window.ethereum) {
