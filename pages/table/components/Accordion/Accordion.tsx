@@ -33,6 +33,7 @@ export default function ControlledAccordions(props) {
                     {props.data.map((dataMatch, i) => <Matches data={dataMatch}  key={i} number={i} />)}  
                 </AccordionDetails>
             </Accordion>
+            <div style={{marginTop: '10px'}}/>
         </div>
     );
 }
