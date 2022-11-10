@@ -16,7 +16,6 @@ export default function ControlledAccordions(props) {
         (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
             setExpanded(isExpanded ? panel : false);
         };
-        console.log(props.data)
     return (
         <div>
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} style={{ background: '#333647', color: 'white' }}>
@@ -31,7 +30,7 @@ export default function ControlledAccordions(props) {
                     </Text>
                 </AccordionSummary>
                 <AccordionDetails>
-                    {props.data.map((dataMatch, i) => <Matches data={dataMatch}  key={i}/>)}  
+                    {props.data.map((dataMatch, i) => <Matches data={dataMatch}  key={i} number={i} />)}  
                 </AccordionDetails>
             </Accordion>
         </div>
