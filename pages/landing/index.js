@@ -14,7 +14,7 @@ const LandingPage = () => {
         <div className='w-full'>
             <BackgroundCTAStyled className="h-screen">
                 <Header>
-                    <Link href="/table"><Button>Launch App</Button></Link>
+                    <Link href="/tournaments"><Button>Launch App</Button></Link>
                 </Header>
                 <CtaSection />
                 <Blur left='-7%' top='50%' />
