@@ -1,46 +1,37 @@
-import { useState, useEffect } from 'react';
-import CardMatch from '../../components/CardMatch';
-import Layout from '../../components/layout/Layout'
-import styles from "../../styles/Home.module.css"
-import Grid from '@mui/material/Grid';
+import { useState, useEffect } from "react";
+import CardMatch from "../../components/CardMatch";
+import Layout from "../../components/layout/Layout";
+import Grid from "@mui/material/Grid";
+import Blur, { BlurColor } from "@components/Blur/Blur";
+import imageBG from "@assets/images/ballRight.png";
+import copaImage from "@assets/images/copa.png";
+import ContentTable from "./components/ContentTable/ContentTable";
+import { jsonData, jsonGroups } from "./jsonData/data";
 
 export default function Table() {
+  const formatData = jsonGroups.map((group) => jsonData.response.filter((partido) => partido.teams.group === group.key));
+  return (
+    <Layout>
+      <Blur
+        right="-0%"
+        top="20%"
+        width="20%"
+        heightImage="600px"
+        variant={BlurColor.primary}
+        image={imageBG.src}
+      />
 
-    const tableShow = (data) => {
-        return (
-            <Grid item xs={12} sm={4}>
-                <CardMatch local={data} />
-            </Grid>
-        )
-    }
-
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        getData();
-    }, []);
-
-    async function getData() {
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': process.env.API_KEY,
-                'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
-            }
-        };
-
-        fetch('https://api-football-v1.p.rapidapi.com/v3/fixtures?league=1&season=2022', options)
-            .then(response => response.json())
-            .then(response => setData(response.response))
-            .catch(err => console.error(err));
-    }
-    
-    return (
-        <Layout>
-            <Grid container spacing={8}>
-            {data ? data.map(match => tableShow(match)) : null}
-            </Grid>
-        </Layout>
-    )
+      <Grid container spacing={8}>
+        <ContentTable data={formatData} />
+      </Grid>
+      <Blur
+        left="0%"
+        top="100%"
+        width="20%"
+        heightImage="600px"
+        variant={BlurColor.secondary}
+        image={copaImage.src}
+      />
+    </Layout>
+  );
 }
-
