@@ -10,6 +10,8 @@ import SeatchSVG from '@assets/images/search.svg';
 import { ReactSVG } from 'react-svg';
 import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from '../../components/constants';
 import Table from '@components/Table/Table';
+import Blur from '@components/Blur/Blur';
+import BallPNG from '@assets/images/ball-tournaments.png';
 
 const columns = [
     {
@@ -61,7 +63,12 @@ export default function Tournaments() {
     }
 
     return (
-        <div>
+        <div className='w-full relative'>
+            <Blur bottom='0%' left='-7px' height='25%' width='20%'
+                image={BallPNG.src}
+                bottomImage='-83px'
+                leftImage='0px'
+            />
             <Header>
                 {
                     walletAddress.length > 0
@@ -79,7 +86,7 @@ export default function Tournaments() {
                 }
             </Header>
             <div className='container relative w-full px-8 pt-8 mx-auto md:px-28'>
-                <CardGradient className="md:!p-16">
+                <CardGradient className="md:!p-16 !z-10">
                     <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournament</Text>
                     <div className='flex flex-row w-full justify-between mt-4'>
                         <form className='flex flex-row' onSubmit={onSubmitFilters}>
