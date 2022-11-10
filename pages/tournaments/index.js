@@ -8,12 +8,12 @@ import { connectWallet,
         getCurrentWalletConnected,
         loadCurrentMessage,
     } from '../../utils/interact'
+import Link from 'next/link';
 
 export default function Tournaments() {
   //state variables
     const [walletAddress, setWallet] = useState("");
     const [status, setStatus] = useState("");
-    const [message, setMessage] = useState("No connection to the network."); //default message
     const [allProdes, setAllProdes] = useState([]);
 
   //called only once
@@ -28,7 +28,7 @@ export default function Tournaments() {
         }
     initiate()
     }, []);
-
+/////////// COMO LE HAGO PARA SACAR ESTA PARTE??? SE REUTILZA LO MISMO EN CREATE_TOURNAMENT \\\\\\\\\\
     function addWalletListener() {
         if (window.ethereum) {
             window.ethereum.on("accountsChanged", (accounts) => {
@@ -59,7 +59,7 @@ export default function Tournaments() {
         setWallet(walletResponse.address);
     };
 
-
+////////     \\\\\\\\\\\\
 
     const getAllProdes = async () => {
         
@@ -120,12 +120,11 @@ export default function Tournaments() {
                             <div className='flex w-full mt-5 px-5 py-3'>
                                 <input type="text" className='rounded-md flex-grow max-w-xs text-[#262333] focus:outline-none'/>
                                 <h2>or</h2>
-                                <Button onClick={connectWalletPressed}>
-                                    {walletAddress.length > 0 ? (
-                                    "Create your own" ) : (
-                                    <span>Connect Wallet</span>
-                                    )}
-                                </Button>
+                                {walletAddress.length > 0 ? (
+                                <Link href="/create_tournament"><Button>Create your own</Button></Link> ) : (
+                                    <Button onClick={connectWalletPressed}>Connect Wallet</Button>
+                                )}
+                                
                             </div>
                         </form>
                     </div>

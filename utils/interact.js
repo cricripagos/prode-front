@@ -1,4 +1,5 @@
 const Web3 = require('web3');
+const chainstackURL = process.env.NEXT_PUBLIC_CHAINSTACK;
 
 const options = {
   // Enable auto reconnection
@@ -10,7 +11,7 @@ const options = {
   }
 };
 
-const ws = new Web3.providers.WebsocketProvider("CHAINSTAK_WEBSOCKET_URL", options) 
+const ws = new Web3.providers.WebsocketProvider(chainstackURL, options) 
 const web3 = new Web3(ws)
 
 const contractABI = require('./abi/prodeFactory.json');
@@ -86,3 +87,49 @@ export const getCurrentWalletConnected = async () => {
  };
 }; 
 
+export const createProde = async (address, prode) => {
+  //input error handling
+  if (!window.ethereum || address === null) {
+    return {
+      status:
+        "💡 Connect your Metamask wallet to update the message on the blockchain.",
+    };
+  }
+
+  if (prode.nickname.trim() === "Choose a cool name for your tourney!") {
+    return {
+      status: "❌ Your message cannot be an empty string.",
+    };
+  }
+  //set up transaction parameters
+  const transactionParameters = {
+    to: contractAddress, // Required except during contract publications.
+    from: address, // must match user's active address.
+    data: prodeContract.methods.createProde(prode.buyin, prode.hidden, prode.nickname).encodeABI(),
+  };
+
+  //sign the transaction
+  try {
+    const txHash = await window.ethereum.request({
+      method: "eth_sendTransaction",
+      params: [transactionParameters],
+    });
+    return {
+      status: (
+        <span>
+          ✅{" "}
+          <a target="_blank" href={`https://gnosisscan.io/${txHash}`}>
+            View the status of your transaction on Gnosisscan!
+          </a>
+          <br />
+          ℹ️ Once the transaction is verified by the network, the message will
+          be updated automatically.
+        </span>
+      ),
+    };
+  } catch (error) {
+    return {
+      status: "😥 " + error.message,
+    };
+  }
+};
