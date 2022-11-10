@@ -1,4 +1,5 @@
 const Web3 = require('web3');
+const chainstackURL = process.env.NEXT_PUBLIC_CHAINSTACK;
 
 const options = {
   // Enable auto reconnection
@@ -10,7 +11,7 @@ const options = {
   }
 };
 
-const ws = new Web3.providers.WebsocketProvider("CHAINSTAK_WEBSOCKET_URL", options) 
+const ws = new Web3.providers.WebsocketProvider(chainstackURL, options) 
 const web3 = new Web3(ws)
 
 const contractABI = require('./abi/prodeFactory.json');
