@@ -1,148 +1,393 @@
 [
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_buyin",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_prodeNickname",
-				"type": "string"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "game",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "result",
-				"type": "string"
-			}
-		],
-		"name": "OracleUpdate",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string[3]",
-				"name": "input",
-				"type": "string[3]"
-			},
-			{
-				"internalType": "string",
-				"name": "nickname",
-				"type": "string"
-			}
-		],
-		"name": "createParticipant",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "debugRetrieveOracleResults",
-		"outputs": [
-			{
-				"internalType": "string[3]",
-				"name": "",
-				"type": "string[3]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "oracleEnd",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"name": "oracleFinalResults",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "retrieveCreator",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "retrieveParticipants",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "string[3]",
-						"name": "prediccionFaseGrupos",
-						"type": "string[3]"
-					},
-					{
-						"internalType": "address payable",
-						"name": "beneficiary",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "points",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "nickname",
-						"type": "string"
-					}
-				],
-				"internalType": "struct Prode.Participant[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "temporaryCupBegins",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_buyin",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_prodeNickname",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8[2][]",
+        "name": "inputGrupos",
+        "type": "uint8[2][]"
+      },
+      {
+        "internalType": "uint8[4]",
+        "name": "inputTopFour",
+        "type": "uint8[4]"
+      },
+      {
+        "internalType": "string",
+        "name": "nickname",
+        "type": "string"
+      }
+    ],
+    "name": "createParticipant",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "debugDate",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_game",
+        "type": "string"
+      }
+    ],
+    "name": "debugRetrieveMappingKey",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint8[2]",
+            "name": "goals",
+            "type": "uint8[2]"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "homeQuestionRealitio",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "awayQuestionRealitio",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bool",
+            "name": "resolved",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "validMatch",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct Prode.MatchOracle",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "debugRetrieveOracleResults",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint8[2]",
+            "name": "goals",
+            "type": "uint8[2]"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "homeQuestionRealitio",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "awayQuestionRealitio",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bool",
+            "name": "resolved",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "validMatch",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct Prode.MatchOracle",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "debugRetrieveParticipants",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint8[2][]",
+            "name": "prediccionFaseGrupos",
+            "type": "uint8[2][]"
+          },
+          {
+            "internalType": "uint8[4]",
+            "name": "prediccionTopFour",
+            "type": "uint8[4]"
+          },
+          {
+            "internalType": "address payable",
+            "name": "beneficiary",
+            "type": "address"
+          },
+          {
+            "internalType": "uint8",
+            "name": "points",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "nickname",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct Prode.Participant[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "debugRetrieveProdeData",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "endProde",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_position",
+        "type": "string"
+      }
+    ],
+    "name": "finisherOracle",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "fixtureIndex",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_game",
+        "type": "string"
+      }
+    ],
+    "name": "gameOracle",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_game",
+        "type": "string"
+      }
+    ],
+    "name": "getAnswerRealitio",
+    "outputs": [
+      {
+        "internalType": "uint8[2]",
+        "name": "",
+        "type": "uint8[2]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "questionId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getAnswerRealitioTopFour",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "oracleFinalResults",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "homeQuestionRealitio",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "awayQuestionRealitio",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bool",
+        "name": "resolved",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "validMatch",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "oracleTopFourResults",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "country",
+        "type": "uint8"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "QuestionRealitio",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bool",
+        "name": "resolved",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "topFourIndex",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
 ]

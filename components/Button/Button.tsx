@@ -4,7 +4,8 @@ import { ButtonStyled } from './styles';
 export enum Variant {
     primary = 'primary',
     secondary = 'secondary',
-    tertiary = 'tertiary'
+    tertiary = 'tertiary',
+    quaternary = 'quaternary'
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -24,6 +25,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
     /** classNames to Button component */
     className?: string;
+    /** Active props, set green color text when button is active */
+    activated?: boolean
 }
 
 const Button: FC<ButtonProps> = ({
@@ -35,6 +38,7 @@ const Button: FC<ButtonProps> = ({
     block = false,
     onClick,
     className,
+    activated = false,
     ...restProps
 }): JSX.Element => {
     return (
@@ -46,6 +50,7 @@ const Button: FC<ButtonProps> = ({
             fontSize={fontSize}
             block={block}
             onClick={onClick}
+            activated={activated}
             {...restProps}>
             {children}
         </ButtonStyled>
