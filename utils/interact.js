@@ -15,6 +15,7 @@ const ws = new Web3.providers.WebsocketProvider(chainstackURL, options)
 const web3 = new Web3(ws)
 
 const contractABI = require('./abi/prodeFactory.json');
+const singleProdeABI = require('./abi/prodeBeta.json'); // tomo el ABI del prode puntualmente
 
 const contractAddress ='0xE3034D110cE1941BbF0c68377f0d7D57f600ECa9';
 
@@ -28,6 +29,18 @@ export const loadCurrentMessage = async () => {
     const prodes = await prodeContract.methods.retrieveProdes().call();
 
     return prodes;  
+};
+
+export const loadProdesFullyByTule = async() => {
+  const prodes = await prodeContract.methods.retrieveProdes().call();
+  let prodesFull = [];
+  for (const prode of prodes){
+    const singleProdeContract = new web3.eth.Contract( singleProdeABI, prode['prodeAddress'] )
+    const singleProdeData = await singleProdeContract.methods.debugRetrieveParticipants().call();
+    prodesFull.push({...prode, participantsArray: singleProdeData})
+
+  }
+  return prodesFull
 };
 
 
