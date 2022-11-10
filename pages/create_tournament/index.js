@@ -1,14 +1,79 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@components/Button/Button';
 import Blur from '@components/Blur/Blur';
+import Header from '@components/Header/Header'
+import Text from '@components/Text/Text';
+import CardGradient from '@components/CardGradient/CardGradient';
+import { connectWallet, 
+        getCurrentWalletConnected,
+        loadCurrentMessage,
+    } from '../../utils/interact'
+import Link from 'next/link';
+
 
 function CreateTournament() {
+
+    //state variables
+    const [walletAddress, setWallet] = useState("");
+    const [status, setStatus] = useState("");
+    const [prode, setProde] = useState([]);
+
+
+    useEffect(() => {
+        async function initiate() {
+            const {address, status} = await getCurrentWalletConnected();
+            setWallet(address);
+            setStatus(status);
+            addWalletListener();
+        }
+    initiate()
+    }, []);
+
+    function addWalletListener() {
+        if (window.ethereum) {
+            window.ethereum.on("accountsChanged", (accounts) => {
+            if (accounts.length > 0) {
+                setWallet(accounts[0]);
+                setStatus("👆🏽 Write a name for your tourney");
+            } else {
+                setWallet("");
+                setStatus("🦊 Connect to Metamask using the top right button.");
+            }
+            });
+        } else {
+            setStatus(
+            <p>
+                🦊
+                <a target="_blank" href={`https://metamask.io/download.html`}>
+                You must install Metamask, a virtual Ethereum wallet, in your
+                browser.
+                </a>
+            </p>
+            );
+        }
+    }
+        
+    const connectWalletPressed = async () => {
+        const walletResponse = await connectWallet();
+        setStatus(walletResponse.status);
+        setWallet(walletResponse.address);
+    };
+
     return (
         <title>Create Tournament</title>,
         <div class="bg-black" style={{height: "100%"}}>
-            <div style={{display: "flex", justifyContent: 'right', padding: 30}}>
-                <Button style={{justifyContent: 'right'}}>0x3e....34kd3</Button>
-            </div>
+            <Header>
+                <Button onClick={connectWalletPressed}>
+                    {walletAddress.length > 0 ? (
+                    "Connected: " +
+                    String(walletAddress).substring(0, 6) +
+                    "..." +
+                    String(walletAddress).substring(38)
+                    ) : (
+                    <span>Connect Wallet</span>
+                    )}
+                </Button>
+            </Header>
             <div className="flex justify-center h-max relative">
                 <div className="bg-gradient-to-tr from-[#48316D] to-[#1F1F20] w-[450px] h-[950px] justify-center p-[35px] rounded-md mb-[50px]">
                     <h1 class="text-[36px] text-[#00E5AE]">Create your tourney</h1>

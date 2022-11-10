@@ -14,7 +14,6 @@ export default function Tournaments() {
   //state variables
     const [walletAddress, setWallet] = useState("");
     const [status, setStatus] = useState("");
-    const [message, setMessage] = useState("No connection to the network."); //default message
     const [allProdes, setAllProdes] = useState([]);
 
   //called only once
@@ -29,7 +28,7 @@ export default function Tournaments() {
         }
     initiate()
     }, []);
-
+/////////// COMO LE HAGO PARA SACAR ESTA PARTE??? SE REUTILZA LO MISMO EN CREATE_TOURNAMENT \\\\\\\\\\
     function addWalletListener() {
         if (window.ethereum) {
             window.ethereum.on("accountsChanged", (accounts) => {
@@ -60,7 +59,7 @@ export default function Tournaments() {
         setWallet(walletResponse.address);
     };
 
-
+////////     \\\\\\\\\\\\
 
     const getAllProdes = async () => {
         
