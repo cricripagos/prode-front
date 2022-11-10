@@ -9,6 +9,7 @@ import { useConnect } from '@hooks/useConnect';
 import SeatchSVG from '@assets/images/search.svg';
 import { ReactSVG } from 'react-svg';
 import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from '../../components/constants';
+import Table from '@components/Table/Table';
 
 const columns = [
     {
@@ -23,6 +24,10 @@ const columns = [
         key: "buyin",
         label: "Buy-in",
     },
+    {
+        key: "participants",
+        label: "Participants",
+    },
 ];
 
 export default function Tournaments() {
@@ -31,7 +36,7 @@ export default function Tournaments() {
     const { walletAddress, allProdes, connectWalletPressed } = useConnect();
 
     const columnList = columns.map(item =>
-        <th className="px-4 py-2 text-emerald-600">{item.label}</th>
+        <th className="px-4 py-2 text-white" key={item.key}>{item.label}</th>
     )
 
     const onSubmitFilters = (event) => {
@@ -74,7 +79,7 @@ export default function Tournaments() {
                 }
             </Header>
             <div className='container relative w-full px-8 pt-8 mx-auto md:px-28'>
-                <CardGradient>
+                <CardGradient className="md:!p-16">
                     <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournament</Text>
                     <div className='flex flex-row w-full justify-between mt-4'>
                         <form className='flex flex-row' onSubmit={onSubmitFilters}>
@@ -84,10 +89,10 @@ export default function Tournaments() {
                                     {allProdes.slice(0).reverse().map((prode, index) => {
                                         if (filters.searchFilter !== null) {
                                             if (filters.searchFilter !== '' && prode.prodeAddress?.includes(filters.searchFilter)) {
-                                                return <p>Address:  {prode.prodeAddress} click-prodeLanding</p>
+                                                return <p key={prode.prodeAddress}>Address:  {prode.prodeAddress} click-prodeLanding</p>
                                             }
                                             if (filters.searchFilter !== '' && prode.prodeNickname?.includes(filters.searchFilter)) {
-                                                return <p>Nickname:  {prode.prodeNickname} click-prodeLanding</p>
+                                                return <p key={prode.prodeAddress}>Nickname:  {prode.prodeNickname} click-prodeLanding</p>
                                             }
                                         }
 
@@ -104,10 +109,10 @@ export default function Tournaments() {
                             : <Button onClick={connectWalletPressed}>Connect Wallet</Button>
                         }
                     </div>
-                    <div className='flex flex-col gap-5 mt-5'>
+                    <div className='flex flex-col gap-5 mt-16'>
                         <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>List of tourneys</Text>
                         <div className='flex flex-row w-full justify-between'>
-                            <Button variant={Variant.tertiary} withtBorder={false}>Public tourneys</Button>
+                            <Button activated={true} variant={Variant.tertiary} withtBorder={false}>Public tourneys</Button>
                             <Button
                                 variant={Variant.tertiary}
                                 withtBorder={false}
@@ -121,33 +126,31 @@ export default function Tournaments() {
                                 Created by me
                             </Button>
                         </div>
-                    </div>
-
-                    <div className="items-center p-10 overflow-hidden rounded-t-xl bg-gradient-to-r from-emerald-50 to-teal-100">
-
-                        <table className="table-auto">
-                            <thead>
-                                <tr>{columnList}</tr>
-                            </thead>
-                            <tbody>
-                                {allProdes.slice(0).reverse().map((prode, index) => {
-                                    if (filters.addressFilter !== null) {
-                                        let participantAddressList = prode.participantsArray.map(({ beneficiary }) => beneficiary);
-                                        if (!participantAddressList.includes(filters.addressFilter)) {
-                                            return
+                        <div className="relative w-full">
+                            <Table>
+                                <thead>
+                                    <tr>{columnList}</tr>
+                                </thead>
+                                <tbody>
+                                    {allProdes.slice(0).reverse().map((prode, index) => {
+                                        if (filters.addressFilter !== null) {
+                                            let participantAddressList = prode.participantsArray.map(({ beneficiary }) => beneficiary);
+                                            if (!participantAddressList.includes(filters.addressFilter)) {
+                                                return
+                                            }
                                         }
-                                    }
-                                    return (
-                                        <tr >
-                                            <td className="px-4 py-2 font-medium border border-emerald-500 text-emerald-600">{prode.prodeNickname}</td>
-                                            <td className="px-4 py-2 font-medium border border-emerald-500 text-emerald-600">{prode.prodeAddress}</td>
-                                            <td className="px-4 py-2 font-medium border border-emerald-500 text-emerald-600">{prode.buyIn}</td>
-                                            <td className="px-4 py-2 font-medium border border-emerald-500 text-emerald-600">{prode.participantsArray?.length}</td>
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table>
+                                        return (
+                                            <tr key={prode.prodeAddress}>
+                                                <td>{prode.prodeNickname}</td>
+                                                <td>{prode.prodeAddress}</td>
+                                                <td>{prode.buyIn}</td>
+                                                <td>{prode.participantsArray?.length}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </Table>
+                        </div>
                     </div>
                 </CardGradient>
             </div>

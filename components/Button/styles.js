@@ -12,6 +12,7 @@ export const ButtonStyled = styled.button`
     border: 1px solid black;
     border-radius: 9.93333px;
     font-size: ${props => props.fontSize};
+    color: ${props => props.activated && '#00E5AE !important'};
     ${({variant, withtBorder}) => variant == Variant.primary && css`
         background: var(--primary-color);
         color: var(--dark-blue-color);
