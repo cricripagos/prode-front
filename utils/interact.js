@@ -109,7 +109,13 @@ export const createProde = async (address, prode) => {
     };
   }
 
-  if (prode.nickname.trim() === "Choose a cool name for your tourney!") {
+  const nickname = prode.nickname?.trim() || '';
+
+  const buyin = prode.nickname?.length() || 0;
+
+
+  
+  if (nickname === "Choose a cool name for your tourney!") {
     return {
       status: "❌ Your message cannot be an empty string.",
     };
@@ -118,7 +124,7 @@ export const createProde = async (address, prode) => {
   const transactionParameters = {
     to: contractAddress, // Required except during contract publications.
     from: address, // must match user's active address.
-    data: prodeContract.methods.createProde(prode.buyin, prode.hidden, prode.nickname).encodeABI(),
+    data: prodeContract.methods.createProde(buyin, prode.hidden, prode.nickname).encodeABI(),
   };
 
   //sign the transaction
