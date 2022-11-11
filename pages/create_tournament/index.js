@@ -80,14 +80,15 @@ function CreateTournament() {
             // Stop the form from submitting and refreshing the page.
         event.preventDefault()
 
-        setProde({
+       const newProde = {
             buyin: event.target.buyin.value,
             hidden: (event.target.hidden.value===0 ? false : true),
-            nickname: event.target.nickname,
-        })
+            nickname: event.target.nickname.value,
+        };
 
-        const { status } = await createProde(walletAddress, prode);
+        const { status } = await createProde(walletAddress, newProde);
         setStatus(status);
+        console.log(newProde)
       };
 
     return (
