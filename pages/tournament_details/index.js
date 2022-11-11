@@ -183,7 +183,9 @@ export default function TournamentDetails() {
                     </Table>
                     </div>
                 </CardGradient>
-
+            </div>
+            <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
+                            <Link href="/table"><Button className='w-full' >Place Bet</Button></Link>
             </div>
 
         </div>
