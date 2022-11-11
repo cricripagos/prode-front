@@ -93,7 +93,7 @@ export default function Tournaments() {
                             <div className='h-full relative'>
                                 <input type="text" className='h-full rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3' onChange={onChangeSearch} />
                                 {filters.searchFilter && <div className='absolute z10 top-16 w-full bg-gray-500 rounded p-2'>
-                                    {allProdes.slice(0).reverse().map((prode, index) => {
+                                    {allProdes?.slice(0).reverse().map((prode, index) => {
                                         if (filters.searchFilter !== null) {
                                             if (filters.searchFilter !== '' && prode.prodeAddress?.includes(filters.searchFilter)) {
                                                 return <p key={prode.prodeAddress}>Address:  {prode.prodeAddress} click-prodeLanding</p>
@@ -139,10 +139,10 @@ export default function Tournaments() {
                                     <tr>{columnList}</tr>
                                 </thead>
                                 <tbody>
-                                    {allProdes.slice(0).reverse().map((prode, index) => {
+                                    {allProdes?.slice(0).reverse().map((prode, index) => {
                                         if (filters.addressFilter !== null) {
-                                            let participantAddressList = prode.participantsArray.map(({ beneficiary }) => beneficiary);
-                                            if (!participantAddressList.includes(filters.addressFilter)) {
+                                            let participantAddressList = prode.participantsArray?.map(({ beneficiary }) => beneficiary);
+                                            if (!participantAddressList?.includes(filters.addressFilter)) {
                                                 return
                                             }
                                         }
