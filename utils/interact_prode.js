@@ -40,9 +40,16 @@ export const loadProdesFullyByTule = async() => {
     prodesFull.push({...prode, participantsArray: singleProdeData})
 
   }
-  console.log(prodesFull)
   return prodesFull
 };
+
+export const loadProdeInfo = async() => {
+
+    const singleProdeContract = new web3.eth.Contract( singleProdeABI, prode['prodeAddress'] )
+    const singleProdeData = await singleProdeContract.methods.debugRetrieveParticipants().call();
+    console.log(singleProdeData)
+    return singleProdeData
+  }
 
 
 export const connectWallet = async () => {
@@ -100,14 +107,6 @@ export const getCurrentWalletConnected = async () => {
     };
  };
 }; 
-
-export const loadSingleProde = async() => {
-
-  const singleProdeContract = new web3.eth.Contract( singleProdeABI, '0xF4C1EF14c8d0659D95D972f093442eF715cB5186' )
-  const singleProdeData = await singleProdeContract.methods.debugRetrieveParticipants().call();
-  console.log(singleProdeData)
-  return singleProdeData
-}
 
 export const createProde = async (address, prode) => {
   //input error handling

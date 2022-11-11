@@ -3,6 +3,7 @@ import {
     connectWallet,
     getCurrentWalletConnected,
     loadCurrentMessage,
+    loadSingleProde,
 } from '@utils/interact';
 
 export const useConnect = () => {
@@ -10,6 +11,8 @@ export const useConnect = () => {
     const [walletAddress, setWallet] = useState("");
     const [status, setStatus] = useState("");
     const [allProdes, setAllProdes] = useState([]);
+    const [singleProde, setSingleProde] = useState([]);
+
 
     //called only once
     useEffect(() => {
@@ -20,6 +23,7 @@ export const useConnect = () => {
             addWalletListener();
 
             getAllProdes();
+            loadProdeInfo();
         }
         initiate()
     }, []);
@@ -72,5 +76,10 @@ export const useConnect = () => {
         setAllProdes(prodesCleaned)
     };
 
-    return { walletAddress, status, allProdes, connectWalletPressed};
+    const loadProdeInfo = async() => {
+        const singleProdeData = await loadSingleProde();
+        setSingleProde(singleProdeData)
+      }
+
+    return { walletAddress, status, allProdes, singleProde, connectWalletPressed};
 }
