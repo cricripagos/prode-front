@@ -55,7 +55,7 @@ const hardcodedProdes = [
 export default function TournamentDetails() {
     const [filters, setFilters] = useState({ addressFilter: null, nicknameFilter: null, searchFilter: '' });
     const [search, setSearch] = useState('');
-    const { walletAddress, allProdes, connectWalletPressed } = useConnect();
+    const { walletAddress, connectWalletPressed, singleProde } = useConnect();
 
     const columnList = columns.map(item => 
         <th className="px-4 py-2 text-white" key={item.key}>{item.label}</th>
@@ -165,7 +165,7 @@ export default function TournamentDetails() {
                             <tr>{columnList}</tr>
                         </thead>
                         <tbody >
-                            {hardcodedProdes?.slice(0).reverse().map((hardcodedProde, index) => {
+                            {/* hardcodedProdes?.slice(0).reverse().map((hardcodedProde, index) => {
                                 return (
 
                                     <tr key={hardcodedProde.prodeAddress}>
@@ -178,14 +178,26 @@ export default function TournamentDetails() {
                                     
                                     
                                 )
-                            })}
+                            })*/}
+                                {singleProde?.slice(0).reverse().map((participant, index) => {
+                                    return (
+                                        <tr key={participant.beneficiary}>
+                                            <td>{participant.nickname}</td>
+                                            <td>{participant.points}</td>
+                                            <td><Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
+                                                    <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
                         </tbody>
                     </Table>
                     </div>
                 </CardGradient>
             </div>
             <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
-                            <Link href="/table"><Button className='w-full' >Place Bet</Button></Link>
+                            <Link href="/betting-slip"><Button className='w-full' >Place Bet</Button></Link>
             </div>
 
         </div>

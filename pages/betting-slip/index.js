@@ -9,8 +9,11 @@ import ContentTable from "./components/ContentTable/ContentTable";
 import { jsonData, jsonGroups } from "./jsonData/data";
 import Link from 'next/link';
 import Button, { Variant } from '@components/Button/Button';
+import { useConnect } from '@hooks/useConnect';
 
-export default function Table() {
+export default function BettingSlip() {
+  const { walletAddress, allProdes, connectWalletPressed, singleProde } = useConnect();
+
   const formatData = jsonGroups.map((group) => jsonData.response.filter((partido) => partido.teams.group === group.key));
   return (
     <Layout>
