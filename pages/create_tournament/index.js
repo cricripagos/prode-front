@@ -58,22 +58,6 @@ function CreateTournament() {
         setStatus(walletResponse.status);
         setWallet(walletResponse.address);
     };
-/*
-    const hardcodedProde = [
-        {
-          buyin: 43,
-          hidden: false,
-          nickname: 'Prode hardcodeado',
-        },
-      ];
-
-     
-    const hardcodedProde =  {
-          buyin: 43,
-          hidden: false,
-          nickname: 'Prode hardcodeado',
-        };
-    */ 
 
     const onCreatePressed = async (event) => {
 

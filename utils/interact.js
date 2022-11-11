@@ -108,19 +108,13 @@ export const createProde = async (address, prode) => {
         "💡 Connect your Metamask wallet to update the message on the blockchain.",
     };
   }
-
-  //const nickname = prode.nickname?.length() > 0 ? prode.nickname?.trim() : '';
-
-  //const buyin = prode.buyin?.length() > 0 ? prode.buyin : 0;
-
-
-  /*
-  if (nickname === "Choose a cool name for your tourney!") {
+  
+  if (prode.nickname?.trim() === "Choose a cool name for your tourney!") {
     return {
-      status: "❌ Your message cannot be an empty string.",
+      status: "❌ Your tourney need a name.",
     };
   }
-  */
+  
   //set up transaction parameters
   const transactionParameters = {
     to: contractAddress, // Required except during contract publications.
