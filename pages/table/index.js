@@ -7,6 +7,8 @@ import imageBG from "@assets/images/ballRight.png";
 import copaImage from "@assets/images/copa.png";
 import ContentTable from "./components/ContentTable/ContentTable";
 import { jsonData, jsonGroups } from "./jsonData/data";
+import Link from 'next/link';
+import Button, { Variant } from '@components/Button/Button';
 
 export default function Table() {
   const formatData = jsonGroups.map((group) => jsonData.response.filter((partido) => partido.teams.group === group.key));
@@ -24,6 +26,10 @@ export default function Table() {
       <Grid container spacing={8}>
         <ContentTable data={formatData} />
       </Grid>
+      <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
+                            <Link href="/tournament_details"><Button className='w-full' >Place Bet</Button></Link>
+      </div>
+
       <Blur
         left="0%"
         top="100%"

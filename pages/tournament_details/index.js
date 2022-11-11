@@ -15,21 +15,41 @@ import BallPNG from '@assets/images/ball-tournaments.png';
 
 const columns = [
     {
-        key: "name",
+        key: "participantName",
         label: "Name",
     },
     {
-        key: "address",
-        label: "Address",
+        key: "score",
+        label: "Current Score",
     },
     {
-        key: "buyin",
-        label: "Buy-in",
+        key: "slip",
+        label: "Check Slip",
+    },
+];
+
+const hardcodedProdes = [
+    {
+        prodeAddress: "participantName1",
+        prodeNickname: "Maradona",
+        buyin: 43
     },
     {
-        key: "participants",
-        label: "Participants",
+        prodeAddress: "participantName2",
+        prodeNickname: "Pele",
+        buyin: 23
     },
+    {
+        prodeAddress: "participantName3",
+        prodeNickname: "Messi",
+        buyin: 65
+    },
+    {
+        prodeAddress: "participantName4",
+        prodeNickname: "CR7",
+        buyin: 64
+    },
+    
 ];
 
 export default function TournamentDetails() {
@@ -37,9 +57,9 @@ export default function TournamentDetails() {
     const [search, setSearch] = useState('');
     const { walletAddress, allProdes, connectWalletPressed } = useConnect();
 
-    const columnList = columns.map(item =>
+    const columnList = columns.map(item => 
         <th className="px-4 py-2 text-white" key={item.key}>{item.label}</th>
-    )
+    );
 
     const onSubmitFilters = (event) => {
         event.preventDefault();
@@ -101,8 +121,71 @@ export default function TournamentDetails() {
                     </div>
                     <div className='flex flex-col gap-5 mt-16'>
                         <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Tournament settings</Text>
+                        <div className='flex flex-col md:flex-row gap-12'>
+                        <div className='flex flex-col gap-1'>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
+                                Name: prueba
+                            </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
+                                Buy-in:  10 xDAI
+                            </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
+                                Earnings: 50% Winner
+                            </Text>  
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{marginLeft: '110px'}}>
+                                20% Runner-up
+                            </Text> 
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{marginLeft: '110px'}}>
+                                10% 3rd place
+                            </Text> 
+                        </div>
+                        <div className='flex flex-col gap-1'>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
+                                Name: prueba
+                            </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
+                                UBI donation: 3%
+                            </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
+                                Format: Open
+                            </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
+                                Participants: 20
+                            </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
+                                TLV: 200 xDAI
+                            </Text>
+                        </div>
+                    </div>
+                    </div>
+                    <div>
+
+                    <Table>
+                        <thead>
+                            <tr>{columnList}</tr>
+                        </thead>
+                        <tbody >
+                            {hardcodedProdes?.slice(0).reverse().map((hardcodedProde, index) => {
+                                return (
+
+                                    <tr key={hardcodedProde.prodeAddress}>
+                                        <td>{hardcodedProde.prodeNickname}</td>
+                                        <td>{hardcodedProde.buyin}</td>
+                                        <td><Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
+                                                    <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
+                                            </Button></td>
+                                    </tr>
+                                    
+                                    
+                                )
+                            })}
+                        </tbody>
+                    </Table>
                     </div>
                 </CardGradient>
+            </div>
+            <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
+                            <Link href="/table"><Button className='w-full' >Place Bet</Button></Link>
             </div>
 
         </div>
