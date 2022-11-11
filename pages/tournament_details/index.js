@@ -67,7 +67,7 @@ export default function TournamentDetails() {
             <Blur bottom='0%' left='-7px' height='25%' width='20%'
                 image={BallPNG.src}
                 bottomImage='-83px'
-                leftImage='0px'
+                rightImage='0px'
             />
             <Header>
                 {
@@ -86,53 +86,21 @@ export default function TournamentDetails() {
                 }
             </Header>
             <div className='container relative w-full px-8 pt-8 mx-auto md:px-28'>
-                <CardGradient className="md:!p-16 !z-10">
-                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournament</Text>
+                <CardGradient className="md:!p-16 !z-10" borderless="true">
+                    <Header>
+                       <Button onClick={connectWalletPressed}>Invite your friends!</Button>
+                    </Header>
+                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Tourney cool name</Text>
                     <div className='flex flex-row w-full justify-between mt-4'>
-                        <form className='flex flex-row' onSubmit={onSubmitFilters}>
-                            <div className='h-full relative'>
-                                <input type="text" className='h-full rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3' onChange={onChangeSearch} />
-                                {filters.searchFilter && <div className='absolute z10 top-16 w-full bg-gray-500 rounded p-2'>
-                                    {allProdes?.slice(0).reverse().map((prode, index) => {
-                                        if (filters.searchFilter !== null) {
-                                            if (filters.searchFilter !== '' && prode.prodeAddress?.includes(filters.searchFilter)) {
-                                                return <p key={prode.prodeAddress}>Address:  {prode.prodeAddress} click-prodeLanding</p>
-                                            }
-                                            if (filters.searchFilter !== '' && prode.prodeNickname?.includes(filters.searchFilter)) {
-                                                return <p key={prode.prodeAddress}>Nickname:  {prode.prodeNickname} click-prodeLanding</p>
-                                            }
-                                        }
-
-                                    })}
-                                </div>}
-                            </div>
-                            <Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
-                                <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
+                            <Button type="submit" withtBorder={false} variant={Variant.tertiary} className="!px-5">{
+                                String(walletAddress).substring(0, 6) +
+                                "..." +
+                                String(walletAddress).substring(38)
+                            }
                             </Button>
-                        </form>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>or</Text>
-                        {walletAddress.length > 0
-                            ? (<Link href="/create_tournament"><Button>Create your own</Button></Link>)
-                            : <Button onClick={connectWalletPressed}>Connect Wallet</Button>
-                        }
                     </div>
                     <div className='flex flex-col gap-5 mt-16'>
-                        <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>List of tourneys</Text>
-                        <div className='flex flex-row w-full justify-between'>
-                            <Button activated={true} variant={Variant.tertiary} withtBorder={false}>Public tourneys</Button>
-                            <Button
-                                variant={Variant.tertiary}
-                                withtBorder={false}
-                                onClick={handleOnClickFilters}>
-                                My tourneys
-                            </Button>
-                            <Button
-                                variant={Variant.tertiary}
-                                withtBorder={false}
-                                onClick={() => handleOnClickFilters(CREATEDBYME)}>
-                                Created by me
-                            </Button>
-                        </div>
+                        <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Tournament settings</Text>
                     </div>
                 </CardGradient>
             </div>
