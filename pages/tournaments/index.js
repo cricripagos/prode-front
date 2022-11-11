@@ -161,7 +161,6 @@ export default function Tournaments() {
                     </div>
                 </CardGradient>
             </div>
-
         </div>
     );
 }

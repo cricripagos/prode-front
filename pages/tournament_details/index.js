@@ -24,7 +24,7 @@ const columns = [
     },
     {
         key: "slip",
-        label: "Buy-in",
+        label: "Check Slip",
     },
 ];
 
