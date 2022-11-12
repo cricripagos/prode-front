@@ -7,18 +7,18 @@ import { BackgroundCTAStyled } from './styles';
 
 const Header = () => {
     return (
-        <div className='flex flex-col md:flex-row gap-5'>
-            <div className='flex flex-col'>
+        <div className='grid grid-cols-3 bg-[#262333] drop-shadow-md rounded-md pl-[15px]'>
+            <div className='col-start-1 col-span-3'>
                 <Text
-                    fontSize='22px'
-                    lineHeight='40px'
+                    fontSize='16px'
+                    lineHeight='20px'
                     fontSizeSm={'10px'}
                     className="mt-6">
                     Find by tournament address, or owner
                     internetter.eth
                 </Text>
             </div>
-                <HeaderComponent>
+                <HeaderComponent className='col-start-4'>
                     <Link href="/tournaments"><Button>Find</Button></Link>
                 </HeaderComponent>
             

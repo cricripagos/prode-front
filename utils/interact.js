@@ -1,5 +1,5 @@
 const Web3 = require('web3');
-const chainstackURL = process.env.NEXT_PUBLIC_CHAINSTACK;
+const chainstackURL = "wss://ws-nd-492-780-425.p2pify.com/09bdaa710dbe42c3ae63db6d136f3f19";
 
 const options = {
   // Enable auto reconnection
