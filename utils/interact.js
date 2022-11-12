@@ -172,12 +172,7 @@ export const placeBet = async (address, betSlip) => {
     };
   }
 
-  const singleProdeData = await singleProdeContract.methods.debugRetrieveProdeData().call();
-  console.log(singleProdeData)
-  //const buyIn = singleProdeData.buyIn?.toString()
-  //console.log(buyIn)
-  console.log('INTERACT')
-  console.log(betSlip)
+  // NO PUEDO HARDCODEAR EL VALOR DE VALUE. 
   //set up transaction parameters
 
   const transactionParameters = {
@@ -205,7 +200,7 @@ export const placeBet = async (address, betSlip) => {
                                                                 value: 5000 });*/
     
     console.log("Mining...", txHash);
-    //await txHash.wait();
+
     console.log("Mined -- ", txHash.hash);
 
     return {
