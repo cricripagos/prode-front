@@ -110,7 +110,7 @@ export default function TournamentDetails() {
                     <Header>
                        <Button onClick={connectWalletPressed}>Invite your friends!</Button>
                     </Header>
-                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Tourney cool name</Text>
+                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>Tourney cool name</Text>
                     <div className='flex flex-row w-full justify-between mt-4'>
                             <Button type="submit" withtBorder={false} variant={Variant.tertiary} className="!px-5">{
                                 String(walletAddress).substring(0, 6) +
@@ -120,40 +120,45 @@ export default function TournamentDetails() {
                             </Button>
                     </div>
                     <div className='flex flex-col gap-5 mt-16'>
-                        <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Tournament settings</Text>
-                        <div className='flex flex-col md:flex-row gap-12'>
-                        <div className='flex flex-col gap-1'>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                Name: prueba
+                        <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>Tournament settings</Text>
+                        <div className='gap-10 grid grid-cols-6'>
+                        <div className=' gap-1 col-start-1 col-span-3'>
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                                Name: <span className='text-[14px]'>prueba</span>
                             </Text>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                Buy-in:  10 xDAI
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                                Buy-in: <span className='text-[14px]'>10 xDAI</span>
                             </Text>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                Earnings: 50% Winner
-                            </Text>  
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{marginLeft: '110px'}}>
-                                20% Runner-up
-                            </Text> 
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{marginLeft: '110px'}}>
-                                10% 3rd place
-                            </Text> 
+                            <div className=' grid grid-start-2'>
+                                <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
+                                    Earnings:
+                                </Text>  
+                                <Text  fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2 mt-[10px]'>
+                                50% <span className='text-[12px] text-[#E4168F]'>Winner</span>
+                                </Text> 
+                                <Text  color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
+                                    20% <span className='text-[12px] text-[#E4168F]'>Runner-up</span>
+                                </Text> 
+                                <Text  color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
+                                    10% <span className='text-[12px] text-[#E4168F]'>3rd place</span>
+                                </Text> 
+                            </div>
                         </div>
-                        <div className='flex flex-col gap-1'>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                Name: prueba
+                        <div className=' gap-1 col-span-3'>
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                                Name: <span className='text-[14px]'>prueba</span>
                             </Text>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                UBI donation: 3%
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                                UBI donation: <span className='text-[14px]'>3%</span>
                             </Text>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                Format: Open
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                                Format: <span className='text-[14px]'>Open</span>
                             </Text>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                Participants: 20
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                                Participants: <span className='text-[14px]'>20</span>
                             </Text>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                TLV: 200 xDAI
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                                TLV: <span className='text-[14px]'>200 xDAI</span>
                             </Text>
                         </div>
                     </div>
