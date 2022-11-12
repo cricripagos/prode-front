@@ -7,7 +7,7 @@ import CardGradient from '@components/CardGradient/CardGradient';
 import { connectWallet, 
         getCurrentWalletConnected,
         createProde,
-    } from '../../utils/interact'
+    } from '../../utils/interact';
 import Link from 'next/link';
 
 
