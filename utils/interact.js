@@ -116,6 +116,12 @@ export const createProde = async (address, prode) => {
       status: "❌ Your tourney need a name.",
     };
   }
+
+  if (prode.buyin?.trim() === '') {
+    return {
+      status: "❌ Your tourney need a buy-in amount.",
+    };
+  }
   
   //set up transaction parameters
   const transactionParameters = {
@@ -174,12 +180,13 @@ export const placeBet = async (address, betSlip) => {
 
   // NO PUEDO HARDCODEAR EL VALOR DE VALUE. 
   //set up transaction parameters
+  const buyin = 500
 
   const transactionParameters = {
     to: '0xF4C1EF14c8d0659D95D972f093442eF715cB5186', // Required except during contract publications.
     from: address, // must match user's active address.
     data: singleProdeContract.methods.createParticipant(betSlip.picksGroups, betSlip.picksTops, betSlip.nickname).encodeABI(),
-    value: '5000', 
+    value: '1388',
     gasLimit: '300000',
   };
 

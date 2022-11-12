@@ -28,29 +28,6 @@ const columns = [
     },
 ];
 
-const hardcodedProdes = [
-    {
-        prodeAddress: "participantName1",
-        prodeNickname: "Maradona",
-        buyin: 43
-    },
-    {
-        prodeAddress: "participantName2",
-        prodeNickname: "Pele",
-        buyin: 23
-    },
-    {
-        prodeAddress: "participantName3",
-        prodeNickname: "Messi",
-        buyin: 65
-    },
-    {
-        prodeAddress: "participantName4",
-        prodeNickname: "CR7",
-        buyin: 64
-    },
-    
-];
 
 export default function TournamentDetails() {
     const [filters, setFilters] = useState({ addressFilter: null, nicknameFilter: null, searchFilter: '' });
@@ -170,20 +147,6 @@ export default function TournamentDetails() {
                             <tr>{columnList}</tr>
                         </thead>
                         <tbody >
-                            {/* hardcodedProdes?.slice(0).reverse().map((hardcodedProde, index) => {
-                                return (
-
-                                    <tr key={hardcodedProde.prodeAddress}>
-                                        <td>{hardcodedProde.prodeNickname}</td>
-                                        <td>{hardcodedProde.buyin}</td>
-                                        <td><Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
-                                                    <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
-                                            </Button></td>
-                                    </tr>
-                                    
-                                    
-                                )
-                            })*/}
                                 {singleProde?.slice(0).reverse().map((participant, index) => {
                                     return (
                                         <tr key={participant.beneficiary}>

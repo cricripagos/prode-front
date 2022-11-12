@@ -1,6 +1,7 @@
-import React from 'react'
-import Button from '@components/Button/Button'
-import Text from '@components/Text/Text'
+import React from 'react';
+import Button from '@components/Button/Button';
+import Text from '@components/Text/Text';
+import Link from 'next/link';
 
 const CtaSection = () => {
     return (
@@ -21,7 +22,7 @@ const CtaSection = () => {
                     to crypto with a fun excuse. Have fun winning and loosing.
                 </Text>
                 <div className='w-full md:w-3/4 my-8'>
-                    <Button withtBorder={false} block>Launch App</Button>
+                <Link href="/tournaments"><Button withtBorder={false} block>Launch App</Button></Link>
                 </div>
             </div>
         </div>

@@ -7,16 +7,20 @@ import imageBG from "@assets/images/ballRight.png";
 import copaImage from "@assets/images/copa.png";
 import ContentTable from "./components/ContentTable/ContentTable";
 import { jsonData, jsonGroups } from "./jsonData/data";
-import Link from 'next/link';
 import Button, { Variant } from '@components/Button/Button';
 import { useConnect } from '@hooks/useConnect';
 import { placeBet } from '../../utils/interact';
 import Header from '@components/Header/Header';
+import { useRouter } from 'next/router'
 
 
 export default function BettingSlip() {
   const { walletAddress, connectWalletPressed } = useConnect();
   const [status, setStatus] = useState("");
+  const router = useRouter()
+  async function navigate() {
+    router.push('/tournament_details')
+  }
 
 
   const onPlaceBetPressed = async (event) => {
@@ -53,11 +57,14 @@ export default function BettingSlip() {
                   {3, 2}, {2, 3}, {2, 1}, {2, 1}},
                       */
     picksTops: [1, 3, 4, 5],
-    nickname: 'Test participant',
+    nickname: 'Cool participant',
   };
 
   const { status } = await placeBet(walletAddress, betSlip);
   setStatus(status);
+
+  await navigate()
+
 };
 
 

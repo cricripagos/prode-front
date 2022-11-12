@@ -9,6 +9,7 @@ import { connectWallet,
         createProde,
     } from '../../utils/interact';
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 
 function CreateTournament() {
@@ -17,6 +18,11 @@ function CreateTournament() {
     const [walletAddress, setWallet] = useState("");
     const [status, setStatus] = useState("");
     const [prode, setProde] = useState([]);
+    
+    const router = useRouter()
+    async function navigate() {
+        router.push('/tournament_details')
+      }
 
 
     useEffect(() => {
@@ -72,7 +78,8 @@ function CreateTournament() {
 
         const { status } = await createProde(walletAddress, newProde);
         setStatus(status);
-        console.log(newProde)
+        await navigate()
+
       };
 
     return (
@@ -103,15 +110,18 @@ function CreateTournament() {
                     <h3 className="text-[22px] text-white pt-[30px]">Earnings</h3>
                     <div className="bg-[#262333] w-full h-[160px] rounded-md mt-[10px] p-[20px] drop-shadow-md">
                         <div class="flex grid grid-cols-2">
-                            <div className="text-[22px] font-light text-white pt-[10px] col-start-1">50%</div>
+                            <div className="text-[22px] font-light text-white pt-[10px] col-start-1">1000%</div>
                             <div className="text-[22px] font-light text-white pt-[10px] col-end-3">Winner</div>
+                            </div>
+                    </div>
+                            {/*
                             <div className="text-[22px] font-light text-white pt-[20px] col-start-1">20%</div>
                             <div className="text-[22px] font-light text-white pt-[20px] col-end-3">Runner up</div>
                             <div className="text-[22px] font-light text-white pt-[20px] col-start-1">10%</div>
                             <div className="text-[22px] font-light text-white pt-[20px] col-start-2">3rd place</div>
                         </div>
-                    </div>
-{/*
+
+
                     <div className="grid grid-cols-2 items-end">
                         <div className="text-[22px] text-white pt-[30px]">Hidden Tourney</div>
 
