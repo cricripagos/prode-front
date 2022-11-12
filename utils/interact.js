@@ -13,6 +13,7 @@ const options = {
 
 const ws = new Web3.providers.WebsocketProvider(chainstackURL, options) 
 const web3 = new Web3(ws)
+// const signer = web3.getSigner();
 
 const contractABI = require('./abi/prodeFactory.json');
 const singleProdeABI = require('./abi/prodeBeta.json'); // tomo el ABI del prode puntualmente
@@ -101,14 +102,6 @@ export const getCurrentWalletConnected = async () => {
  };
 }; 
 
-export const loadSingleProde = async() => {
-
-  const singleProdeContract = new web3.eth.Contract( singleProdeABI, '0xF4C1EF14c8d0659D95D972f093442eF715cB5186' )
-  const singleProdeData = await singleProdeContract.methods.debugRetrieveParticipants().call();
-  console.log(singleProdeData)
-  return singleProdeData
-}
-
 export const createProde = async (address, prode) => {
   //input error handling
   if (!window.ethereum || address === null) {
@@ -151,6 +144,80 @@ export const createProde = async (address, prode) => {
       ),
     };
   } catch (error) {
+    return {
+      status: "😥 " + error.message,
+    };
+  }
+};
+
+
+/////////////////////////////////////////////////// BETTING SLIP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+export const loadSingleProde = async() => {
+  /// Falta quitar hardcodeo y usar prode['prodeAddress']
+  const singleProdeContract = new web3.eth.Contract( singleProdeABI, '0xF4C1EF14c8d0659D95D972f093442eF715cB5186')
+  const singleProdeData = await singleProdeContract.methods.debugRetrieveParticipants().call();
+  console.log(singleProdeData)
+  return singleProdeData
+}
+
+export const placeBet = async (address, betSlip) => {
+
+  const singleProdeContract = new web3.eth.Contract( singleProdeABI, '0xF4C1EF14c8d0659D95D972f093442eF715cB5186' )
+  //input error handling
+  if (!window.ethereum || address === null) {
+    return {
+      status:
+        "💡 Connect your Metamask wallet to update the message on the blockchain.",
+    };
+  }
+
+  // NO PUEDO HARDCODEAR EL VALOR DE VALUE. 
+  //set up transaction parameters
+
+  const transactionParameters = {
+    to: '0xF4C1EF14c8d0659D95D972f093442eF715cB5186', // Required except during contract publications.
+    from: address, // must match user's active address.
+    data: singleProdeContract.methods.createParticipant(betSlip.picksGroups, betSlip.picksTops, betSlip.nickname).encodeABI(),
+    value: '5000', 
+    gasLimit: '300000',
+  };
+
+
+  //sign the transaction
+  try {
+   
+    const txHash = await window.ethereum.request({
+      method: "eth_sendTransaction",
+      params: [transactionParameters],
+    }
+    
+    );    
+     /*
+    const txHash = await singleProdeContract.methods.createParticipant(betSlip.picksGroups, betSlip.picksTops, betSlip.nickname).call({ 
+                                                                to: '0xF4C1EF14c8d0659D95D972f093442eF715cB5186', // Required except during contract publications.
+                                                                from: address, // must match user's active address. })
+                                                                value: 5000 });*/
+    
+    console.log("Mining...", txHash);
+
+    console.log("Mined -- ", txHash.hash);
+
+    return {
+      status: (
+        <span>
+          ✅{" "}
+          <a target="_blank" href={`https://gnosisscan.io/${txHash}`}>
+            View the status of your transaction on Gnosisscan!
+          </a>
+          <br />
+          ℹ️ Once the transaction is verified by the network, the message will
+          be updated automatically.
+        </span>
+      ),
+    };
+  } catch (error) {
+    console.log(error);   
     return {
       status: "😥 " + error.message,
     };
