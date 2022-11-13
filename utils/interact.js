@@ -26,14 +26,14 @@ const prodeContract = new web3.eth.Contract(
     contractAddress
 )
 
-
+/*
 export const loadCurrentMessage = async () => { 
     const prodes = await prodeContract.methods.retrieveProdes().call();
 
     return prodes;  
-};
+};*/
 
-export const loadProdesFullyByTule = async() => {
+export const loadProdes = async() => {
   const prodes = await prodeContract.methods.retrieveProdes().call();
   let prodesFull = [];
   for (const prode of prodes){
@@ -42,8 +42,7 @@ export const loadProdesFullyByTule = async() => {
     prodesFull.push({...prode, participantsArray: singleProdeData})
 
   }
-  console.log(prodesFull)
-  return prodesFull
+  return prodes
 };
 
 
