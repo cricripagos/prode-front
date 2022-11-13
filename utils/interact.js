@@ -1,3 +1,4 @@
+import { useState } from 'react';
 const Web3 = require('web3');
 const chainstackURL = process.env.NEXT_PUBLIC_CHAINSTACK;
 
@@ -106,6 +107,8 @@ export const createProde = async (address, prode) => {
   //input error handling
   if (!window.ethereum || address === null) {
     return {
+      validator: '',
+      transaction: '',
       status:
         "💡 Connect your Metamask wallet to update the message on the blockchain.",
     };
@@ -113,13 +116,17 @@ export const createProde = async (address, prode) => {
   
   if (prode.nickname?.trim() === "Choose a cool name for your tourney!") {
     return {
-      status: "❌ Your tourney need a name.",
+      validator: '',
+      transaction: '',
+      status: <span>"❌ Your tourney need a name."</span>,
     };
   }
 
   if (prode.buyin?.trim() === '') {
     return {
-      status: "❌ Your tourney need a buy-in amount.",
+      validator: '',
+      transaction: '',
+      status: <span>"❌ Your tourney need a buy-in amount."</span>
     };
   }
   
@@ -132,20 +139,23 @@ export const createProde = async (address, prode) => {
 
   //sign the transaction
   try {
-    const txHash = await window.ethereum.request({
-      method: "eth_sendTransaction",
-      params: [transactionParameters],
-    });
+   
+    const txn = await window.ethereum.request({
+    method: "eth_sendTransaction",
+    params: [transactionParameters],
+    }); 
+
     return {
+      validator: 'success',
+      transaction: txn,
       status: (
         <span>
           ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io/${txHash}`}>
+          <a target="_blank" href={`https://gnosisscan.io/tx/${txn}`}>
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
-          ℹ️ Once the transaction is verified by the network, the message will
-          be updated automatically.
+          ℹ️ Once the transaction is verified by the network, you can start the game.
         </span>
       ),
     };
@@ -156,6 +166,33 @@ export const createProde = async (address, prode) => {
   }
 };
 
+
+export const waitTransaction = async(txn) => {
+  
+  const transactionReceipt = await web3.eth.getTransactionReceipt(txn);
+  
+  if (transactionReceipt!=null) {
+    console.log(`Mined... ${transactionReceipt}`);
+      return {
+        validator: 'success',
+      }
+  } else { console.log(`error`) }
+  /*
+  web3.eth.subscribe('logs', {
+    address: contractAddress, topics: [ walletAddess ]
+    }, function(error, result){
+    if (!error)
+      return {validator: result}
+    })
+    .on("data", function(log){
+      return {validator: log}
+    })
+    .on("changed", function(log){
+      return {validator: log}
+    });
+
+    */
+};
 
 /////////////////////////////////////////////////// BETTING SLIP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -194,17 +231,19 @@ export const placeBet = async (address, betSlip) => {
   //sign the transaction
   try {
    
-    const txHash = await window.ethereum.request({
+      window.ethereum.request({
       method: "eth_sendTransaction",
       params: [transactionParameters],
-    }
-    
-    );    
-     /*
-    const txHash = await singleProdeContract.methods.createParticipant(betSlip.picksGroups, betSlip.picksTops, betSlip.nickname).call({ 
-                                                                to: '0xF4C1EF14c8d0659D95D972f093442eF715cB5186', // Required except during contract publications.
-                                                                from: address, // must match user's active address. })
-                                                                value: 5000 });*/
+    }).then( 
+      async (result) => 
+      {
+      console.log("Minting... please wait");
+      const transactionReceipt = await web3.eth.getTransactionReceipt(result);
+      await transactionReceipt.wait; //cannot await because of null
+      if (transactionReceipt!=null) {
+        console.log(`Mined... ${transactionReceipt}`);
+      } else { console.log(`error`) }; //getting this
+    })  
     
     console.log("Mining...", txHash);
 
@@ -230,3 +269,64 @@ export const placeBet = async (address, betSlip) => {
     };
   }
 };
+
+/*
+
+
+export const createProde = async (address, prode) => {
+  //input error handling
+  if (!window.ethereum || address === null) {
+    return {
+      validator: false,
+      status:
+        "💡 Connect your Metamask wallet to update the message on the blockchain.",
+    };
+  }
+  
+  if (prode.nickname?.trim() === "Choose a cool name for your tourney!") {
+    return {
+      validator: false,
+      status: <span>"❌ Your tourney need a name."</span>,
+    };
+  }
+
+  if (prode.buyin?.trim() === '') {
+    return {
+      validator: false,
+      status: <span>"❌ Your tourney need a buy-in amount."</span>
+    };
+  }
+  
+  //set up transaction parameters
+  const transactionParameters = {
+    to: contractAddress, // Required except during contract publications.
+    from: address, // must match user's active address.
+    data: prodeContract.methods.createProde(prode.buyin, prode.hidden, prode.nickname).encodeABI(),
+  };
+
+  //sign the transaction
+  try {
+    const txHash = await window.ethereum.request({
+      method: "eth_sendTransaction",
+      params: [transactionParameters],
+    });
+    return {
+      validator: true,
+      status: (
+        <span>
+          ✅{" "}
+          <a target="_blank" href={`https://gnosisscan.io/${txHash.hash}`}>
+            View the status of your transaction on Gnosisscan!
+          </a>
+          <br />
+          ℹ️ Once the transaction is verified by the network, you can start the game.
+        </span>
+      ),
+    };
+  } catch (error) {
+    return {
+      status: "😥 " + error.message,
+    };
+  }
+};
+*/

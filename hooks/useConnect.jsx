@@ -2,17 +2,12 @@ import { useEffect, useState } from 'react';
 import {
     connectWallet,
     getCurrentWalletConnected,
-    loadCurrentMessage,
-    loadSingleProde,
-} from '@utils/interact';
+} from '@utils/connectWallet';
 
 export const useConnect = () => {
     //state variables
     const [walletAddress, setWallet] = useState("");
     const [status, setStatus] = useState("");
-    const [allProdes, setAllProdes] = useState([]);
-    const [singleProde, setSingleProde] = useState([]);
-
 
     //called only once
     useEffect(() => {
@@ -22,12 +17,11 @@ export const useConnect = () => {
             setStatus(status);
             addWalletListener();
 
-            getAllProdes();
-            loadProdeInfo();
         }
         initiate()
     }, []);
-    /////////// COMO LE HAGO PARA SACAR ESTA PARTE??? SE REUTILZA LO MISMO EN CREATE_TOURNAMENT \\\\\\\\\\
+
+
     function addWalletListener() {
         if (window.ethereum) {
             window.ethereum.on("accountsChanged", (accounts) => {
@@ -58,28 +52,6 @@ export const useConnect = () => {
         setWallet(walletResponse.address);
     };
 
-    ////////     \\\\\\\\\\\\
 
-    const getAllProdes = async () => {
-
-        const prodes = await loadCurrentMessage();
-
-        const prodesCleaned = prodes.map(prode => {
-            return {
-                prodeNickname: prode.prodeNickname,
-                prodeAddress: prode.prodeAddress,
-                buyIn: prode.buyIn,
-                hidden: prode.hidden,
-            };
-        });
-
-        setAllProdes(prodesCleaned)
-    };
-
-    const loadProdeInfo = async() => {
-        const singleProdeData = await loadSingleProde();
-        setSingleProde(singleProdeData)
-      }
-
-    return { walletAddress, status, allProdes, singleProde, connectWalletPressed};
+    return { walletAddress, status, connectWalletPressed};
 }
