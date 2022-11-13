@@ -12,6 +12,7 @@ import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from '../../components/constants';
 import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
+import { useWeb3 } from '../../hooks/useWeb3';
 
 const columns = [
     {
@@ -27,15 +28,16 @@ const columns = [
         label: "Buy-in",
     },
     {
-        key: "participants",
-        label: "Participants",
+        key: "players",
+        label: "Players",
     },
 ];
 
 export default function Tournaments() {
     const [filters, setFilters] = useState({ addressFilter: null, nicknameFilter: null, searchFilter: '' });
     const [search, setSearch] = useState('');
-    const { walletAddress, allProdes, connectWalletPressed } = useConnect();
+    const { walletAddress, connectWalletPressed } = useConnect();
+    const { allProdes } = useWeb3();
 
     const columnList = columns.map(item =>
         <th className="px-4 py-2 text-white" key={item.key}>{item.label}</th>
@@ -151,7 +153,7 @@ export default function Tournaments() {
                                                 <td>{prode.prodeNickname}</td>
                                                 <td>{prode.prodeAddress}</td>
                                                 <td>{prode.buyIn}</td>
-                                                <td>{prode.participantsArray?.length}</td>
+                                                <td>{prode.participantsArray?.length()}</td>
                                             </tr>
                                         )
                                     })}
