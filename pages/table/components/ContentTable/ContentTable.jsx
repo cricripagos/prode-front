@@ -3,6 +3,7 @@ import SimpleCard from '@components/SimpleCard/SimpleCard';
 import Text from '@components/Text/Text';
 import Header from '../Header/Header'
 import Accordion from '../Accordion/Accordion';
+import Paper from "../Paper/Paper";
 
 const ContentTable = (props) => {
     return (
@@ -30,13 +31,13 @@ const ContentTable = (props) => {
                             </Text>
                             <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
                                 Earnings: 50% Winner
-                            </Text>  
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{marginLeft: '110px'}}>
+                            </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{ marginLeft: '110px' }}>
                                 20% Runner-up
-                            </Text> 
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{marginLeft: '110px'}}>
+                            </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{ marginLeft: '110px' }}>
                                 10% 3rd place
-                            </Text> 
+                            </Text>
                         </div>
                         <div className='flex flex-col gap-1'>
                             <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
@@ -61,7 +62,56 @@ const ContentTable = (props) => {
                             Betting Slip
                         </Text>
                     </div>
-                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i}/>)}
+                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i} />)}
+                </div>
+                <Paper />
+                <div class="grid grid-cols-4 gap-1">
+                    <div>
+                        <Text
+                            fontSize='36px'
+                            lineHeight='40px'
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
+                            style={{ color: '#00E5AE', marginTop: '30px' }}
+                        >
+                            Buy-in
+                        </Text>
+                    </div>
+                    <div>
+                        <Text
+                            fontSize='22px'
+                            lineHeight='40px'
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
+                            style={{ padding: '10px', background: '#333647', borderRadius: '10px' }}
+                            color="secondary">
+                            10 xDAI
+                        </Text>
+                    </div>
+                </div>
+                <div class="grid grid-cols-4 gap-4">
+                    <div>
+                        <Text
+                            fontSize='36px'
+                            lineHeight='40px'
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
+                            style={{ color: '#00E5AE', marginTop: '30px' }}
+                        >
+                            In-Tournay nickname: 
+                        </Text>
+                    </div>
+                    <div>
+                        <Text
+                            fontSize='22px'
+                            lineHeight='40px'
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
+                            style={{ padding: '10px', background: '#262333', borderRadius: '10px', color: '#E4168F'}}
+                            color="secondary">
+                            Tule
+                        </Text>
+                    </div>
                 </div>
             </SimpleCard>
         </section>
