@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import Button, { Variant } from '@components/Button/Button';
 import Header from '@components/Header/Header';
@@ -13,7 +13,7 @@ import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from '../../components/constants';
 import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
-import {getParticipants} from '../../utils/prodeFns'
+import {getParticipants, getTournamentData} from '../../utils/prodeFns'
 
 const columns = [
     {
@@ -33,40 +33,40 @@ const columns = [
 
 export default function TournamentDetails() {
     const router = useRouter()
-    const { tid } = router.query
-    console.log("Address del torneoL", tid)
     const [participants, setParticipants] = useState()
-    const [filters, setFilters] = useState({ addressFilter: null, nicknameFilter: null, searchFilter: '' });
-    const [search, setSearch] = useState('');
-    const { walletAddress, connectWalletPressed, singleProde } = useConnect();
-    const tst = getParticipants(tid)
-    console.log(tst)
+    const [tdata, setTdata] = useState()
+    const [tid, setTid] = useState()
+    useEffect(()=>{
+        if(!router.isReady) return;
+        const { tid } = router.query
+        setTid(tid)
+        const fetchParticipants = async () => {
+            const participants = await getParticipants(tid)
+            setParticipants(participants)
+        }
+        const fetchTdata = async () => {
+            const tdata = await getTournamentData(tid)
+            setTdata({ // esto lo pongo para no tene q lidiar con indexes de un array
+                buyin: tdata[0]/1000000000000000000,
+                prodeNickname: tdata[1],
+                participants: tdata[2],
+                winnerData: tdata[3],
+                creator: tdata[4],
+                pot: tdata[0]/1000000000000000000*tdata[2],
+            })
+        }
+        fetchParticipants()
+        fetchTdata()
+    }, [router.isReady]);
+    const { walletAddress, connectWalletPressed } = useConnect();
+    console.log(participants, 'mirar aca parts')
+    console.log(tdata, 'mirar aca tdata')
 
 
     const columnList = columns.map(item => 
         <th className="px-4 py-2 text-white" key={item.key}>{item.label}</th>
     );
 
-    const onSubmitFilters = (event) => {
-        event.preventDefault();
-        setFilters(prevFilters => ({ ...prevFilters, searchFilter: search }));
-    };
-
-    const onChangeSearch = (event) => {
-        const { target: { value } } = event;
-        setSearch(value);
-    }
-
-    const handleOnClickFilters = (buttonName = MYTOURNEYSBUTTONNAME) => {
-        setFilters(prevFilters => (
-            {
-                ...prevFilters,
-                addressFilter: !filters.addressFilter
-                    ? buttonName === MYTOURNEYSBUTTONNAME ? walletAddress : "0x130f5E56220c218953824D2997C4870961CBdD24"
-                    : null
-            }
-        ));
-    }
 
     return (
         <div className='w-full relative'>
@@ -96,12 +96,10 @@ export default function TournamentDetails() {
                     <Header>
                        <Button onClick={connectWalletPressed}>Invite your friends!</Button>
                     </Header>
-                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>Tourney cool name</Text>
+                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>Tournament name</Text>
                     <div className='flex flex-row w-full justify-between mt-4'>
                             <Button type="submit" withtBorder={false} variant={Variant.tertiary} className="!px-5">{
-                                String(walletAddress).substring(0, 6) +
-                                "..." +
-                                String(walletAddress).substring(38)
+                                tid
                             }
                             </Button>
                     </div>
@@ -113,38 +111,38 @@ export default function TournamentDetails() {
                                 Name: <span className='text-[14px]'>prueba</span>
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Buy-in: <span className='text-[14px]'>10 xDAI</span>
+                                Buy-in: <span className='text-[14px]'>{tdata?.buyin} xDAI</span>
                             </Text>
                             <div className=' grid grid-start-2'>
                                 <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
                                     Earnings:
                                 </Text>  
                                 <Text  fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2 mt-[10px]'>
-                                50% <span className='text-[12px] text-[#E4168F]'>Winner</span>
+                                100% <span className='text-[12px] text-[#E4168F]'>Winner</span>
                                 </Text> 
-                                <Text  color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
+                                {/*<Text  color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
                                     20% <span className='text-[12px] text-[#E4168F]'>Runner-up</span>
                                 </Text> 
                                 <Text  color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
                                     10% <span className='text-[12px] text-[#E4168F]'>3rd place</span>
-                                </Text> 
+                        </Text> */}
                             </div>
                         </div>
                         <div className=' gap-1 col-span-3'>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Name: <span className='text-[14px]'>prueba</span>
+                                Name: <span className='text-[14px]'>{tdata?.prodeNickname}</span>
                             </Text>
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                            {/*<Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
                                 UBI donation: <span className='text-[14px]'>3%</span>
-                            </Text>
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                            </Text>*/}
+                            {/*<Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
                                 Format: <span className='text-[14px]'>Open</span>
+                        </Text>*/}
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
+                                Participants: <span className='text-[14px]'>{tdata?.participants}</span>
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Participants: <span className='text-[14px]'>20</span>
-                            </Text>
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                TLV: <span className='text-[14px]'>200 xDAI</span>
+                                TLV: <span className='text-[14px]'>{tdata?.pot} xDAI</span>
                             </Text>
                         </div>
                     </div>
@@ -156,7 +154,7 @@ export default function TournamentDetails() {
                             <tr>{columnList}</tr>
                         </thead>
                         <tbody >
-                                {singleProde?.slice(0).reverse().map((participant, index) => {
+                                {participants?.slice(0).reverse().map((participant, index) => {
                                     return (
                                         <tr key={participant.beneficiary}>
                                             <td>{participant.nickname}</td>

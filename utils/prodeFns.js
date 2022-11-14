@@ -14,8 +14,12 @@ const web3 = new Web3(ws)
 const singleProdeABI = require('./abi/prodeBeta.json'); // tomo el ABI del prode puntualmente
 
 export const getParticipants = async (address) => {
-    console.log(address)
     const prode = await new web3.eth.Contract( singleProdeABI, address )
     const participants = await prode.methods.debugRetrieveParticipants().call()
     return participants
+}
+export const getTournamentData = async (address) => {
+  const prode = await new web3.eth.Contract( singleProdeABI, address )
+  const tdata = await prode.methods.debugRetrieveProdeData().call()
+  return tdata
 }

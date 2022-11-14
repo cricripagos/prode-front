@@ -17,7 +17,7 @@ function CreateTournament() {
     const [status, setStatus] = useState('');
     const { walletAddress, connectWalletPressed } = useConnect();
     const [ validator, setValidator ] =  useState('');
-    const [ waiting, setWaiting] = useState(false)
+    const [ waiting, setWaiting] = useState(false) // estado para esperar transaccion
 
     //const { validator, transactionListener } = useWeb3()
     const [txn, setTxn] = useState('');
