@@ -14,9 +14,9 @@ import { useWeb3 } from '@hooks/useWeb3';
 function CreateTournament() {
 
     //state variables
-    const [status, setStatus] = useState('');
-    const { walletAddress, connectWalletPressed } = useConnect();
-    const [ validator, setValidator ] =  useState('');
+    //const [status, setStatus] = useState('');
+    /const { walletAddress, connectWalletPressed } = useConnect();
+    //const [ validator, setValidator ] =  useState('');
 
     //const { validator, transactionListener } = useWeb3()
     const [txn, setTxn] = useState('');
@@ -55,17 +55,38 @@ function CreateTournament() {
             nickname: event.target.nickname.value,
         };
 
+        async function newProde(){
+            CON
 
-        const { validator, transaction, status } = await createProde(walletAddress, prode);
-        setStatus(status);
-        setTxn(transaction);
-        setValidator(validator);
-        console.log(transaction)
-        console.log(validator)
+        }
+
+        const { newProdeAddress, validator, transaction, status } = await createProde(walletAddress, prode);
+
+        async function 
+        setStatus(await status);
+        setTxn(await transaction);
+        console.log(await transaction);
+        setTimeout(() => console.log('Waiting for transaction'), 200000);
+        console.log(newProdeAddress)
+        setValidator(await validator);
+        console.log(await validator);
         if(validator != '')
-            router.push('/tournaments');
+            router.push('/tournament_details');
       };
+
 /*
+        const { newProdeAddress, validator, transaction, status } = await createProde(walletAddress, prode);
+        setStatus(await status);
+        setTxn(await transaction);
+        console.log(await transaction);
+        setTimeout(() => console.log('Waiting for transaction'), 200000);
+        console.log(newProdeAddress)
+        setValidator(await validator);
+        console.log(await validator);
+        if(validator != '')
+            router.push('/tournament_details');
+      };
+
       async function onCreatePressed(event) {
         await newProde(event);
         setTimeout(() => console.log('Waiting for transaction'), 5000)

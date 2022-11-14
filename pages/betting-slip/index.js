@@ -19,6 +19,7 @@ export default function BettingSlip() {
   const [status, setStatus] = useState("");
   const router = useRouter()
   async function navigate() {
+    setTimeout(() => console.log('Waiting for transaction'), 8000)
     router.push('/tournament_details')
   }
 

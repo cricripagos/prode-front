@@ -1,4 +1,3 @@
-import { useState } from 'react';
 const Web3 = require('web3');
 const chainstackURL = process.env.NEXT_PUBLIC_CHAINSTACK;
 
@@ -147,6 +146,7 @@ export const createProde = async (address, prode) => {
     return {
       validator: 'success',
       transaction: txn,
+      newProdeAddress: web3.eth.getTransactionReceipt(await txn),
       status: (
         <span>
           ✅{" "}
@@ -157,14 +157,18 @@ export const createProde = async (address, prode) => {
           ℹ️ Once the transaction is verified by the network, you can start the game.
         </span>
       ),
-    };
-  } catch (error) {
-    return {
-      status: "😥 " + error.message,
-    };
-  }
-};
+    }
+    } catch (error) {
+      console.log(error);   
+      return {
+        status: "😥 " + error.message,
+      };
+    }
+  };
 
+
+
+/*
 
 export const waitTransaction = async(txn) => {
   
@@ -190,8 +194,8 @@ export const waitTransaction = async(txn) => {
       return {validator: log}
     });
 
-    */
-};
+    
+};*/
 
 /////////////////////////////////////////////////// BETTING SLIP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -238,7 +242,7 @@ export const placeBet = async (address, betSlip) => {
       {
       console.log("Minting... please wait");
       const transactionReceipt = await web3.eth.getTransactionReceipt(result);
-      await transactionReceipt.wait; //cannot await because of null
+
       if (transactionReceipt!=null) {
         console.log(`Mined... ${transactionReceipt}`);
       } else { console.log(`error`) }; //getting this
@@ -246,7 +250,7 @@ export const placeBet = async (address, betSlip) => {
     
     console.log("Mining...", txHash);
 
-    console.log("Mined -- ", txHash.hash);
+    console.log("Mined -- ", txHash);
 
     return {
       status: (
