@@ -59,9 +59,6 @@ export default function TournamentDetails() {
         fetchTdata()
     }, [router.isReady]);
     const { walletAddress, connectWalletPressed } = useConnect();
-    console.log(participants, 'mirar aca parts')
-    console.log(tdata, 'mirar aca tdata')
-
 
     const columnList = columns.map(item => 
         <th className="px-4 py-2 text-white" key={item.key}>{item.label}</th>

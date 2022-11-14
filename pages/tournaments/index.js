@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button, { Variant } from '@components/Button/Button';
 import Header from '@components/Header/Header';
 import Text from '@components/Text/Text';
@@ -13,7 +13,7 @@ import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
 import { useWeb3 } from '../../hooks/useWeb3';
-
+import { getParticipants, getAllProdes, getTournamentData } from '../../utils/prodeFns';
 const columns = [
     {
         key: "name",
@@ -33,19 +33,48 @@ const columns = [
     },
 ];
 
+const SearchBox = ({search, prodes}) => {
+    let results = []
+    
+    prodes?.slice(0).reverse().map((prode, index) => {
+        if(prode.prodeAddress == search && prode.hidden){
+            results.push('Hidden Address: '+prode.prodeAddress)
+        }else{
+            if ( prode.prodeAddress?.includes(search) && !prode.hidden ) {
+                results.push('Address: '+prode.prodeAddress)
+            }
+
+        }
+        if(prode.prodeNickname?.toLowerCase()==search.toLowerCase() && prode.hidden){
+            results.push('Hidden Name: '+ prode.prodeNickname) 
+        }else{
+            if ( prode.prodeNickname?.toLowerCase().includes(search.toLowerCase()) && !prode.hidden) {
+                results.push('Name: '+ prode.prodeNickname) 
+            }
+        }
+    })
+    console.log(results)
+    return(
+    <div className='absolute z10 top-16 w-full bg-gray-500 rounded p-2'>
+        {results.map((result, index) => {
+            return <p key={result+index.toString()}>{result} </p>
+        })}
+    </div>
+    )
+}
+
 export default function Tournaments() {
-    const [filters, setFilters] = useState({ addressFilter: null, nicknameFilter: null, searchFilter: '' });
+    const [filters, setFilters] = useState({ addressFilter: null, nicknameFilter: null, });
     const [search, setSearch] = useState('');
     const { walletAddress, connectWalletPressed } = useConnect();
-    const { allProdes } = useWeb3();
+    const [prodes, setProdes] = useState()
 
     const columnList = columns.map(item =>
         <th className="px-4 py-2 text-white" key={item.key}>{item.label}</th>
     )
-
-    const onSubmitFilters = (event) => {
+    const onChangeFilters = (event) => {
         event.preventDefault();
-        setFilters(prevFilters => ({ ...prevFilters, searchFilter: search }));
+        setFilters(prevFilters => ({ ...prevFilters }));
     };
 
     const onChangeSearch = (event) => {
@@ -63,7 +92,20 @@ export default function Tournaments() {
             }
         ));
     }
-
+    useEffect(()=>{
+        const fetchProdes = async () =>{
+            const prodes = await  getAllProdes()
+            setProdes(prodes)
+            let prodesFull = []
+            for (const prode of prodes){
+                const singleData = await getTournamentData(prode['prodeAddress'])
+                prodesFull.push({...prode, playerCount:singleData[2]})
+              }
+            setProdes(prodesFull)
+        }
+        fetchProdes()
+    }, []);
+    console.log(prodes)
     return (
         <div className='w-full relative'>
             <Blur bottom='0%' left='-7px' height='25%' width='20%'
@@ -91,22 +133,11 @@ export default function Tournaments() {
                 <CardGradient className="md:!p-16 !z-10">
                     <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournament</Text>
                     <div className='flex flex-row w-full justify-between mt-4'>
-                        <form className='flex flex-row' onSubmit={onSubmitFilters}>
+                        <form className='flex flex-row' onChange={onChangeFilters}>
                             <div className='h-full relative'>
                                 <input type="text" className='h-full rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3' onChange={onChangeSearch} />
-                                {filters.searchFilter && <div className='absolute z10 top-16 w-full bg-gray-500 rounded p-2'>
-                                    {allProdes?.slice(0).reverse().map((prode, index) => {
-                                        if (filters.searchFilter !== null) {
-                                            if (filters.searchFilter !== '' && prode.prodeAddress?.includes(filters.searchFilter)) {
-                                                return <p key={prode.prodeAddress}>Address:  {prode.prodeAddress} click-prodeLanding</p>
-                                            }
-                                            if (filters.searchFilter !== '' && prode.prodeNickname?.includes(filters.searchFilter)) {
-                                                return <p key={prode.prodeAddress}>Nickname:  {prode.prodeNickname} click-prodeLanding</p>
-                                            }
-                                        }
-
-                                    })}
-                                </div>}
+                                {search.length>0 && <SearchBox search={search} prodes={prodes}/>}
+                                {/*filters.searchFilter.length>0 && */}
                             </div>
                             <Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
                                 <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
@@ -141,7 +172,7 @@ export default function Tournaments() {
                                     <tr>{columnList}</tr>
                                 </thead>
                                 <tbody>
-                                    {allProdes?.slice(0).reverse().map((prode, index) => {
+                                    {prodes?.slice(0).reverse().map((prode, index) => {
                                         if (filters.addressFilter !== null) {
                                             let participantAddressList = prode.participantsArray?.map(({ beneficiary }) => beneficiary);
                                             if (!participantAddressList?.includes(filters.addressFilter)) {
@@ -153,7 +184,7 @@ export default function Tournaments() {
                                                 <td>{prode.prodeNickname}</td>
                                                 <td>{prode.prodeAddress}</td>
                                                 <td>{prode.buyIn}</td>
-                                                <td>{prode.participantsArray?.length()}</td>
+                                                <td>{prode.playerCount}</td>
                                             </tr>
                                         )
                                     })}
