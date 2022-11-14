@@ -27,10 +27,15 @@ export default function ControlledAccordions(props) {
                     <Image src={rectangleImage} alt="img" style={{ marginLeft: '20px', marginRight: '30px' }} />
                     <Text tag={'h1'} color={'white'} fontSize='22px' fontSizeSm={'22px'}>
                         Group {props.data[0].teams.group.toUpperCase()}
+                        {console.log(props.data[0].teams.group.toUpperCase())}
                     </Text>
                 </AccordionSummary>
                 <AccordionDetails>
-                    {props.data.map((dataMatch, i) => <Matches data={dataMatch}  key={i} number={i} />)}  
+                    {props.data.map((dataMatch, i) => <Matches data={dataMatch}  key={dataMatch.fixture.id} number={i} />)}  
+                    {console.log(props.data.map((dataMatch, i) => console.log(dataMatch.fixture.id)))}
+                    {console.log(props.data.map((dataMatch, i) => console.log([dataMatch.teams.home.id, dataMatch.teams.away.id])))}
+                    {console.log(props.data.map((dataMatch, i) => console.log([dataMatch.teams.home.name, dataMatch.teams.away.name])))}
+
                 </AccordionDetails>
             </Accordion>
             <div style={{marginTop: '10px'}}/>

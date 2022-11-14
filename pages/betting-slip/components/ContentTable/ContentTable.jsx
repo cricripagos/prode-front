@@ -56,7 +56,7 @@ const ContentTable = (props) => {
                             Betting Slip
                         </Text>
                     </div>
-                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i} />)}
+                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i} /> )}
                 </div>
                 <Paper />
                 <div class="grid grid-cols-4 gap-1">

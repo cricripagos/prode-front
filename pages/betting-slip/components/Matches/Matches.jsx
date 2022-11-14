@@ -23,7 +23,7 @@ const Matches = (props) => {
                         lineHeight='40px'
                         fontSizeSm={'10px'}
                         className="mt-6">
-                        {data.teams.away.name}
+                        {data.teams.away.name} 
                     </Text>
                 </div>
             </div>
