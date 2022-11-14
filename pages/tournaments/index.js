@@ -144,7 +144,7 @@ export default function Tournaments() {
                     </div>
                     <div className='flex flex-col gap-5 mt-16'>
                         <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>List of tourneys</Text>
-                        <div className='flex flex-row w-full justify-between'>
+                        <div className='flex flex-row w-full space-x-4'>
                             <Button activated={filters.addressFilter==null} variant={Variant.tertiary} withtBorder={false} onClick={()=>handleOnClickFilters(null)}>Public tourneys</Button>
                             <Button
                                 variant={Variant.tertiary}

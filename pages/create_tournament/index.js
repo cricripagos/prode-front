@@ -60,7 +60,7 @@ function CreateTournament() {
         console.log(validator, transaction, status)
         try{
             const [trxMined, newContractAdddress] = await getTransactionReceiptMined(transaction, 1)
-            router.push('/tournament_details/'+newContractAdddress)
+            router.push('/tournament_details/'+ newContractAdddress)
         }catch (error){
             console.log(error)
             //
