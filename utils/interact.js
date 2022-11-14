@@ -18,7 +18,7 @@ const web3 = new Web3(ws)
 const contractABI = require('./abi/prodeFactory.json');
 const singleProdeABI = require('./abi/prodeBeta.json'); // tomo el ABI del prode puntualmente
 
-const contractAddress ='0xE3034D110cE1941BbF0c68377f0d7D57f600ECa9';
+const contractAddress ='0xdaD33dA150B986E89d6fd7B62542462604BFb19d';
 
 const prodeContract = new web3.eth.Contract(
     contractABI,
@@ -143,10 +143,10 @@ export const createProde = async (address, prode) => {
     params: [transactionParameters],
     }); 
 
+
     return {
       validator: 'success',
       transaction: txn,
-      newProdeAddress: web3.eth.getTransactionReceipt(await txn),
       status: (
         <span>
           ✅{" "}
@@ -273,6 +273,34 @@ export const placeBet = async (address, betSlip) => {
   }
 };
 
+export const getTransactionReceiptMined = (txHash, interval) => {
+  const self = this;
+  const transactionReceiptAsync = function(resolve, reject) {
+          web3.eth.getTransactionReceipt(txHash, (error, receipt) => {
+          if (error) {
+              reject(error);
+          } else if (receipt == null) {
+            console.log('Receipt Null (por ahora)')
+              setTimeout(
+                  () => transactionReceiptAsync(resolve, reject),
+                  interval ? interval : 500);
+          } else {
+             const newContractAdddress =  web3.eth.abi.decodeParameter("address", receipt.logs[0].data)
+              console.log('El nuevo prode esta en: ', newContractAdddress)
+              resolve([receipt, newContractAdddress]);
+          }
+      });
+  };
+
+  if (Array.isArray(txHash)) {
+      return Promise.all(txHash.map(
+          oneTxHash => self.getTransactionReceiptMined(oneTxHash, interval)));
+  } else if (typeof txHash === "string") {
+      return new Promise(transactionReceiptAsync);
+  } else {
+      throw new Error("Invalid Type: " + txHash);
+  }
+};
 /*
 
 

@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { useRouter } from 'next/router'
 import Button, { Variant } from '@components/Button/Button';
 import Header from '@components/Header/Header';
 import Text from '@components/Text/Text';
@@ -12,6 +13,7 @@ import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from '../../components/constants';
 import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
+import {getParticipants} from '../../utils/prodeFns'
 
 const columns = [
     {
@@ -30,9 +32,16 @@ const columns = [
 
 
 export default function TournamentDetails() {
+    const router = useRouter()
+    const { tid } = router.query
+    console.log("Address del torneoL", tid)
+    const [participants, setParticipants] = useState()
     const [filters, setFilters] = useState({ addressFilter: null, nicknameFilter: null, searchFilter: '' });
     const [search, setSearch] = useState('');
     const { walletAddress, connectWalletPressed, singleProde } = useConnect();
+    const tst = getParticipants(tid)
+    console.log(tst)
+
 
     const columnList = columns.map(item => 
         <th className="px-4 py-2 text-white" key={item.key}>{item.label}</th>

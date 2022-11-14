@@ -4,7 +4,7 @@ import Blur from '@components/Blur/Blur';
 import Header from '@components/Header/Header'
 import Text from '@components/Text/Text';
 import CardGradient from '@components/CardGradient/CardGradient';
-import { createProde, waitTransaction } from '../../utils/interact';
+import { createProde, waitTransaction, getTransactionReceiptMined } from '../../utils/interact';
 import { useRouter } from 'next/router'
 import { UserContext } from '../../context'
 import { useConnect } from '@hooks/useConnect';
@@ -17,6 +17,7 @@ function CreateTournament() {
     const [status, setStatus] = useState('');
     const { walletAddress, connectWalletPressed } = useConnect();
     const [ validator, setValidator ] =  useState('');
+    const [ waiting, setWaiting] = useState(false)
 
     //const { validator, transactionListener } = useWeb3()
     const [txn, setTxn] = useState('');
@@ -54,19 +55,18 @@ function CreateTournament() {
             hidden: event.target.hidden.value,
             nickname: event.target.nickname.value,
         };
-
-        const { newProdeAddress, validator, transaction, status } = await createProde(walletAddress, prode);
-
-        setStatus(await status);
-        setTxn(await transaction);
-        console.log(await transaction);
-        setTimeout(() => console.log('Waiting for transaction'), 200000);
-        console.log(newProdeAddress)
-        setValidator(await validator);
-        console.log(await validator);
-        if(validator != '')
-            router.push('/tournament_details');
-      };
+        setWaiting(true)
+        const { validator, transaction, status } = await createProde(walletAddress, prode);
+        console.log(validator, transaction, status)
+        try{
+            const [trxMined, newContractAdddress] = await getTransactionReceiptMined(transaction, 1)
+            router.push('/tournament_details/'+newContractAdddress)
+        }catch (error){
+            console.log(error)
+            //
+        }
+        setWaiting(false)
+        };
 
 /*
         const { newProdeAddress, validator, transaction, status } = await createProde(walletAddress, prode);
@@ -170,7 +170,9 @@ function CreateTournament() {
                         <Button type="submit">Launch</Button> :
                         <div>{status}</div>
                     }
+                    
                     </div>
+                    {waiting? <div> Esperando transaccion !!!!</div>:<div>no estoy esperando transaccion</div>}
                 </form>
                 </div>
                 <Blur className="absolute bottom-0 left-0" />
