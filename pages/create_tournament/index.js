@@ -15,7 +15,7 @@ function CreateTournament() {
 
     //state variables
     //const [status, setStatus] = useState('');
-    /const { walletAddress, connectWalletPressed } = useConnect();
+    const { walletAddress, connectWalletPressed } = useConnect();
     //const [ validator, setValidator ] =  useState('');
 
     //const { validator, transactionListener } = useWeb3()
@@ -55,14 +55,8 @@ function CreateTournament() {
             nickname: event.target.nickname.value,
         };
 
-        async function newProde(){
-            CON
-
-        }
-
         const { newProdeAddress, validator, transaction, status } = await createProde(walletAddress, prode);
 
-        async function 
         setStatus(await status);
         setTxn(await transaction);
         console.log(await transaction);
