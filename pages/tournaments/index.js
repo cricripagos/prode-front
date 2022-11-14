@@ -82,15 +82,9 @@ export default function Tournaments() {
         setSearch(value);
     }
 
-    const handleOnClickFilters = (buttonName = MYTOURNEYSBUTTONNAME) => {
-        setFilters(prevFilters => (
-            {
-                ...prevFilters,
-                addressFilter: !filters.addressFilter
-                    ? buttonName === MYTOURNEYSBUTTONNAME ? walletAddress : "0x130f5E56220c218953824D2997C4870961CBdD24"
-                    : null
-            }
-        ));
+    const handleOnClickFilters = (inp) => {
+        console.log(inp, 'ver ak')
+        setFilters({...filters, addressFilter: inp});
     }
     useEffect(()=>{
         const fetchProdes = async () =>{
@@ -105,7 +99,6 @@ export default function Tournaments() {
         }
         fetchProdes()
     }, []);
-    console.log(prodes)
     return (
         <div className='w-full relative'>
             <Blur bottom='0%' left='-7px' height='25%' width='20%'
@@ -152,18 +145,13 @@ export default function Tournaments() {
                     <div className='flex flex-col gap-5 mt-16'>
                         <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>List of tourneys</Text>
                         <div className='flex flex-row w-full justify-between'>
-                            <Button activated={true} variant={Variant.tertiary} withtBorder={false}>Public tourneys</Button>
+                            <Button activated={filters.addressFilter==null} variant={Variant.tertiary} withtBorder={false} onClick={()=>handleOnClickFilters(null)}>Public tourneys</Button>
                             <Button
                                 variant={Variant.tertiary}
                                 withtBorder={false}
-                                onClick={handleOnClickFilters}>
-                                My tourneys
-                            </Button>
-                            <Button
-                                variant={Variant.tertiary}
-                                withtBorder={false}
-                                onClick={() => handleOnClickFilters(CREATEDBYME)}>
-                                Created by me
+                                activated={filters.addressFilter!==null}
+                                onClick={()=>handleOnClickFilters(walletAddress)}>
+                                My Tournaments
                             </Button>
                         </div>
                         <div className="relative w-full">
