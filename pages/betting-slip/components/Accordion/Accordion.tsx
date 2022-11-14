@@ -11,6 +11,8 @@ import Matches from '../Matches/Matches';
 
 export default function ControlledAccordions(props) {
     const [expanded, setExpanded] = React.useState<string | false>(false);
+    
+
 
     const handleChange =
         (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -31,10 +33,7 @@ export default function ControlledAccordions(props) {
                     </Text>
                 </AccordionSummary>
                 <AccordionDetails>
-                    {props.data.map((dataMatch, i) => <Matches data={dataMatch}  key={dataMatch.fixture.id} number={i} />)}  
-                    {console.log(props.data.map((dataMatch, i) => console.log(dataMatch.fixture.id)))}
-                    {console.log(props.data.map((dataMatch, i) => console.log([dataMatch.teams.home.id, dataMatch.teams.away.id])))}
-                    {console.log(props.data.map((dataMatch, i) => console.log([dataMatch.teams.home.name, dataMatch.teams.away.name])))}
+                    {props.data.map((dataMatch, i) => <Matches data={dataMatch}  key={dataMatch.fixture.id} number={i} handleChangeGroups={props.handleChangeGroups} setFixtureId={props.setFixtureId}/>)}  
 
                 </AccordionDetails>
             </Accordion>

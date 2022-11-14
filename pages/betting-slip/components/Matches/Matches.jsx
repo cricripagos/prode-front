@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Text from '@components/Text/Text'
 
 const Matches = (props) => {
     const { data } = props;
+    useEffect(() => {
+        props.setFixtureId(data.fixture.id[props.key])
+        console.log(data.fixture.id[props.key])
+    }, [])
+    //{props.data.map((dataMatch, i) => console.log(dataMatch.fixture.id))}
+    //{props.data.map((dataMatch, i) => console.log([dataMatch.teams.home.id, dataMatch.teams.away.id]))}
+    //{props.data.map((dataMatch, i) => console.log([dataMatch.teams.home.name, dataMatch.teams.away.name]))}
+
     return (
         <div className='flex flex-col  gap-10' style={{background: props.number%2 === 0 ? '#262333' : null, padding: '10px', borderRadius: '15px'}}>
             <div class="grid grid-cols-6">
@@ -14,8 +22,8 @@ const Matches = (props) => {
                     {data.teams.home.name}
                 </Text>
                 <img src={data.teams.home.logo} alt="img" style={{ height: '40px', marginTop: '25px' }} />
-                <input id="outlined-basic" label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }} type="number" />
-                <input id="outlined-basic" label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }} type="number" />
+                <input type="number" id="home" name="home" onChange={event => props.handleChangeGroups(event)} label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }} type="number" />
+                <input type="number" id="away" name="away" onChange={event => props.handleChangeGroups(event)} label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }} type="number" />
                 <img src={data.teams.away.logo} alt="img" style={{ height: '40px', marginTop: '25px' }} />
                 <div>
                     <Text

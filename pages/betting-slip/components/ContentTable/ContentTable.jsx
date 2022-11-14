@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SimpleCard from '@components/SimpleCard/SimpleCard';
 import Text from '@components/Text/Text';
 import Header from '../Header/Header'
@@ -56,7 +56,7 @@ const ContentTable = (props) => {
                             Betting Slip
                         </Text>
                     </div>
-                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i} /> )}
+                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i} setFixtureId={props.setFixtureId} handleChangeGroups={props.handleChangeGroups}/> )}
                 </div>
                 <Paper />
                 <div class="grid grid-cols-4 gap-1">

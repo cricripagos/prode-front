@@ -17,6 +17,8 @@ import { useRouter } from 'next/router'
 export default function BettingSlip() {
   const { walletAddress, connectWalletPressed } = useConnect();
   const [status, setStatus] = useState("");
+  const [slipGroup, setSlipGroup] = useState([[],[]])
+  const [fixtureId, setFixtureId] = useState()
   const router = useRouter()
   async function navigate() {
     setTimeout(() => console.log('Waiting for transaction'), 8000)
@@ -68,6 +70,18 @@ export default function BettingSlip() {
 
 };
 
+function handleChangeGroups(event) {
+  //const newSlipGroup = slipGroup;
+  //newSlipGroup[fixtureId] = [evt.target.home.value, evt.target.away.value];
+  //setSlipGroup(newSlipGroup)
+  event.preventDefault()
+
+  console.log(event.target.home?.value)
+  console.log(event.target.away?.value)
+
+
+}
+
 
 
 //                            <Link href="/tournament_details"><Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button></Link>
@@ -103,7 +117,7 @@ export default function BettingSlip() {
       />
 
       <Grid container spacing={8}>
-        <ContentTable data={formatData} />
+        <ContentTable data={formatData} setFixtureId={setFixtureId} handleChangeGroups={handleChangeGroups} />
       </Grid>
       <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
         <Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button>
