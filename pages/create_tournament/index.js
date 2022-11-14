@@ -14,9 +14,9 @@ import { useWeb3 } from '@hooks/useWeb3';
 function CreateTournament() {
 
     //state variables
-    //const [status, setStatus] = useState('');
+    const [status, setStatus] = useState('');
     const { walletAddress, connectWalletPressed } = useConnect();
-    //const [ validator, setValidator ] =  useState('');
+    const [ validator, setValidator ] =  useState('');
 
     //const { validator, transactionListener } = useWeb3()
     const [txn, setTxn] = useState('');
