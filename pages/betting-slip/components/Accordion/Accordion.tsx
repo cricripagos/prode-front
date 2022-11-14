@@ -25,7 +25,7 @@ export default function ControlledAccordions(props) {
                     id="panel1bh-header"
                 >
                     <Image src={rectangleImage} alt="img" style={{ marginLeft: '20px', marginRight: '30px' }} />
-                    <Text tag={'h1'} color={'white'} fontSize='22px' fontSizeSm={'22px'}>
+                    <Text tag={'h1'} color={'white'} fontSize='20px' fontSizeSm={'18px'}>
                         Group {props.data[0].teams.group.toUpperCase()}
                         {console.log(props.data[0].teams.group.toUpperCase())}
                     </Text>

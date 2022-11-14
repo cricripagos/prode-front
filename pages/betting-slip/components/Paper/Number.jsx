@@ -8,7 +8,7 @@ const Number = ({ number, text, className }) => {
   return (
     <div className={classes}>
       <div>
-        <Text tag={'h1'} fontSize={'75px'} lineHeight={'68px'}>{number}</Text>
+        <Text tag={'h1'} fontSize={'30px'} lineHeight={'68px'}>{number}</Text>
       </div>
       <div className='ml-3'>
         <Text fontSize={'22px'} lineHeight={'29px'}>{text}</Text>

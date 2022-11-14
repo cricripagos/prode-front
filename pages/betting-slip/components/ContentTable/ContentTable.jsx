@@ -7,17 +7,17 @@ import Paper from '../Paper/Paper';
 
 const ContentTable = (props) => {
     return (
-        <section className='w-full container relative px-8 md:px-28 mx-auto pb-36c pt-52'>
+        <section className='w-full container relative px-10 md:px-15 mx-auto pt-52'>
             <SimpleCard>
                 <div className='w-full md:p-12'>
                     <div className='flex flex-col mb-4 md:mb-5'>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'}>
                             Join Tournament
                         </Text>
                     </div>
                     <Header />
                     <div className='flex flex-col mb-[20px]  mt-[20px] pt-5'>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'}>
                             Tournament settings
                         </Text>
                     </div>
@@ -52,20 +52,19 @@ const ContentTable = (props) => {
                         </div>
                     </div>
                     <div className='flex flex-col mb-4 md:mb-16 pt-10'>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'}>
                             Betting Slip
                         </Text>
                     </div>
                     {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i} /> )}
-                </div>
-                <Paper />
+                    <Paper />
                 <div class="grid grid-cols-4 gap-1">
-                    <div>
+                    <div className='col-start-1 col-span-3'>
                         <Text
-                            fontSize='36px'
+                            fontSize='30px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
-                            className="mt-6 text-center"
+                            fontSizeSm={'16px'}
+                            className="mt-6 text-left"
                             style={{ color: '#00E5AE', marginTop: '30px' }}
                         >
                             Buy-in
@@ -75,7 +74,7 @@ const ContentTable = (props) => {
                         <Text
                             fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
+                            fontSizeSm={'16px'}
                             className="mt-6 text-center"
                             style={{ padding: '10px', background: '#333647', borderRadius: '10px' }}
                             color="secondary">
@@ -83,21 +82,21 @@ const ContentTable = (props) => {
                         </Text>
                     </div>
                 </div>
-                <div class="grid grid-cols-4 gap-4">
-                    <div>
+                <div className='col-start-1 col-span-3'>
+                    <div class="">
                         <Text
-                            fontSize='36px'
+                            fontSize='30px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
-                            className="mt-6 text-center"
+                            fontSizeSm={'16px'}
+                            className="mt-6 text-left"
                             style={{ color: '#00E5AE', marginTop: '30px' }}
                         >
                             In-Tournay nickname: 
                         </Text>
                     </div>
-                    <div>
+                    <div className='col-start-4 col-span-1 '>
                         <Text
-                            fontSize='22px'
+                            fontSize='18px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
@@ -107,6 +106,8 @@ const ContentTable = (props) => {
                         </Text>
                     </div>
                 </div>
+                </div>
+                
             </SimpleCard>
         </section>
     )

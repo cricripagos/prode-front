@@ -143,7 +143,7 @@ export default function Tournaments() {
                         }
                     </div>
                     <div className='flex flex-col gap-5 mt-16'>
-                        <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>List of tourneys</Text>
+                        <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>List of tournaments</Text>
                         <div className='flex flex-row w-full justify-between'>
                             <Button activated={filters.addressFilter==null} variant={Variant.tertiary} withtBorder={false} onClick={()=>handleOnClickFilters(null)}>Public tourneys</Button>
                             <Button
@@ -154,8 +154,8 @@ export default function Tournaments() {
                                 My Tournaments
                             </Button>
                         </div>
-                        <div className="relative w-full">
-                            <Table>
+                        <div className="relative">
+                            <Table className="table-auto">
                                 <thead>
                                     <tr>{columnList}</tr>
                                 </thead>

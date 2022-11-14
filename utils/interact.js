@@ -1,5 +1,5 @@
 const Web3 = require('web3');
-const chainstackURL = process.env.NEXT_PUBLIC_CHAINSTACK;
+const chainstackURL = "wss://ws-nd-492-780-425.p2pify.com/09bdaa710dbe42c3ae63db6d136f3f19";
 
 const options = {
   // Enable auto reconnection
@@ -18,21 +18,21 @@ const web3 = new Web3(ws)
 const contractABI = require('./abi/prodeFactory.json');
 const singleProdeABI = require('./abi/prodeBeta.json'); // tomo el ABI del prode puntualmente
 
-const contractAddress ='0xdaD33dA150B986E89d6fd7B62542462604BFb19d';
+const contractAddress ='0xE3034D110cE1941BbF0c68377f0d7D57f600ECa9';
 
 const prodeContract = new web3.eth.Contract(
     contractABI,
     contractAddress
 )
 
-/*
+
 export const loadCurrentMessage = async () => { 
     const prodes = await prodeContract.methods.retrieveProdes().call();
 
     return prodes;  
-};*/
+};
 
-export const loadProdes = async() => {
+export const loadProdesFullyByTule = async() => {
   const prodes = await prodeContract.methods.retrieveProdes().call();
   let prodesFull = [];
   for (const prode of prodes){
@@ -41,7 +41,8 @@ export const loadProdes = async() => {
     prodesFull.push({...prode, participantsArray: singleProdeData})
 
   }
-  return prodes
+  console.log(prodesFull)
+  return prodesFull
 };
 
 
@@ -105,8 +106,6 @@ export const createProde = async (address, prode) => {
   //input error handling
   if (!window.ethereum || address === null) {
     return {
-      validator: '',
-      transaction: '',
       status:
         "💡 Connect your Metamask wallet to update the message on the blockchain.",
     };
@@ -114,17 +113,13 @@ export const createProde = async (address, prode) => {
   
   if (prode.nickname?.trim() === "Choose a cool name for your tourney!") {
     return {
-      validator: '',
-      transaction: '',
-      status: <span>"❌ Your tourney need a name."</span>,
+      status: "❌ Your tourney need a name.",
     };
   }
 
   if (prode.buyin?.trim() === '') {
     return {
-      validator: '',
-      transaction: '',
-      status: <span>"❌ Your tourney need a buy-in amount."</span>
+      status: "❌ Your tourney need a buy-in amount.",
     };
   }
   
@@ -137,65 +132,30 @@ export const createProde = async (address, prode) => {
 
   //sign the transaction
   try {
-   
-    const txn = await window.ethereum.request({
-    method: "eth_sendTransaction",
-    params: [transactionParameters],
-    }); 
-
-
+    const txHash = await window.ethereum.request({
+      method: "eth_sendTransaction",
+      params: [transactionParameters],
+    });
     return {
-      validator: 'success',
-      transaction: txn,
       status: (
         <span>
           ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io/tx/${txn}`}>
+          <a target="_blank" href={`https://gnosisscan.io/${txHash}`}>
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
-          ℹ️ Once the transaction is verified by the network, you can start the game.
+          ℹ️ Once the transaction is verified by the network, the message will
+          be updated automatically.
         </span>
       ),
-    }
-    } catch (error) {
-      console.log(error);   
-      return {
-        status: "😥 " + error.message,
-      };
-    }
-  };
+    };
+  } catch (error) {
+    return {
+      status: "😥 " + error.message,
+    };
+  }
+};
 
-
-
-/*
-
-export const waitTransaction = async(txn) => {
-  
-  const transactionReceipt = await web3.eth.getTransactionReceipt(txn);
-  
-  if (transactionReceipt!=null) {
-    console.log(`Mined... ${transactionReceipt}`);
-      return {
-        validator: 'success',
-      }
-  } else { console.log(`error`) }
-  /*
-  web3.eth.subscribe('logs', {
-    address: contractAddress, topics: [ walletAddess ]
-    }, function(error, result){
-    if (!error)
-      return {validator: result}
-    })
-    .on("data", function(log){
-      return {validator: log}
-    })
-    .on("changed", function(log){
-      return {validator: log}
-    });
-
-    
-};*/
 
 /////////////////////////////////////////////////// BETTING SLIP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -234,23 +194,21 @@ export const placeBet = async (address, betSlip) => {
   //sign the transaction
   try {
    
-      window.ethereum.request({
+    const txHash = await window.ethereum.request({
       method: "eth_sendTransaction",
       params: [transactionParameters],
-    }).then( 
-      async (result) => 
-      {
-      console.log("Minting... please wait");
-      const transactionReceipt = await web3.eth.getTransactionReceipt(result);
-
-      if (transactionReceipt!=null) {
-        console.log(`Mined... ${transactionReceipt}`);
-      } else { console.log(`error`) }; //getting this
-    })  
+    }
+    
+    );    
+     /*
+    const txHash = await singleProdeContract.methods.createParticipant(betSlip.picksGroups, betSlip.picksTops, betSlip.nickname).call({ 
+                                                                to: '0xF4C1EF14c8d0659D95D972f093442eF715cB5186', // Required except during contract publications.
+                                                                from: address, // must match user's active address. })
+                                                                value: 5000 });*/
     
     console.log("Mining...", txHash);
 
-    console.log("Mined -- ", txHash);
+    console.log("Mined -- ", txHash.hash);
 
     return {
       status: (
@@ -272,92 +230,3 @@ export const placeBet = async (address, betSlip) => {
     };
   }
 };
-
-export const getTransactionReceiptMined = (txHash, interval) => {
-  const self = this;
-  const transactionReceiptAsync = function(resolve, reject) {
-          web3.eth.getTransactionReceipt(txHash, (error, receipt) => {
-          if (error) {
-              reject(error);
-          } else if (receipt == null) {
-            console.log('Receipt Null (por ahora)')
-              setTimeout(
-                  () => transactionReceiptAsync(resolve, reject),
-                  interval ? interval : 500);
-          } else {
-             const newContractAdddress =  web3.eth.abi.decodeParameter("address", receipt.logs[0].data)
-              console.log('El nuevo prode esta en: ', newContractAdddress)
-              resolve([receipt, newContractAdddress]);
-          }
-      });
-  };
-
-  if (Array.isArray(txHash)) {
-      return Promise.all(txHash.map(
-          oneTxHash => self.getTransactionReceiptMined(oneTxHash, interval)));
-  } else if (typeof txHash === "string") {
-      return new Promise(transactionReceiptAsync);
-  } else {
-      throw new Error("Invalid Type: " + txHash);
-  }
-};
-/*
-
-
-export const createProde = async (address, prode) => {
-  //input error handling
-  if (!window.ethereum || address === null) {
-    return {
-      validator: false,
-      status:
-        "💡 Connect your Metamask wallet to update the message on the blockchain.",
-    };
-  }
-  
-  if (prode.nickname?.trim() === "Choose a cool name for your tourney!") {
-    return {
-      validator: false,
-      status: <span>"❌ Your tourney need a name."</span>,
-    };
-  }
-
-  if (prode.buyin?.trim() === '') {
-    return {
-      validator: false,
-      status: <span>"❌ Your tourney need a buy-in amount."</span>
-    };
-  }
-  
-  //set up transaction parameters
-  const transactionParameters = {
-    to: contractAddress, // Required except during contract publications.
-    from: address, // must match user's active address.
-    data: prodeContract.methods.createProde(prode.buyin, prode.hidden, prode.nickname).encodeABI(),
-  };
-
-  //sign the transaction
-  try {
-    const txHash = await window.ethereum.request({
-      method: "eth_sendTransaction",
-      params: [transactionParameters],
-    });
-    return {
-      validator: true,
-      status: (
-        <span>
-          ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io/${txHash.hash}`}>
-            View the status of your transaction on Gnosisscan!
-          </a>
-          <br />
-          ℹ️ Once the transaction is verified by the network, you can start the game.
-        </span>
-      ),
-    };
-  } catch (error) {
-    return {
-      status: "😥 " + error.message,
-    };
-  }
-};
-*/

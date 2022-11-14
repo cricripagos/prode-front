@@ -11,9 +11,9 @@ const Paper = (props) => {
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <Text
-                            fontSize='36px'
+                            fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
+                            fontSizeSm={'16px'}
                             className="mt-6 text-center"
                             style={{color: '#E4168F', marginTop: '30px'}}
                             >
@@ -22,7 +22,7 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='22px'
+                            fontSize='16px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
@@ -33,9 +33,9 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='36px'
+                            fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
+                            fontSizeSm={'16px'}
                             className="mt-6 text-center"
                             style={{color: '#E4168F', marginTop: '30px'}}
                             >
@@ -44,7 +44,7 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='22px'
+                            fontSize='16px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
@@ -55,9 +55,9 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='36px'
+                            fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
+                            fontSizeSm={'16px'}
                             className="mt-6 text-center"
                             style={{color: '#E4168F', marginTop: '30px'}}
                             >
@@ -66,7 +66,7 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='22px'
+                            fontSize='16px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
@@ -77,9 +77,9 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='36px'
+                            fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
+                            fontSizeSm={'16px'}
                             className="mt-6 text-center"
                             style={{color: '#E4168F', marginTop: '30px'}}
                             >
@@ -88,7 +88,7 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='22px'
+                            fontSize='16px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
