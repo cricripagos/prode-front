@@ -3,6 +3,7 @@ import SimpleCard from '@components/SimpleCard/SimpleCard';
 import Text from '@components/Text/Text';
 import Header from '../Header/Header'
 import Accordion from '../Accordion/Accordion';
+import Paper from '../Paper/Paper';
 
 const ContentTable = (props) => {
     return (
@@ -29,26 +30,15 @@ const ContentTable = (props) => {
                                 Buy-in: <span className='text-[14px]'>10 xDAI</span>
                             </Text>
                             <div className=' grid grid-start-2'>
-                                <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
-                                    Earnings:
-                                </Text>  
-                                <Text  fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2 mt-[10px]'>
-                                50% <span className='text-[12px] text-[#E4168F]'>Winner</span>
-                                </Text> 
-                                <Text  color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
-                                    20% <span className='text-[12px] text-[#E4168F]'>Runner-up</span>
-                                </Text> 
-                                <Text  color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'16px'} className='grid-start-1 grid-span-2'>
-                                    10% <span className='text-[12px] text-[#E4168F]'>3rd place</span>
-                                </Text> 
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
+                                Earnings: 50% Winner
+                            </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{ marginLeft: '110px' }}></Text>
                             </div>
                         </div>
                         <div className=' gap-1 col-span-3'>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
                                 Name: <span className='text-[14px]'>prueba</span>
-                            </Text>
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                UBI donation: <span className='text-[14px]'>3%</span>
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
                                 Format: <span className='text-[14px]'>Open</span>
@@ -66,7 +56,56 @@ const ContentTable = (props) => {
                             Betting Slip
                         </Text>
                     </div>
-                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i}/>)}
+                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i} />)}
+                </div>
+                <Paper />
+                <div class="grid grid-cols-4 gap-1">
+                    <div>
+                        <Text
+                            fontSize='36px'
+                            lineHeight='40px'
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
+                            style={{ color: '#00E5AE', marginTop: '30px' }}
+                        >
+                            Buy-in
+                        </Text>
+                    </div>
+                    <div>
+                        <Text
+                            fontSize='22px'
+                            lineHeight='40px'
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
+                            style={{ padding: '10px', background: '#333647', borderRadius: '10px' }}
+                            color="secondary">
+                            10 xDAI
+                        </Text>
+                    </div>
+                </div>
+                <div class="grid grid-cols-4 gap-4">
+                    <div>
+                        <Text
+                            fontSize='36px'
+                            lineHeight='40px'
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
+                            style={{ color: '#00E5AE', marginTop: '30px' }}
+                        >
+                            In-Tournay nickname: 
+                        </Text>
+                    </div>
+                    <div>
+                        <Text
+                            fontSize='22px'
+                            lineHeight='40px'
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
+                            style={{ padding: '10px', background: '#262333', borderRadius: '10px', color: '#E4168F'}}
+                            color="secondary">
+                            Tule
+                        </Text>
+                    </div>
                 </div>
             </SimpleCard>
         </section>
