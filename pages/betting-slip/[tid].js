@@ -27,10 +27,7 @@ export default function BettingSlip() {
     [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null]],
     topPicks:[null,null,null,null],nickname:''})
   const router = useRouter()
-  async function navigate() {
-    setTimeout(() => console.log('Waiting for transaction'), 8000)
-    router.push('/tournament_details')
-  }
+
   useEffect(()=>{
       if(!router.isReady) return;
       const { tid } = router.query
@@ -77,7 +74,6 @@ export default function BettingSlip() {
   const { status } = await placeBet(walletAddress, betSlip, tid, slip, tdata);
   setStatus(status);
 
-  //await navigate()
 
 };
 
@@ -93,7 +89,7 @@ function handleChangeGroups(event) {
   
 
   const formatData = jsonGroups.map((group) => jsonData.response.filter((partido) => partido.teams.group === group.key));
-  console.log('vista globla', slip)
+  //console.log('vista globla', slip)
   return (
     <Layout>
       <Header>

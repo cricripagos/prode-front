@@ -203,7 +203,7 @@ export const loadSingleProde = async() => {
   /// Falta quitar hardcodeo y usar prode['prodeAddress']
   const singleProdeContract = new web3.eth.Contract( singleProdeABI, '0xF4C1EF14c8d0659D95D972f093442eF715cB5186')
   const singleProdeData = await singleProdeContract.methods.debugRetrieveParticipants().call();
-  console.log(singleProdeData)
+  //console.log(singleProdeData)
   return singleProdeData
 }
 
@@ -221,8 +221,6 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
   // NO PUEDO HARDCODEAR EL VALOR DE VALUE. 
   //set up transaction parameters
   const valueHex = parseInt(tdata.weiBuyin).toString(16)
-  console.log(valueHex)
-  console.log(slip.groups)
 
   const transactionParameters = {
     to: tid, // Required except during contract publications.

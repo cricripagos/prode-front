@@ -11,7 +11,7 @@ const Paper = (props) => {
         newSlip.topPicks[position] = parseInt(e.target.value)
         props.setSlip(newSlip)
     }
-    console.log('aca', paisesTule)
+    //console.log('aca', paisesTule)
     return (
         <section className='w-full container relative px-1 md:px-10 mx-auto pb-10 pt-4'>
             <SimpleCard>

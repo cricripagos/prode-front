@@ -40,6 +40,7 @@ export default function TournamentDetails() {
     const [tid, setTid] = useState()
     const [whats, setWhats] = useState()
     const [tlgm, setTlgm] = useState()
+    const [share, setShare] = useState(false)
 
     useEffect(()=>{
         if(!router.isReady) return;
@@ -101,7 +102,7 @@ export default function TournamentDetails() {
                 <CardGradient className="md:!p-16 !z-10" borderless="true">
                 <div className='grid grid-cols-4'>
                     <Text tag={'h2'} color={'#00E5AE'} fontSize='36px' fontSizeSm={'20px'} className='col-start-1 col col-span-2'>Tournament name</Text>
-                    <Button onClick={connectWalletPressed} className='col-start-3 col col-span-2 !font-bold'>Invite your friends!</Button>   
+                    <Button onClick={() => setShare(!share)} className='col-start-3 col col-span-2 !font-bold'>Invite your friends!</Button>   
                 </div> 
                 <div className='flex flex-row w-full justify-between mt-4'>
                             <Button type="submit" withtBorder={false} variant={Variant.tertiary} className="!px-5">{
@@ -152,7 +153,33 @@ export default function TournamentDetails() {
                             </Text>
                         </div>
                     </div>
-                    </div>
+                    </div>                
+                    {
+                        share ?
+                        (   <div className=' bg-[#262333] drop-shadow-md rounded-md pl-[15px] pt-[20px]'>
+                        <div className='col-start-1 col-span-3'>
+                            <Text
+                                fontSize='16px'
+                                lineHeight='20px'
+                                fontSizeSm={'12px'}
+                                >
+                                Share the link to your friends!
+                            </Text>
+
+                        </div>
+                        <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
+                           <Button_alt className='!col-start-1 !font-bold' onClick={() =>  {navigator.clipboard.writeText('Hi there! Join my tournament at ' + 
+                                                                                            `https://qatarprode.xyz/betting-slip/${tid}`);
+                                                                                            alert("link copied!");
+                                                                                            }}>
+                                Copy link
+                            </Button_alt>
+                            <Button_alt className='!col-start-2 !font-bold' onClick={() => (window.open(whats)) }>Whatsapp</Button_alt>
+                            <Button_alt className='!col-start-3 !font-bold' onClick={() => (window.open(tlgm)) }>Telegram</Button_alt>
+                        </HeaderComponent> 
+                    </div>) : null
+                }
+
                     { participants?.length > 0 ?
                     (<div>
                     <Table>
