@@ -19,7 +19,6 @@ const ContentTable = (props) => {
                             Join Tournament
                         </Text>
                     </div>
-                    <Header />
                     <div className='flex flex-col mb-[20px]  mt-[20px] pt-5'>
                         <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
                             Tournament settings

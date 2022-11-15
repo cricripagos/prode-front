@@ -124,8 +124,7 @@ function handleChangeGroups(event) {
         variant={BlurColor.primary}
         image={imageBG.src}
       />
-
-      <Grid container spacing={8}>
+           <Grid container spacing={8}>
         <ContentTable data={dataTule} setFixtureId={setFixtureId} handleChangeGroups={handleChangeGroups} 
           slip={slip}
           setSlip={setSlip}

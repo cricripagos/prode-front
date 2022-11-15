@@ -15,15 +15,15 @@ const Paper = (props) => {
     }
     console.log('aca', paisesTule)
     return (
-        <section className='w-full container relative px-1 md:px-10 mx-auto pb-36 pt-4'>
+        <section className='w-full container relative px-1 md:px-10 mx-auto pb-10 pt-4'>
             <SimpleCard>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <Text
-                            fontSize='36px'
+                            fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
-                            className="mt-6 text-center"
+                            fontSizeSm={'16px'}
+                            className="mt-6 text-center !font-bold"
                             style={{color: '#E4168F', marginTop: '30px'}}
                             >
                             Champion
@@ -31,7 +31,7 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='22px'
+                            fontSize='16px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
@@ -39,7 +39,7 @@ const Paper = (props) => {
                             color="secondary">
                             <select onChange={(e) => handleTopChange(e,0)} style={{backgroundColor: 'transparent',}}name="cars" id="cars">
                                 <option disabled selected value>  </option>
-                                {paisesTule.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
+                                {paisesTule?.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
                             </select>
                             
                         </Text>
@@ -47,10 +47,10 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='36px'
+                            fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
-                            className="mt-6 text-center"
+                            fontSizeSm={'16px'}
+                            className="mt-6 text-center !font-bold"
                             style={{color: '#E4168F', marginTop: '30px'}}
                             >
                             Runner up
@@ -58,24 +58,24 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='22px'
+                            fontSize='16px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
-                            className="mt-6 text-center"
+                            className="mt-6 text-center "
                             style={{padding: '10px', background: '#333647', borderRadius: '10px'}}
                             color="secondary">
                             <select onChange={(e) => handleTopChange(e,1)} style={{backgroundColor: 'transparent',}}name="cars" id="cars">
                             <option disabled selected value>  </option>
-                                {paisesTule.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
+                                {paisesTule?.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
                             </select>
                         </Text>
                     </div>
                     <div>
                         <Text
-                            fontSize='36px'
+                            fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
-                            className="mt-6 text-center"
+                            fontSizeSm={'16px'}
+                            className="mt-6 text-center !font-bold"
                             style={{color: '#E4168F', marginTop: '30px'}}
                             >
                             3rd Place
@@ -83,7 +83,7 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='22px'
+                            fontSize='16px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
@@ -91,16 +91,16 @@ const Paper = (props) => {
                             color="secondary">
                             <select onChange={(e) => handleTopChange(e,2)} style={{backgroundColor: 'transparent',}}name="cars" id="cars">
                             <option disabled selected value>  </option>
-                                {paisesTule.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
+                                {paisesTule?.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
                             </select>
                         </Text>
                     </div>
                     <div>
                         <Text
-                            fontSize='36px'
+                            fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'10px'}
-                            className="mt-6 text-center"
+                            fontSizeSm={'16px'}
+                            className="mt-6 text-center !font-bold"
                             style={{color: '#E4168F', marginTop: '30px'}}
                             >
                             4th Place
@@ -108,7 +108,7 @@ const Paper = (props) => {
                     </div>
                     <div>
                         <Text
-                            fontSize='22px'
+                            fontSize='16px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
@@ -116,7 +116,7 @@ const Paper = (props) => {
                             color="secondary">
                             <select onChange={(e) => handleTopChange(e,3)} style={{backgroundColor: 'transparent',}}name="cars" id="cars">
                             <option disabled selected value>  </option>
-                                {paisesTule.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
+                                {paisesTule?.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
                             </select>
                         </Text>
                     </div>
