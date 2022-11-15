@@ -207,9 +207,9 @@ export const loadSingleProde = async() => {
   return singleProdeData
 }
 
-export const placeBet = async (address, betSlip) => {
+export const placeBet = async (address, betSlip, tid, slip, tdata) => {
 
-  const singleProdeContract = new web3.eth.Contract( singleProdeABI, '0xF4C1EF14c8d0659D95D972f093442eF715cB5186' )
+  const singleProdeContract = new web3.eth.Contract( singleProdeABI, tid )
   //input error handling
   if (!window.ethereum || address === null) {
     return {
@@ -220,13 +220,15 @@ export const placeBet = async (address, betSlip) => {
 
   // NO PUEDO HARDCODEAR EL VALOR DE VALUE. 
   //set up transaction parameters
-  const buyin = 500
+  const valueHex = parseInt(tdata.weiBuyin).toString(16)
+  console.log(valueHex)
+  console.log(slip.groups)
 
   const transactionParameters = {
-    to: '0xF4C1EF14c8d0659D95D972f093442eF715cB5186', // Required except during contract publications.
+    to: tid, // Required except during contract publications.
     from: address, // must match user's active address.
-    data: singleProdeContract.methods.createParticipant(betSlip.picksGroups, betSlip.picksTops, betSlip.nickname).encodeABI(),
-    value: '1388',
+    data: singleProdeContract.methods.createParticipant(slip.groups, slip.topPicks, slip.nickname).encodeABI(),
+    value: valueHex,
     gasLimit: '300000',
   };
 

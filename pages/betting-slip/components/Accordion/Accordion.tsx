@@ -28,13 +28,11 @@ export default function ControlledAccordions(props) {
                 >
                     <Image src={rectangleImage} alt="img" style={{ marginLeft: '20px', marginRight: '30px' }} />
                     <Text tag={'h1'} color={'white'} fontSize='22px' fontSizeSm={'22px'}>
-                        Group {props.data[0].teams.group.toUpperCase()}
-                        {console.log(props.data[0].teams.group.toUpperCase())}
+                        Group {props.data.group.toUpperCase()}
                     </Text>
                 </AccordionSummary>
                 <AccordionDetails>
-                    {props.data.map((dataMatch, i) => <Matches data={dataMatch}  key={dataMatch.fixture.id} number={i} handleChangeGroups={props.handleChangeGroups} setFixtureId={props.setFixtureId}/>)}  
-
+                    {props.data.matches.map((dataMatch, i) => <Matches setSlip={props.setSlip} slip={props.slip}  data={dataMatch} />)}  
                 </AccordionDetails>
             </Accordion>
             <div style={{marginTop: '10px'}}/>

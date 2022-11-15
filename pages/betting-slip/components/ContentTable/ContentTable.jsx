@@ -6,6 +6,10 @@ import Accordion from '../Accordion/Accordion';
 import Paper from '../Paper/Paper';
 
 const ContentTable = (props) => {
+    const handleNicknameChange = (e) => {
+        props.setSlip({...props.slip, nickname: e.target.value})
+    }
+    console.log(props.slip, 'slip')
     return (
         <section className='w-full container relative px-8 md:px-28 mx-auto pb-36c pt-52'>
             <SimpleCard>
@@ -24,30 +28,24 @@ const ContentTable = (props) => {
                     <div className='gap-10 grid grid-cols-6'>
                         <div className=' gap-1 col-start-1 col-span-3'>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Name: <span className='text-[14px]'>prueba</span>
+                                Name: <span className='text-[14px]'>{props.tdata?.prodeNickname}</span>
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Buy-in: <span className='text-[14px]'>10 xDAI</span>
+                                Buy-in: <span className='text-[14px]'>{props.tdata?.buyin} xDAI</span>
                             </Text>
                             <div className=' grid grid-start-2'>
                             <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                Earnings: 50% Winner
+                                Earnings: 100% Winner
                             </Text>
                             <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{ marginLeft: '110px' }}></Text>
                             </div>
                         </div>
                         <div className=' gap-1 col-span-3'>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Name: <span className='text-[14px]'>prueba</span>
+                                Participants: <span className='text-[14px]'>{props.tdata?.participants}  </span>
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Format: <span className='text-[14px]'>Open</span>
-                            </Text>
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Participants: <span className='text-[14px]'>20</span>
-                            </Text>
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                TLV: <span className='text-[14px]'>200 xDAI</span>
+                                TLV: <span className='text-[14px]'>{props.tdata?.pot} xDAI</span>
                             </Text>
                         </div>
                     </div>
@@ -56,9 +54,9 @@ const ContentTable = (props) => {
                             Betting Slip
                         </Text>
                     </div>
-                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i} setFixtureId={props.setFixtureId} handleChangeGroups={props.handleChangeGroups}/> )}
+                    {props.data.map((dataGroup, i) => <Accordion setSlip={props.setSlip} slip={props.slip} data={dataGroup} key={i} /> )}
                 </div>
-                <Paper />
+                <Paper setSlip={props.setSlip} slip={props.slip}  />
                 <div class="grid grid-cols-4 gap-1">
                     <div>
                         <Text
@@ -79,7 +77,7 @@ const ContentTable = (props) => {
                             className="mt-6 text-center"
                             style={{ padding: '10px', background: '#333647', borderRadius: '10px' }}
                             color="secondary">
-                            10 xDAI
+                            {props.tdata?.buyin} xDai
                         </Text>
                     </div>
                 </div>
@@ -92,10 +90,11 @@ const ContentTable = (props) => {
                             className="mt-6 text-center"
                             style={{ color: '#00E5AE', marginTop: '30px' }}
                         >
-                            In-Tournay nickname: 
+                            Player: 
                         </Text>
                     </div>
                     <div>
+                        <input onChange={handleNicknameChange} placeholder="Diego Maradona(10)" type="text" id="away" name="away"  label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '200px', height: '40px', color: '#7C3AED', padding: '10px' }}  />
                         <Text
                             fontSize='22px'
                             lineHeight='40px'
@@ -103,7 +102,7 @@ const ContentTable = (props) => {
                             className="mt-6 text-center"
                             style={{ padding: '10px', background: '#262333', borderRadius: '10px', color: '#E4168F'}}
                             color="secondary">
-                            Tule
+                            Dejo esto para no perder estilos 
                         </Text>
                     </div>
                 </div>
