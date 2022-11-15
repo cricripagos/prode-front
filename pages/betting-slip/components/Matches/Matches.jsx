@@ -12,7 +12,7 @@ const Matches = (props) => {
     }
     return (
         <div className='flex flex-col  gap-10' style={{background: props.number%2 === 0 ? '#262333' : null, padding: '10px', borderRadius: '15px'}}>
-            <div class="grid grid-cols-6 grid-cols-6">
+            <div class="grid grid-cols-6">
                 <Text
                     fontSize='19px'
                     lineHeight='40px'
