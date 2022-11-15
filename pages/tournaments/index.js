@@ -83,8 +83,8 @@ export default function Tournaments() {
     }
 
     const handleOnClickFilters = (inp) => {
-        console.log(inp, 'ver ak')
         setFilters({...filters, addressFilter: inp});
+        console.log(filters, 'ver ak')
     }
     useEffect(()=>{
         const fetchProdes = async () =>{
@@ -92,8 +92,8 @@ export default function Tournaments() {
             setProdes(prodes)
             let prodesFull = []
             for (const prode of prodes){
-                const singleData = await getTournamentData(prode['prodeAddress'])
-                prodesFull.push({...prode, playerCount:singleData[2]})
+                const singleData = await getParticipants(prode['prodeAddress'])
+                prodesFull.push({...prode, participantArray:singleData})
               }
             setProdes(prodesFull)
         }
@@ -143,8 +143,13 @@ export default function Tournaments() {
                         }
                     </div>
                     <div className='flex flex-col gap-5 mt-16'>
+<<<<<<< HEAD
                         <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>List of tournaments</Text>
                         <div className='flex flex-row w-full justify-between'>
+=======
+                        <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>List of tourneys</Text>
+                        <div className='flex flex-row w-full space-x-4'>
+>>>>>>> main
                             <Button activated={filters.addressFilter==null} variant={Variant.tertiary} withtBorder={false} onClick={()=>handleOnClickFilters(null)}>Public tourneys</Button>
                             <Button
                                 variant={Variant.tertiary}
@@ -162,7 +167,7 @@ export default function Tournaments() {
                                 <tbody>
                                     {prodes?.slice(0).reverse().map((prode, index) => {
                                         if (filters.addressFilter !== null) {
-                                            let participantAddressList = prode.participantsArray?.map(({ beneficiary }) => beneficiary);
+                                            let participantAddressList = prode.participantArray?.map(({beneficiary}) => beneficiary.toLowerCase());
                                             if (!participantAddressList?.includes(filters.addressFilter)) {
                                                 return
                                             }
@@ -172,7 +177,7 @@ export default function Tournaments() {
                                                 <td>{prode.prodeNickname}</td>
                                                 <td className='w-[10px]'>{prode.prodeAddress}</td>
                                                 <td>{prode.buyIn}</td>
-                                                <td>{prode.playerCount}</td>
+                                                <td>{prode.participantArray?.length}</td>
                                             </tr>
                                         )
                                     })}
