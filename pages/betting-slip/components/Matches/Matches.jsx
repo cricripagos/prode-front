@@ -8,7 +8,7 @@ const Matches = (props) => {
             <div class="grid grid-cols-6">
                 <Text
                     fontSize='19px'
-                    lineHeight='40px'
+                    lineHeight='20px'
                     fontSizeSm={'10px'}
                     className="mt-6">
                     {data.teams.home.name}
@@ -20,7 +20,7 @@ const Matches = (props) => {
                 <div>
                     <Text
                         fontSize='19px'
-                        lineHeight='40px'
+                        lineHeight='20px'
                         fontSizeSm={'10px'}
                         className="mt-6">
                         {data.teams.away.name} 
@@ -30,8 +30,8 @@ const Matches = (props) => {
             <div class="flex justify-center ...">
                 <div>
                     <Text
-                        fontSize='19px'
-                        lineHeight='40px'
+                        fontSize='12px'
+                        lineHeight='20px'
                         fontSizeSm={'10px'}
                         className="mt-6">
                         {data.fixture.date}

@@ -124,11 +124,11 @@ export default function Tournaments() {
             </Header>
             <div className='container relative w-full px-8 pt-8 mx-auto md:px-28'>
                 <CardGradient className="md:!p-16 !z-10">
-                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournament</Text>
-                    <div className='flex flex-row w-full justify-between mt-4'>
+                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournamentz</Text>
+                    <div className='h-[45px] flex flex-row w-full justify-between mt-4'>
                         <form className='flex flex-row' onChange={onChangeFilters}>
-                            <div className='h-full relative'>
-                                <input type="text" className='h-full rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3' onChange={onChangeSearch} />
+                            <div className='relative'>
+                                <input type="text" className=' rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3' onChange={onChangeSearch} />
                                 {search.length>0 && <SearchBox search={search} prodes={prodes}/>}
                                 {/*filters.searchFilter.length>0 && */}
                             </div>
@@ -136,9 +136,9 @@ export default function Tournaments() {
                                 <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
                             </Button>
                         </form>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>or</Text>
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='22px' fontSizeSm={'16px'}>or</Text>
                         {walletAddress.length > 0
-                            ? (<Link href="/create_tournament"><Button>Create your own</Button></Link>)
+                            ? (<Link href="/create_tournament"><Button className="leading-[10px]">Create new</Button></Link>)
                             : <Button onClick={connectWalletPressed}>Connect Wallet</Button>
                         }
                     </div>

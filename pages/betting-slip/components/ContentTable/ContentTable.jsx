@@ -10,30 +10,32 @@ const ContentTable = (props) => {
         <section className='w-full container relative px-10 md:px-15 mx-auto pt-52'>
             <SimpleCard>
                 <div className='w-full md:p-12'>
-                    <div className='flex flex-col mb-4 md:mb-5'>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'}>
+                    <div className='flex flex-col mb-4 md:mb-5font-bold'>
+                        <Text  color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'} className="!font-bold">
                             Join Tournament
                         </Text>
                     </div>
                     <Header />
                     <div className='flex flex-col mb-[20px]  mt-[20px] pt-5'>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'}>
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'} className="!font-bold">
                             Tournament settings
                         </Text>
                     </div>
                     <div className='gap-10 grid grid-cols-6'>
                         <div className=' gap-1 col-start-1 col-span-3'>
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Name: <span className='text-[14px]'>prueba</span>
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px] !font-bold'>
+                                Name: <span className='text-[14px] !font-thin'>prueba</span>
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
                                 Buy-in: <span className='text-[14px]'>10 xDAI</span>
                             </Text>
                             <div className=' grid grid-start-2'>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                Earnings: 50% Winner
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'}>
+                                Earnings: 
                             </Text>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{ marginLeft: '110px' }}></Text>
+                            <Text color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'14px'} className="mt-[10px]">
+                                50% <span className='text-[#E4168F]'>Winner</span>
+                            </Text>
                             </div>
                         </div>
                         <div className=' gap-1 col-span-3'>
@@ -52,7 +54,7 @@ const ContentTable = (props) => {
                         </div>
                     </div>
                     <div className='flex flex-col mb-4 md:mb-16 pt-10'>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'}>
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'} className="!font-bold">
                             Betting Slip
                         </Text>
                     </div>
@@ -64,7 +66,7 @@ const ContentTable = (props) => {
                             fontSize='30px'
                             lineHeight='40px'
                             fontSizeSm={'16px'}
-                            className="mt-6 text-left"
+                            className="mt-6 text-left !font-bold"
                             style={{ color: '#00E5AE', marginTop: '30px' }}
                         >
                             Buy-in
@@ -82,19 +84,19 @@ const ContentTable = (props) => {
                         </Text>
                     </div>
                 </div>
-                <div className='col-start-1 col-span-3'>
+                <div className='col-start-1 col-span-2'>
                     <div class="">
                         <Text
                             fontSize='30px'
                             lineHeight='40px'
                             fontSizeSm={'16px'}
-                            className="mt-6 text-left"
+                            className="mt-6 text-left !font-bold"
                             style={{ color: '#00E5AE', marginTop: '30px' }}
                         >
                             In-Tournay nickname: 
                         </Text>
                     </div>
-                    <div className='col-start-4 col-span-1 '>
+                    <div className='col-start-3 col-span-1 '>
                         <Text
                             fontSize='18px'
                             lineHeight='40px'
