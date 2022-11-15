@@ -1,6 +1,7 @@
 export const dataTule = [
   {
      "group":"A",
+     "indexesSlip": [0,1,2,3,4,5],
      "matches":[
         {
            "homeName":"Qatar",
@@ -54,6 +55,7 @@ export const dataTule = [
   },
   {
      "group":"B",
+     "indexesSlip": [6,7,8,8,10,11],
      "matches":[
         {
            "homeName":"England",
@@ -107,6 +109,7 @@ export const dataTule = [
   },
   {
      "group":"C",
+     "indexesSlip": [12,13,14,15,16,17],
      "matches":[
         {
            "homeName":"Argentina",
@@ -160,6 +163,7 @@ export const dataTule = [
   },
   {
      "group":"D",
+     "indexesSlip": [18,19,20,21,22,23],
      "matches":[
         {
            "homeName":"Denmark",
@@ -213,6 +217,7 @@ export const dataTule = [
   },
   {
      "group":"E",
+     "indexesSlip": [24,25,26,27,28,29],
      "matches":[
         {
            "homeName":"Germany",
@@ -266,6 +271,7 @@ export const dataTule = [
   },
   {
      "group":"F",
+     "indexesSlip": [30,31,32,33,34,35],
      "matches":[
         {
            "homeName":"Morocco",
@@ -319,6 +325,7 @@ export const dataTule = [
   },
   {
      "group":"G",
+     "indexesSlip": [36,37,38,39,40,41],
      "matches":[
         {
            "homeName":"Switzerland",
@@ -372,6 +379,7 @@ export const dataTule = [
   },
   {
      "group":"H",
+     "indexesSlip": [42,43,44,45,46,47],
      "matches":[
         {
            "homeName":"Uruguay",
