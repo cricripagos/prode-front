@@ -38,6 +38,9 @@ export default function TournamentDetails() {
     const [participants, setParticipants] = useState()
     const [tdata, setTdata] = useState()
     const [tid, setTid] = useState()
+    const [whats, setWhats] = useState()
+    const [tlgm, setTlgm] = useState()
+
     useEffect(()=>{
         if(!router.isReady) return;
         const { tid } = router.query
@@ -56,8 +59,10 @@ export default function TournamentDetails() {
                 creator: tdata[4],
                 pot: tdata[0]/1000000000000000000*tdata[2],
             })
-            console.log(tid)
-            console.log(tdata)
+        const wa = `https://wa.me/?text=${'Hi there! Join my tournament at '}&url=https://qatarprode.xyz/betting-slip/${tid}`;
+        setWhats(wa)
+        const tm = `https://telegram.me/share/url?url={https://qatarprode.xyz/betting-slip/${tid}&text=${'Hi there! Join my tournament at '}`
+        setTlgm(tm)
         }
         fetchParticipants()
         fetchTdata()
@@ -180,11 +185,12 @@ export default function TournamentDetails() {
                                 There are currently no participants for
                                 your tournament please share so people join
                             </Text>
+
                         </div>
                         <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
-                            <Link href="/tournaments"><Button_alt className='!col-start-1 !font-bold'>Copy link</Button_alt></Link>
-                            <Link href="/tournaments"><Button_alt className='!col-start-2 !font-bold'>Whatsapp</Button_alt></Link>
-                            <Link href="/tournaments"><Button_alt className='!col-start-3 !font-bold'>Telegram</Button_alt></Link>
+                           <Button_alt className='!col-start-1 !font-bold' onClick={() =>  navigator.clipboard.writeText('Hi there! Join my tournament at ' + `https://qatarprode.xyz/betting-slip/${tid}`)}>Copy link</Button_alt>
+                            <Button_alt className='!col-start-2 !font-bold' onClick={() => (window.open(whats)) }>Whatsapp</Button_alt>
+                            <Button_alt className='!col-start-3 !font-bold' onClick={() => (window.open(tlgm)) }>Telegram</Button_alt>
                         </HeaderComponent> 
                     </div>)
             }

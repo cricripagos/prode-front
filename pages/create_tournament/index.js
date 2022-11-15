@@ -68,28 +68,6 @@ function CreateTournament() {
         setWaiting(false)
         };
 
-/*
-        const { newProdeAddress, validator, transaction, status } = await createProde(walletAddress, prode);
-        setStatus(await status);
-        setTxn(await transaction);
-        console.log(await transaction);
-        setTimeout(() => console.log('Waiting for transaction'), 200000);
-        console.log(newProdeAddress)
-        setValidator(await validator);
-        console.log(await validator);
-        if(validator != '')
-            router.push('/tournament_details');
-      };
-
-      async function onCreatePressed(event) {
-        await newProde(event);
-        setTimeout(() => console.log('Waiting for transaction'), 5000)
-        console.log(txn)
-        console.log(validator)
-        if(validator != '')
-            router.push('/tournaments');
-      };*/
-
 
       function handleChange(evt) {
         setStatus('')

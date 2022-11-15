@@ -90,10 +90,6 @@ function handleChangeGroups(event) {
 
 }
 
-
-
-//                            <Link href="/tournament_details"><Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button></Link>
-
   
 
   const formatData = jsonGroups.map((group) => jsonData.response.filter((partido) => partido.teams.group === group.key));

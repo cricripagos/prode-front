@@ -1,3 +1,5 @@
+
+
 export const dataTule = [
   {
      "group":"A",
@@ -5,15 +7,15 @@ export const dataTule = [
      "matches":[
         {
            "homeName":"Qatar",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/1569.png",
            "awayName":"Ecuador",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/2382.png",
            "index":"0",
            "date":"Sun, 20/11/2022 17:00"
         },
         {
            "homeName":"Senegal",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/13.png",
            "awayName":"Netherlands",
            "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
            "index":"1",
@@ -21,9 +23,9 @@ export const dataTule = [
         },
         {
            "homeName":"Qatar",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/1569.png",
            "awayName":"Senegal",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/13.png",
            "index":"2",
            "date":"Fri, 25/11/2022 14:00"
         },
@@ -31,15 +33,15 @@ export const dataTule = [
            "homeName":"Netherlands",
            "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
            "awayName":"Ecuador",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/2382.png",
            "index":"3",
            "date":"Fri, 25/11/2022 17:00"
         },
         {
            "homeName":"Ecuador",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/2382.png",
            "awayName":"Senegal",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/13.png",
            "index":"4",
            "date":"Tue, 29/11/2022 16:00"
         },
@@ -47,7 +49,7 @@ export const dataTule = [
            "homeName":"Netherlands",
            "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
            "awayName":"Qatar",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/1569.png",
            "index":"5",
            "date":"Tue, 29/11/2022 16:00"
         }
@@ -59,49 +61,49 @@ export const dataTule = [
      "matches":[
         {
            "homeName":"England",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/10.png",
            "awayName":"Iran",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/22.png",
            "index":"6",
            "date":"Mon, 21/11/2022 14:00"
         },
         {
            "homeName":"USA",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/2384.png",
            "awayName":"Wales",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/767.png",
            "index":"7",
            "date":"Mon, 21/11/2022 20:00"
         },
         {
            "homeName":"Wales",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/767.png",
            "awayName":"Iran",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/22.png",
            "index":"8",
            "date":"Fri, 25/11/2022 11:00"
         },
         {
            "homeName":"England",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/10.png",
            "awayName":"USA",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/2384.png",
            "index":"9",
            "date":"Fri, 25/11/2022 20:00"
         },
         {
            "homeName":"Wales",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/767.png",
            "awayName":"England",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/10.png",
            "index":"10",
            "date":"Tue, 29/11/2022 20:00"
         },
         {
            "homeName":"Iran",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/22.png",
            "awayName":"USA",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/2384.png",
            "index":"11",
            "date":"Tue, 29/11/2022 20:00"
         }
@@ -113,49 +115,49 @@ export const dataTule = [
      "matches":[
         {
            "homeName":"Argentina",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/26.png",
            "awayName":"Saudi Arabia",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/23.png",
            "index":"12",
            "date":"Tue, 22/11/2022 11:00"
         },
         {
            "homeName":"Mexico",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/16.png",
            "awayName":"Poland",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/24.png",
            "index":"13",
            "date":"Tue, 22/11/2022 17:00"
         },
         {
            "homeName":"Poland",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/24.png",
            "awayName":"Saudi Arabia",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/23.png",
            "index":"14",
            "date":"Sat, 26/11/2022 14:00"
         },
         {
            "homeName":"Argentina",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/26.png",
            "awayName":"Mexico",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/16.png",
            "index":"15",
            "date":"Sat, 26/11/2022 20:00"
         },
         {
            "homeName":"Poland",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/24.png",
            "awayName":"Argentina",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/26.png",
            "index":"16",
            "date":"Wed, 30/11/2022 20:00"
         },
         {
            "homeName":"Saudi Arabia",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/23.png",
            "awayName":"Mexico",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/16.png",
            "index":"17",
            "date":"Wed, 30/11/2022 20:00"
         }
@@ -167,49 +169,49 @@ export const dataTule = [
      "matches":[
         {
            "homeName":"Denmark",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/21.png",
            "awayName":"Tunisia",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/28.png",
            "index":"18",
            "date":"Tue, 22/11/2022 14:00"
         },
         {
            "homeName":"France",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/2.png",
            "awayName":"Australia",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/20.png",
            "index":"19",
            "date":"Tue, 22/11/2022 20:00"
         },
         {
            "homeName":"Tunisia",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/28.png",
            "awayName":"Australia",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/20.png",
            "index":"20",
            "date":"Sat, 26/11/2022 11:00"
         },
         {
            "homeName":"France",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/2.png",
            "awayName":"Denmark",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/21.png",
            "index":"21",
            "date":"Sat, 26/11/2022 17:00"
         },
         {
            "homeName":"Australia",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/20.png",
            "awayName":"Denmark",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/21.png",
            "index":"22",
            "date":"Wed, 30/11/2022 16:00"
         },
         {
            "homeName":"Tunisia",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/28.png",
            "awayName":"France",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/2.png",
            "index":"23",
            "date":"Wed, 30/11/2022 16:00"
         }
@@ -221,49 +223,49 @@ export const dataTule = [
      "matches":[
         {
            "homeName":"Germany",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/25.png",
            "awayName":"Japan",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/12.png",
            "index":"24",
            "date":"Wed, 23/11/2022 14:00"
         },
         {
            "homeName":"Spain",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/9.png",
            "awayName":"Costa Rica",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/29.png",
            "index":"25",
            "date":"Wed, 23/11/2022 17:00"
         },
         {
            "homeName":"Japan",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/12.png",
            "awayName":"Costa Rica",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/29.png",
            "index":"26",
            "date":"Sun, 27/11/2022 11:00"
         },
         {
            "homeName":"Spain",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/9.png",
            "awayName":"Germany",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/25.png",
            "index":"27",
            "date":"Sun, 27/11/2022 20:00"
         },
         {
            "homeName":"Japan",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/12.png",
            "awayName":"Spain",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/9.png",
            "index":"28",
            "date":"Thu, 01/12/2022 20:00"
         },
         {
            "homeName":"Costa Rica",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/29.png",
            "awayName":"Germany",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/25.png",
            "index":"29",
            "date":"Thu, 01/12/2022 20:00"
         }
@@ -275,49 +277,49 @@ export const dataTule = [
      "matches":[
         {
            "homeName":"Morocco",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/31.png",
            "awayName":"Croatia",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/3.png",
            "index":"30",
            "date":"Wed, 23/11/2022 11:00"
         },
         {
            "homeName":"Belgium",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/1.png",
            "awayName":"Canada",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/5529.png",
            "index":"31",
            "date":"Wed, 23/11/2022 20:00"
         },
         {
            "homeName":"Belgium",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/1.png",
            "awayName":"Morocco",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/31.png",
            "index":"32",
            "date":"Sun, 27/11/2022 14:00"
         },
         {
            "homeName":"Croatia",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/3.png",
            "awayName":"Canada",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/5529.png",
            "index":"33",
            "date":"Sun, 27/11/2022 17:00"
         },
         {
            "homeName":"Croatia",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/3.png",
            "awayName":"Belgium",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/1.png",
            "index":"34",
            "date":"Thu, 01/12/2022 16:00"
         },
         {
            "homeName":"Canada",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/5529.png",
            "awayName":"Morocco",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/31.png",
            "index":"35",
            "date":"Thu, 01/12/2022 16:00"
         }
@@ -329,49 +331,49 @@ export const dataTule = [
      "matches":[
         {
            "homeName":"Switzerland",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/15.png",
            "awayName":"Cameroon",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/1530.png",
            "index":"36",
            "date":"Thu, 24/11/2022 11:00"
         },
         {
            "homeName":"Brazil",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/6.png",
            "awayName":"Serbia",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/14.png",
            "index":"37",
            "date":"Thu, 24/11/2022 20:00"
         },
         {
            "homeName":"Cameroon",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/1530.png",
            "awayName":"Serbia",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/14.png",
            "index":"38",
            "date":"Mon, 28/11/2022 11:00"
         },
         {
            "homeName":"Brazil",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/6.png",
            "awayName":"Switzerland",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/15.png",
            "index":"39",
            "date":"Mon, 28/11/2022 17:00"
         },
         {
            "homeName":"Serbia",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/14.png",
            "awayName":"Switzerland",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/15.png",
            "index":"40",
            "date":"Fri, 02/12/2022 20:00"
         },
         {
            "homeName":"Cameroon",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/1530.png",
            "awayName":"Brazil",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/6.png",
            "index":"41",
            "date":"Fri, 02/12/2022 20:00"
         }
@@ -383,49 +385,49 @@ export const dataTule = [
      "matches":[
         {
            "homeName":"Uruguay",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/7.png",
            "awayName":"South Korea",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/17.png",
            "index":"42",
            "date":"Thu, 24/11/2022 14:00"
         },
         {
            "homeName":"Portugal",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/27.png",
            "awayName":"Ghana",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/1504.png",
            "index":"43",
            "date":"Thu, 24/11/2022 17:00"
         },
         {
            "homeName":"South Korea",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/17.png",
            "awayName":"Ghana",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/1504.png",
            "index":"44",
            "date":"Mon, 28/11/2022 14:00"
         },
         {
            "homeName":"Portugal",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/27.png",
            "awayName":"Uruguay",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/7.png",
            "index":"45",
            "date":"Mon, 28/11/2022 20:00"
         },
         {
            "homeName":"Ghana",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/1504.png",
            "awayName":"Uruguay",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/7.png",
            "index":"46",
            "date":"Fri, 02/12/2022 16:00"
         },
         {
            "homeName":"South Korea",
-           "homeLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "homeLogo":"https://media.api-sports.io/football/teams/17.png",
            "awayName":"Portugal",
-           "awayLogo":"https://media.api-sports.io/football/teams/1118.png",
+           "awayLogo":"https://media.api-sports.io/football/teams/27.png",
            "index":"47",
            "date":"Fri, 02/12/2022 16:00"
         }
@@ -457,7 +459,7 @@ export const paisesTule = [["Qatar",0],
 ["Japan",18],
 ["Costa Rica",19],
 ["Morocco",20],
-["Belgium",21],
+["um",21],
 ["Croatia",22],
 ["Canada",23],
 ["Switzerland",24],
