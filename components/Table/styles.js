@@ -13,7 +13,7 @@ export const TableStyled = styled.table`
             color: white;
             font-style: normal;
             font-weight: 400;
-            font-size: 12px;
+            font-size: 22px;
             line-height: 29px;
         }
     }
@@ -22,8 +22,8 @@ export const TableStyled = styled.table`
         padding: 1rem;
         background: var(--dark-blue-color);
         border-radius: 1rem;
-        border-right: 16px solid var(--dark-blue-color);
-        border-left: 16px solid var(--dark-blue-color);
+        border-right: 20px solid var(--dark-blue-color);
+        border-left: 20px solid var(--dark-blue-color);
         td {
             display: table-cell;
             font-size: 10px;
