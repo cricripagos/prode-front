@@ -19,10 +19,12 @@ function CreateTournament() {
     const [ validator, setValidator ] =  useState('');
     const [ transaction, setTransaction ] =  useState('');
     const [ waiting, setWaiting] = useState(false) // estado para esperar transaccion
-
+    const [hidden, setHidden] = useState(false)
     //const { validator, transactionListener } = useWeb3()
     const [txn, setTxn] = useState('');
     const router = useRouter()
+
+
 /*
     useEffect(() => {
         if(validator != '')
@@ -53,9 +55,11 @@ function CreateTournament() {
         
         const prode = {
             buyin: event.target.buyin.value,
-            hidden: event.target.hidden.value,
+            hidden: hidden, 
+            //hidden: event.target.hidden.value,
             nickname: event.target.nickname.value,
         };
+        console.log(prode)
         setWaiting(true)
         const { validator, transaction, status } = await createProde(walletAddress, prode);
         console.log(validator, transaction, status)
@@ -135,7 +139,7 @@ function CreateTournament() {
                     <div className="grid grid-cols-4 items-end">
                         <div className="col-start-1 col-span-3 text-[22px] font-bold text-white pt-[30px]">Hidden Tournament</div>
                         <label className="col-start-4 inline-flex relative items-center cursor-pointer">
-                            <input type="checkbox" checked={false} value="0" id="hiddenInput" className="sr-only peer" />
+                            <input type="checkbox" onChange={(e) => setHidden(!hidden)} value={hidden} id="hiddenInput" className="sr-only peer" />
                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#E4168F]"></div>
                         </label>
                     </div>
