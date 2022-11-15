@@ -30,7 +30,7 @@ const ContentTable = (props) => {
                                 Buy-in: <span className='text-[14px]'>10 xDAI</span>
                             </Text>
                             <div className=' grid grid-start-2'>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'}>
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'}>
                                 Earnings: 
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'14px'} className="mt-[10px]">
