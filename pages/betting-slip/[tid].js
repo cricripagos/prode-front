@@ -132,20 +132,6 @@ function handleChangeGroups(event) {
         image={imageBG.src}
       />
 
-<<<<<<< HEAD:pages/betting-slip/index.js
-=======
-      <Grid container spacing={8}>
-        <ContentTable data={dataTule} setFixtureId={setFixtureId} handleChangeGroups={handleChangeGroups} 
-          slip={slip}
-          setSlip={setSlip}
-          tdata={tdata}
-        />
-      </Grid>
-      <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
-        <Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button>
-      </div>
-
->>>>>>> main:pages/betting-slip/[tid].js
       <Blur
         left="0%"
         top="100%"
