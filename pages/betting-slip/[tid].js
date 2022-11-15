@@ -91,6 +91,7 @@ function handleChangeGroups(event) {
   const formatData = jsonGroups.map((group) => jsonData.response.filter((partido) => partido.teams.group === group.key));
   //console.log('vista globla', slip)
   return (
+    <div className="bg-black">
     <Layout>
       <Header>
           {
@@ -136,6 +137,7 @@ function handleChangeGroups(event) {
         image={copaImage.src}
       />
     </Layout>
+    </div>
   );
 }
 
