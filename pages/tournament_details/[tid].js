@@ -191,7 +191,7 @@ export default function TournamentDetails() {
                                     return (
                                         <tr key={participant.beneficiary}>
                                             <td>{participant.nickname}</td>
-                                            <td>{participant.points}</td>
+                                            <td>{participant.points || 0}</td>
                                             <td><Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
                                                     <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
                                                 </Button>

@@ -17,6 +17,7 @@ function CreateTournament() {
     const [status, setStatus] = useState('');
     const { walletAddress, connectWalletPressed } = useConnect();
     const [ validator, setValidator ] =  useState('');
+    const [ transaction, setTransaction ] =  useState('');
     const [ waiting, setWaiting] = useState(false) // estado para esperar transaccion
 
     //const { validator, transactionListener } = useWeb3()
@@ -153,7 +154,7 @@ function CreateTournament() {
                     {waiting? <div>
                                     <span>
                                 ✅{" "}
-                                    <a target="_blank" href={`https://gnosisscan.io/${txHash}`}>
+                                    <a target="_blank" href={`https://gnosisscan.io/${transaction}`}>
                                         View the status of your transaction on Gnosisscan!
                                     </a>
                                     <br />
