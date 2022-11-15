@@ -12,10 +12,10 @@ const Matches = (props) => {
     }
     return (
         <div className='flex flex-col  gap-10' style={{background: props.number%2 === 0 ? '#262333' : null, padding: '10px', borderRadius: '15px'}}>
-            <div class="grid grid-cols-6 justify-around">
+            <div class="grid grid-cols-6 grid-cols-6">
                 <Text
-                    fontSize='14px'
-                    lineHeight='20px'
+                    fontSize='19px'
+                    lineHeight='40px'
                     fontSizeSm={'10px'}
                     className="mt-6">
                     {data.homeName}
@@ -26,8 +26,8 @@ const Matches = (props) => {
                 <img src={data.awayLogo} alt="img" style={{ height: '40px', marginTop: '25px' }} />
                 <div>
                     <Text
-                        fontSize='14px'
-                        lineHeight='20px'
+                        fontSize='19px'
+                        lineHeight='40px'
                         fontSizeSm={'10px'}
                         className="mt-6">
                         {data.awayName} 
@@ -37,8 +37,8 @@ const Matches = (props) => {
             <div class="flex justify-center ...">
                 <div>
                     <Text
-                        fontSize='12px'
-                        lineHeight='20px'
+                        fontSize='19px'
+                        lineHeight='40px'
                         fontSizeSm={'10px'}
                         className="mt-6">
                         {data.date}
