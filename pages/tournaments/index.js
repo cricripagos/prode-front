@@ -223,8 +223,8 @@ export default function Tournaments() {
                 My Tournaments
               </Button>
             </div>
-            <div className="relative w-full">
-              <Table>
+            <div className="relative">
+              <Table className="table-auto">
                 <thead>
                   <tr>{columnList}</tr>
                 </thead>
