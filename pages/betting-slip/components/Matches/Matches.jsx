@@ -20,17 +20,10 @@ const Matches = (props) => {
                     className="mt-6">
                     {data.homeName}
                 </Text>
-<<<<<<< HEAD
-                <img src={data.teams.home.logo} alt="img" style={{ height: '30px', width: '50px', marginTop: '25px', marginLeft: '10px' }} />
-                <input id="outlined-basic" label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '50px', height: '30px', color: '#7C3AED', padding: '10px', marginLeft: '10px'}} type="number"/>
-                <input id="outlined-basic" label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '50px', height: '30px', color: '#7C3AED', padding: '10px', marginLeft: '10px' }} type="number"/>
-                <img src={data.teams.away.logo} alt="img" style={{ height: '30px', width: '50px', marginTop: '25px', marginLeft: '10px' }} />
-=======
                 <img src={data.homeLogo} alt="img" style={{ height: '40px', marginTop: '25px' }} />
                 <input type="number" id="home" name="home" onChange={(e)=>handleOnChangeText(e,0)} label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }} type="number" />
                 <input type="number" id="away" name="away" onChange={(e)=>handleOnChangeText(e,1)} label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }} type="number" />
                 <img src={data.awayLogo} alt="img" style={{ height: '40px', marginTop: '25px' }} />
->>>>>>> main
                 <div>
                     <Text
                         fontSize='14px'

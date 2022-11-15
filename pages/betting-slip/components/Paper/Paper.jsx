@@ -39,7 +39,7 @@ const Paper = (props) => {
                             color="secondary">
                             <select onChange={(e) => handleTopChange(e,0)} style={{backgroundColor: 'transparent',}}name="cars" id="cars">
                                 <option disabled selected value>  </option>
-                                {paisesTule.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
+                                {paisesTule?.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
                             </select>
                             
                         </Text>
@@ -66,7 +66,7 @@ const Paper = (props) => {
                             color="secondary">
                             <select onChange={(e) => handleTopChange(e,1)} style={{backgroundColor: 'transparent',}}name="cars" id="cars">
                             <option disabled selected value>  </option>
-                                {paisesTule.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
+                                {paisesTule?.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
                             </select>
                         </Text>
                     </div>
@@ -91,7 +91,7 @@ const Paper = (props) => {
                             color="secondary">
                             <select onChange={(e) => handleTopChange(e,2)} style={{backgroundColor: 'transparent',}}name="cars" id="cars">
                             <option disabled selected value>  </option>
-                                {paisesTule.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
+                                {paisesTule?.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
                             </select>
                         </Text>
                     </div>
@@ -116,7 +116,7 @@ const Paper = (props) => {
                             color="secondary">
                             <select onChange={(e) => handleTopChange(e,3)} style={{backgroundColor: 'transparent',}}name="cars" id="cars">
                             <option disabled selected value>  </option>
-                                {paisesTule.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
+                                {paisesTule?.map((pais) => <option style={{padding: '10px', background: '#333647', borderRadius: '10px'}} value={pais[1]}>{pais[0]}</option>)}
                             </select>
                         </Text>
                     </div>

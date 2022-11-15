@@ -11,45 +11,32 @@ const ContentTable = (props) => {
     }
     console.log(props.slip, 'slip')
     return (
-        <section className='w-full container relative px-10 md:px-15 mx-auto pt-52'>
+        <section className='w-full container relative px-8 md:px-28 mx-auto pb-36c pt-52'>
             <SimpleCard>
                 <div className='w-full md:p-12'>
-                    <div className='flex flex-col mb-4 md:mb-5font-bold'>
-                        <Text  color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'} className="!font-bold">
+                    <div className='flex flex-col mb-4 md:mb-5'>
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
                             Join Tournament
                         </Text>
                     </div>
-                    <Header />
                     <div className='flex flex-col mb-[20px]  mt-[20px] pt-5'>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'} className="!font-bold">
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
                             Tournament settings
                         </Text>
                     </div>
                     <div className='gap-10 grid grid-cols-6'>
                         <div className=' gap-1 col-start-1 col-span-3'>
-<<<<<<< HEAD
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px] !font-bold'>
-                                Name: <span className='text-[14px] !font-thin'>prueba</span>
-=======
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
                                 Name: <span className='text-[14px]'>{props.tdata?.prodeNickname}</span>
->>>>>>> main
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
                                 Buy-in: <span className='text-[14px]'>{props.tdata?.buyin} xDAI</span>
                             </Text>
                             <div className=' grid grid-start-2'>
-<<<<<<< HEAD
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'}>
-                                Earnings: 
-                            </Text>
-                            <Text color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'14px'} className="mt-[10px]">
-                                50% <span className='text-[#E4168F]'>Winner</span>
-=======
                             <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
                                 Earnings: 100% Winner
->>>>>>> main
                             </Text>
+                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{ marginLeft: '110px' }}></Text>
                             </div>
                         </div>
                         <div className=' gap-1 col-span-3'>
@@ -62,25 +49,20 @@ const ContentTable = (props) => {
                         </div>
                     </div>
                     <div className='flex flex-col mb-4 md:mb-16 pt-10'>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='30px' fontSizeSm={'20px'} className="!font-bold">
+                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
                             Betting Slip
                         </Text>
                     </div>
-<<<<<<< HEAD
-                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} key={i} number={i} /> )}
-                    <Paper />
-=======
                     {props.data.map((dataGroup, i) => <Accordion setSlip={props.setSlip} slip={props.slip} data={dataGroup} key={i} /> )}
                 </div>
                 <Paper setSlip={props.setSlip} slip={props.slip}  />
->>>>>>> main
                 <div class="grid grid-cols-4 gap-1">
-                    <div className='col-start-1 col-span-3'>
+                    <div>
                         <Text
-                            fontSize='30px'
+                            fontSize='36px'
                             lineHeight='40px'
-                            fontSizeSm={'16px'}
-                            className="mt-6 text-left !font-bold"
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
                             style={{ color: '#00E5AE', marginTop: '30px' }}
                         >
                             Buy-in
@@ -90,7 +72,7 @@ const ContentTable = (props) => {
                         <Text
                             fontSize='22px'
                             lineHeight='40px'
-                            fontSizeSm={'16px'}
+                            fontSizeSm={'10px'}
                             className="mt-6 text-center"
                             style={{ padding: '10px', background: '#333647', borderRadius: '10px' }}
                             color="secondary">
@@ -98,26 +80,22 @@ const ContentTable = (props) => {
                         </Text>
                     </div>
                 </div>
-                <div className='col-start-1 col-span-2'>
-                    <div class="">
+                <div class="grid grid-cols-4 gap-4">
+                    <div>
                         <Text
-                            fontSize='30px'
+                            fontSize='36px'
                             lineHeight='40px'
-                            fontSizeSm={'16px'}
-                            className="mt-6 text-left !font-bold"
+                            fontSizeSm={'10px'}
+                            className="mt-6 text-center"
                             style={{ color: '#00E5AE', marginTop: '30px' }}
                         >
                             Player: 
                         </Text>
                     </div>
-<<<<<<< HEAD
-                    <div className='col-start-3 col-span-1 '>
-=======
                     <div>
                         <input onChange={handleNicknameChange} placeholder="Diego Maradona(10)" type="text" id="away" name="away"  label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '200px', height: '40px', color: '#7C3AED', padding: '10px' }}  />
->>>>>>> main
                         <Text
-                            fontSize='18px'
+                            fontSize='22px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
@@ -127,8 +105,6 @@ const ContentTable = (props) => {
                         </Text>
                     </div>
                 </div>
-                </div>
-                
             </SimpleCard>
         </section>
     )
