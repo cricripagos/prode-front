@@ -33,10 +33,12 @@ const ContentTable = (props) => {
                                 Buy-in: <span className='text-[14px]'>{props.tdata?.buyin} xDAI</span>
                             </Text>
                             <div className=' grid grid-start-2'>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'}>
-                                Earnings: 100% Winner
+                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'}>
+                                Earnings:
                             </Text>
-                            <Text tag={'h1'} color={'background: #FFFFFF'} fontSize='22px' fontSizeSm={'28.6px'} style={{ marginLeft: '110px' }}></Text>
+                            <Text color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'16px'} className="mt-[5px]">
+                                100% <span className='text-[#E4168F]'>Winner</span>
+                            </Text>
                             </div>
                         </div>
                         <div className=' gap-1 col-span-3'>

@@ -76,7 +76,7 @@ export default function TournamentDetails() {
 
 
     return (
-        <div className='w-full relative'>
+        <div className='w-full relative bg-black'>
             <Blur bottom='0%' left='-7px' height='25%' width='20%'
                 image={BallPNG.src}
                 bottomImage='-83px'
