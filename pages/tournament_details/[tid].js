@@ -56,6 +56,8 @@ export default function TournamentDetails() {
                 creator: tdata[4],
                 pot: tdata[0]/1000000000000000000*tdata[2],
             })
+            console.log(tid)
+            console.log(tdata)
         }
         fetchParticipants()
         fetchTdata()
@@ -191,7 +193,11 @@ export default function TournamentDetails() {
                 </CardGradient>
             </div>
             <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
-                            <Link href="/betting-slip"><Button className='w-full !font-bold' >Place Bet</Button></Link>
+                    <Button onClick={() =>
+                              router.push(`/betting-slip/${tid}`)
+                            } className='w-full !font-bold' >
+                        Place Bet
+                    </Button>
             </div>
 
         </div>

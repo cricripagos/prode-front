@@ -252,7 +252,7 @@ export default function Tournaments() {
                           <td
                             className={styles.a}
                             onClick={() =>
-                              router.push(`betting-slip/${prode.prodeAddress}`)
+                              router.push(`tournament_details/${prode.prodeAddress}`)
                             }
                           >
                             {prode.prodeAddress}
