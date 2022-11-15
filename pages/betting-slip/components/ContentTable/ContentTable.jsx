@@ -9,7 +9,7 @@ const ContentTable = (props) => {
     const handleNicknameChange = (e) => {
         props.setSlip({...props.slip, nickname: e.target.value})
     }
-    console.log(props.slip, 'slip')
+    //console.log(props.slip, 'slip')
     return (
         <section className='w-full container relative px-8 md:px-28 mx-auto pb-36c pt-52'>
             <SimpleCard>
@@ -63,7 +63,7 @@ const ContentTable = (props) => {
                             lineHeight='40px'
                             fontSizeSm={'10px'}
                             className="mt-6 text-center"
-                            style={{ color: '#00E5AE', marginTop: '30px' }}
+                            style={{ color: '#E4168F', marginTop: '30px' }}
                         >
                             Buy-in
                         </Text>
@@ -93,8 +93,12 @@ const ContentTable = (props) => {
                         </Text>
                     </div>
                     <div>
-                        <input onChange={handleNicknameChange} placeholder="Diego Maradona(10)" type="text" id="away" name="away"  label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '200px', height: '40px', color: '#7C3AED', padding: '10px' }}  />
-                        <Text
+                        <input onChange={handleNicknameChange} placeholder="Diego Maradona(10)" 
+                        type="text" id="away" name="away"  label="Outlined" 
+                        style={{ background: '#00E5AE', borderRadius: '10px', 
+                        marginTop: '30px', width: '200px', height: '40px', 
+                        color: '#7C3AED', padding: '10px' }}  />
+                        {/*<Text
                             fontSize='22px'
                             lineHeight='40px'
                             fontSizeSm={'10px'}
@@ -102,7 +106,7 @@ const ContentTable = (props) => {
                             style={{ padding: '10px', background: '#262333', borderRadius: '10px', color: '#E4168F'}}
                             color="secondary">
                             Dejo esto para no perder estilos 
-                        </Text>
+                        </Text>*/}
                     </div>
                 </div>
             </SimpleCard>

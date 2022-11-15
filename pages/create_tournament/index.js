@@ -150,7 +150,17 @@ function CreateTournament() {
                     }
                     
                     </div>
-                    {waiting? <div> Esperando transaccion !!!!</div>:<div>no estoy esperando transaccion</div>}
+                    {waiting? <div>
+                                    <span>
+                                ✅{" "}
+                                    <a target="_blank" href={`https://gnosisscan.io/${txHash}`}>
+                                        View the status of your transaction on Gnosisscan!
+                                    </a>
+                                    <br />
+                                    ℹ️ Once the transaction is verified by the network, the message will
+                                    be updated automatically.
+                                    </span>
+                                </div>: null}
                 </form>
                 </div>
                 <Blur className="absolute bottom-0 left-0" />
