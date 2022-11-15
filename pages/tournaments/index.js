@@ -83,8 +83,8 @@ export default function Tournaments() {
     }
 
     const handleOnClickFilters = (inp) => {
-        console.log(inp, 'ver ak')
         setFilters({...filters, addressFilter: inp});
+        console.log(filters, 'ver ak')
     }
     useEffect(()=>{
         const fetchProdes = async () =>{
@@ -92,8 +92,8 @@ export default function Tournaments() {
             setProdes(prodes)
             let prodesFull = []
             for (const prode of prodes){
-                const singleData = await getTournamentData(prode['prodeAddress'])
-                prodesFull.push({...prode, playerCount:singleData[2]})
+                const singleData = await getParticipants(prode['prodeAddress'])
+                prodesFull.push({...prode, participantArray:singleData})
               }
             setProdes(prodesFull)
         }
@@ -162,7 +162,7 @@ export default function Tournaments() {
                                 <tbody>
                                     {prodes?.slice(0).reverse().map((prode, index) => {
                                         if (filters.addressFilter !== null) {
-                                            let participantAddressList = prode.participantsArray?.map(({ beneficiary }) => beneficiary);
+                                            let participantAddressList = prode.participantArray?.map(({beneficiary}) => beneficiary.toLowerCase());
                                             if (!participantAddressList?.includes(filters.addressFilter)) {
                                                 return
                                             }
@@ -172,7 +172,7 @@ export default function Tournaments() {
                                                 <td>{prode.prodeNickname}</td>
                                                 <td>{prode.prodeAddress}</td>
                                                 <td>{prode.buyIn}</td>
-                                                <td>{prode.playerCount}</td>
+                                                <td>{prode.participantArray?.length}</td>
                                             </tr>
                                         )
                                     })}
