@@ -116,13 +116,6 @@ function handleChangeGroups(event) {
                   </Button>
           }
       </Header>
-
-      <Grid container spacing={8}>
-        <ContentTable data={formatData} />
-      </Grid>
-      <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
-        <Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button>
-      </div>
       <Blur
         right="-0%"
         top="20%"
@@ -131,6 +124,16 @@ function handleChangeGroups(event) {
         variant={BlurColor.primary}
         image={imageBG.src}
       />
+           <Grid container spacing={8}>
+        <ContentTable data={dataTule} setFixtureId={setFixtureId} handleChangeGroups={handleChangeGroups} 
+          slip={slip}
+          setSlip={setSlip}
+          tdata={tdata}
+        />
+      </Grid>
+      <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
+        <Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button>
+      </div>
 
       <Blur
         left="0%"
