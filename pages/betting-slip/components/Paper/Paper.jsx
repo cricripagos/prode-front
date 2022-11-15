@@ -7,11 +7,9 @@ import { paisesTule } from "../../jsonData/data";
 
 const Paper = (props) => {
     const handleTopChange = (e,position) => {
-        console.log(e.target.value, position)
         let newSlip = props.slip
         newSlip.topPicks[position] = parseInt(e.target.value)
         props.setSlip(newSlip)
-        console.log(props.slip)
     }
     console.log('aca', paisesTule)
     return (

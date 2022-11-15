@@ -146,8 +146,8 @@ export default function TournamentDetails() {
                         </div>
                     </div>
                     </div>
-                    <div>
-
+                    { participants?.length > 0 ?
+                    (<div>
                     <Table>
                         <thead>
                             <tr>{columnList}</tr>
@@ -167,7 +167,8 @@ export default function TournamentDetails() {
                                 })}
                         </tbody>
                     </Table>
-                    <div className=' bg-[#262333] drop-shadow-md rounded-md pl-[15px] pt-[20px]'>
+                </div>) : 
+                (   <div className=' bg-[#262333] drop-shadow-md rounded-md pl-[15px] pt-[20px]'>
                         <div className='col-start-1 col-span-3'>
                             <Text
                                 fontSize='16px'
@@ -183,8 +184,10 @@ export default function TournamentDetails() {
                             <Link href="/tournaments"><Button_alt className='!col-start-2 !font-bold'>Whatsapp</Button_alt></Link>
                             <Link href="/tournaments"><Button_alt className='!col-start-3 !font-bold'>Telegram</Button_alt></Link>
                         </HeaderComponent> 
-                    </div>
-                </div>
+                    </div>)
+            }
+
+
                 </CardGradient>
             </div>
             <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
