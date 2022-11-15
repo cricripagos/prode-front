@@ -124,7 +124,7 @@ export default function Tournaments() {
             </Header>
             <div className='container relative w-full px-8 pt-8 mx-auto md:px-28'>
                 <CardGradient className="md:!p-16 !z-10">
-                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournamentz</Text>
+                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'16px'}>Search tournament</Text>
                     <div className='h-[45px] flex flex-row w-full justify-between mt-4'>
                         <form className='flex flex-row' onChange={onChangeFilters}>
                             <div className='relative'>
