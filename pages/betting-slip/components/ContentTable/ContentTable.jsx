@@ -34,7 +34,7 @@ const ContentTable = (props) => {
                                 Earnings: 
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'14px'} className="mt-[10px]">
-                                50% <span className='text-[#E4168F]'>Winner</span>
+                                100% <span className='text-[#E4168F]'>Winner</span>
                             </Text>
                             </div>
                         </div>
