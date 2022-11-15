@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import Button, { Variant } from '@components/Button/Button';
+import Button_alt from '@components/Button_alt/Button_alt';
 import Header from '@components/Header/Header';
 import Text from '@components/Text/Text';
 import CardGradient from '@components/CardGradient/CardGradient';
@@ -13,7 +14,8 @@ import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from '../../components/constants';
 import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
-import {getParticipants, getTournamentData} from '../../utils/prodeFns'
+import {getParticipants, getTournamentData} from '../../utils/prodeFns';
+import HeaderComponent  from '@components/Header/Header';
 
 const columns = [
     {
@@ -90,18 +92,18 @@ export default function TournamentDetails() {
             </Header>
             <div className='container relative w-full px-8 pt-8 mx-auto md:px-28'>
                 <CardGradient className="md:!p-16 !z-10" borderless="true">
-                    <Header>
-                       <Button onClick={connectWalletPressed}>Invite your friends!</Button>
-                    </Header>
-                    <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>Tournament name</Text>
-                    <div className='flex flex-row w-full justify-between mt-4'>
+                <div className='grid grid-cols-4'>
+                    <Text tag={'h2'} color={'#00E5AE'} fontSize='36px' fontSizeSm={'20px'} className='col-start-1 col col-span-2'>Tournament name</Text>
+                    <Button onClick={connectWalletPressed} className='col-start-3 col col-span-2 !font-bold'>Invite your friends!</Button>   
+                </div> 
+                <div className='flex flex-row w-full justify-between mt-4'>
                             <Button type="submit" withtBorder={false} variant={Variant.tertiary} className="!px-5">{
                                 tid
                             }
                             </Button>
                     </div>
                     <div className='flex flex-col gap-5 mt-16'>
-                        <Text tag={'h2'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>Tournament settings</Text>
+                        <Text tag={'h2'} color={'#00E5AE'} fontSize='36px' fontSizeSm={'20px'}>Tournament settings</Text>
                         <div className='gap-10 grid grid-cols-6'>
                         <div className=' gap-1 col-start-1 col-span-3'>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
@@ -165,11 +167,28 @@ export default function TournamentDetails() {
                                 })}
                         </tbody>
                     </Table>
+                    <div className=' bg-[#262333] drop-shadow-md rounded-md pl-[15px] pt-[20px]'>
+                        <div className='col-start-1 col-span-3'>
+                            <Text
+                                fontSize='16px'
+                                lineHeight='20px'
+                                fontSizeSm={'12px'}
+                                >
+                                There are currently no participants for
+                                your tournament please share so people join
+                            </Text>
+                        </div>
+                        <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
+                            <Link href="/tournaments"><Button_alt className='!col-start-1 !font-bold'>Copy link</Button_alt></Link>
+                            <Link href="/tournaments"><Button_alt className='!col-start-2 !font-bold'>Whatsapp</Button_alt></Link>
+                            <Link href="/tournaments"><Button_alt className='!col-start-3 !font-bold'>Telegram</Button_alt></Link>
+                        </HeaderComponent> 
                     </div>
+                </div>
                 </CardGradient>
             </div>
             <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
-                            <Link href="/betting-slip"><Button className='w-full' >Place Bet</Button></Link>
+                            <Link href="/betting-slip"><Button className='w-full !font-bold' >Place Bet</Button></Link>
             </div>
 
         </div>
