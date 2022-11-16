@@ -12,7 +12,6 @@ import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from "../../components/constants";
 import Table from "@components/Table/Table";
 import Blur from "@components/Blur/Blur";
 import BallPNG from "@assets/images/ball-tournaments.png";
-import { useWeb3 } from "../../hooks/useWeb3";
 import styles from "../../styles/Home.module.css";
 
 import {
