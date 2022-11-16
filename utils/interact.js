@@ -182,7 +182,7 @@ export const createProde = async (address, prode) => {
       status: (
         <span>
           ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io/tx/${txn}`}>
+          <a target="_blank" rel="noopener noreferrer" href={`https://gnosisscan.io/tx/${txn}`}>
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
@@ -324,7 +324,7 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
       status: (
         <span>
           ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io`}>
+          <a target="_blank" rel="noopener noreferrer" href={`https://gnosisscan.io`}>
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
@@ -369,63 +369,3 @@ export const getTransactionReceiptMined = (txHash, interval) => {
       throw new Error("Invalid Type: " + txHash);
   }
 };
-/*
-
-
-export const createProde = async (address, prode) => {
-  //input error handling
-  if (!window.ethereum || address === null) {
-    return {
-      validator: false,
-      status:
-        "💡 Connect your Metamask wallet to update the message on the blockchain.",
-    };
-  }
-  
-  if (prode.nickname?.trim() === "Choose a cool name for your tourney!") {
-    return {
-      validator: false,
-      status: <span>"❌ Your tourney need a name."</span>,
-    };
-  }
-
-  if (prode.buyin?.trim() === '') {
-    return {
-      validator: false,
-      status: <span>"❌ Your tourney need a buy-in amount."</span>
-    };
-  }
-  
-  //set up transaction parameters
-  const transactionParameters = {
-    to: contractAddress, // Required except during contract publications.
-    from: address, // must match user's active address.
-    data: prodeContract.methods.createProde(prode.buyin, prode.hidden, prode.nickname).encodeABI(),
-  };
-
-  //sign the transaction
-  try {
-    const txHash = await window.ethereum.request({
-      method: "eth_sendTransaction",
-      params: [transactionParameters],
-    });
-    return {
-      validator: true,
-      status: (
-        <span>
-          ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io/${txHash.hash}`}>
-            View the status of your transaction on Gnosisscan!
-          </a>
-          <br />
-          ℹ️ Once the transaction is verified by the network, you can start the game.
-        </span>
-      ),
-    };
-  } catch (error) {
-    return {
-      status: "😥 " + error.message,
-    };
-  }
-};
-*/
