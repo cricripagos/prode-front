@@ -2,13 +2,9 @@ import React, { useEffect, useState, useContext } from 'react';
 import Button from '@components/Button/Button';
 import Blur from '@components/Blur/Blur';
 import Header from '@components/Header/Header'
-import Text from '@components/Text/Text';
-import CardGradient from '@components/CardGradient/CardGradient';
-import { createProde, waitTransaction, getTransactionReceiptMined } from '../../utils/interact';
+import { createProde, getTransactionReceiptMined } from '@utils/interact';
 import { useRouter } from 'next/router'
-import { UserContext } from '../../context'
 import { useConnect } from '@hooks/useConnect';
-import { useWeb3 } from '@hooks/useWeb3';
 
 
 function CreateTournament() {
