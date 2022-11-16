@@ -24,8 +24,9 @@ const Matches = (props) => {
             console.log('no hay next')
         }
         let allValid = true
-        props.indexesSlip.map((idx)=>{
+        props.indexesSlip.map((idx, i)=>{
             allValid = allValid && Number.isInteger(props.slip.groups[idx][0])&&Number.isInteger(props.slip.groups[idx][1])
+            key={i}
         })
         props.setChecked(allValid)
         if (allValid==true){

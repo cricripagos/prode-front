@@ -5,14 +5,14 @@ import Grid from "@mui/material/Grid";
 import Blur, { BlurColor } from "@components/Blur/Blur";
 import imageBG from "@assets/images/ballRight.png";
 import copaImage from "@assets/images/copa.png";
-import ContentTable from "./components/ContentTable/ContentTable";
-import { jsonData, jsonGroups, dataTule } from "./jsonData/data";
+import ContentTable from "../../components/components/ContentTable/ContentTable";
+import { jsonData, jsonGroups, dataTule } from "../../utils/jsonData/data";
 import Button, { Variant } from '@components/Button/Button';
 import { useConnect } from '@hooks/useConnect';
-import { placeBet } from '../../utils/interact';
+import { placeBet } from '@utils/interact';
 import Header from '@components/Header/Header';
 import { useRouter } from 'next/router'
-import { getTournamentData } from "../../utils/prodeFns";
+import { getTournamentData } from "@utils/ProdeFns";
 
 
 
@@ -91,6 +91,7 @@ function handleChangeGroups(event) {
   const formatData = jsonGroups.map((group) => jsonData.response.filter((partido) => partido.teams.group === group.key));
   //console.log('vista globla', slip)
   return (
+    <div className="bg-black">
     <Layout>
       <Header>
           {
@@ -136,6 +137,7 @@ function handleChangeGroups(event) {
         image={copaImage.src}
       />
     </Layout>
+    </div>
   );
 }
 

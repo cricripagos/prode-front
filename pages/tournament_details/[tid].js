@@ -14,7 +14,7 @@ import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from '../../components/constants';
 import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
-import {getParticipants, getTournamentData} from '../../utils/prodeFns';
+import {getParticipants, getTournamentData} from '@utils/ProdeFns';
 import HeaderComponent  from '@components/Header/Header';
 
 const columns = [
@@ -76,7 +76,7 @@ export default function TournamentDetails() {
 
 
     return (
-        <div className='w-full relative'>
+        <div className='w-full relative bg-black'>
             <Blur bottom='0%' left='-7px' height='25%' width='20%'
                 image={BallPNG.src}
                 bottomImage='-83px'
@@ -191,7 +191,7 @@ export default function TournamentDetails() {
                                     return (
                                         <tr key={participant.beneficiary}>
                                             <td>{participant.nickname}</td>
-                                            <td>{participant.points}</td>
+                                            <td>{participant.points || 0}</td>
                                             <td><Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
                                                     <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
                                                 </Button>

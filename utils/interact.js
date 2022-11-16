@@ -248,22 +248,19 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
       } else { console.log(`error`) }; //getting this
     })  
     
-    console.log("Mining...", txHash);
-
-    console.log("Mined -- ", txHash);
 
     return {
       status: (
         <span>
           ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io/${txHash}`}>
+          <a target="_blank" href={`https://gnosisscan.io`}>
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
           ℹ️ Once the transaction is verified by the network, the message will
           be updated automatically.
         </span>
-      ),
+    ),
     };
   } catch (error) {
     console.log(error);   

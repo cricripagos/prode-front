@@ -3,7 +3,6 @@ import { getCurrentWalletConnected } from '@utils/connectWallet';
 import {
     loadProdes,
     loadSingleProde,
-    waitTransaction,
 } from '@utils/interact';
 
 
@@ -35,15 +34,7 @@ export const useWeb3 = () => {
 
         const prodes = await loadProdes();
 
-        /*
-        const prodesCleaned = prodes.map(prode => {
-            return {
-                prodeNickname: prode.prodeNickname,
-                prodeAddress: prode.prodeAddress,
-                buyIn: prode.buyIn,
-                hidden: prode.hidden,
-            };
-        });*/
+
 
         setAllProdes(prodes)
     };
@@ -52,11 +43,11 @@ export const useWeb3 = () => {
         const singleProdeData = await loadSingleProde();
         setSingleProde(singleProdeData)
       }
-
+/*
     const transactionListener = async(walletAddress) => {
         const validator = await waitTransaction(walletAddress)
         setValidator(validator)
     }
-
-    return { walletAddress, status, allProdes, singleProde, validator, transactionListener};
+*/
+    return { walletAddress, status, allProdes, singleProde, validator};
 }

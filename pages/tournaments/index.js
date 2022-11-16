@@ -12,14 +12,13 @@ import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from "../../components/constants";
 import Table from "@components/Table/Table";
 import Blur from "@components/Blur/Blur";
 import BallPNG from "@assets/images/ball-tournaments.png";
-import { useWeb3 } from "../../hooks/useWeb3";
 import styles from "../../styles/Home.module.css";
 
 import {
   getParticipants,
   getAllProdes,
   getTournamentData,
-} from "../../utils/prodeFns";
+} from "@utils/ProdeFns";
 const columns = [
   {
     key: "name",
@@ -126,7 +125,7 @@ export default function Tournaments() {
   }, []);
   console.log(loader);
   return (
-    <div className="w-full relative">
+    <div className="w-full relative bg-black">
       <Blur
         bottom="0%"
         left="-7px"
@@ -190,7 +189,7 @@ export default function Tournaments() {
             </Text>
             {walletAddress.length > 0 ? (
               <Link href="/create_tournament">
-                <Button>Create your own</Button>
+                <Button className="leading-[15px]">Create your own</Button>
               </Link>
             ) : (
               <Button onClick={connectWalletPressed}>Connect Wallet</Button>
@@ -203,7 +202,7 @@ export default function Tournaments() {
               fontSize="36px"
               fontSizeSm={"16px"}
             >
-              List of tourneys
+              List of tournaments
             </Text>
             <div className="flex flex-row w-full space-x-4">
               <Button
@@ -212,7 +211,7 @@ export default function Tournaments() {
                 withtBorder={false}
                 onClick={() => handleOnClickFilters(null)}
               >
-                Public tourneys
+                Public tournaments
               </Button>
               <Button
                 variant={Variant.tertiary}
