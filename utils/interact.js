@@ -250,6 +250,38 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
     };
   }
 
+  try {
+    await ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: '0x64' }],
+    });
+  } catch (switchError) {
+    // This error code indicates that the chain has not been added to MetaMask.
+    if (switchError.code === 4902) {
+      try {
+        await ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: "0x64",
+              chainName: "Gnosis",
+              nativeCurrency: {
+                  name: "xDai",
+                  symbol: "xDai",
+                  decimals: 18,
+              },
+              rpcUrls: ["https://rpc.gnosischain.com/"],
+              blockExplorerUrls: ["https://gnosisscan.io/"],
+          }
+          ],
+        });
+      } catch (addError) {
+        // handle "add" error
+      }
+    }
+    // handle other "switch" errors
+  }
+
   // NO PUEDO HARDCODEAR EL VALOR DE VALUE. 
   //set up transaction parameters
   const valueHex = parseInt(tdata.weiBuyin).toString(16)
