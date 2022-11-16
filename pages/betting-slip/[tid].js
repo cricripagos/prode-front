@@ -9,10 +9,10 @@ import ContentTable from "./components/ContentTable/ContentTable";
 import { jsonData, jsonGroups, dataTule } from "./jsonData/data";
 import Button, { Variant } from '@components/Button/Button';
 import { useConnect } from '@hooks/useConnect';
-import { placeBet } from '../../utils/interact';
+import { placeBet } from '@utils/interact';
 import Header from '@components/Header/Header';
 import { useRouter } from 'next/router'
-import { getTournamentData } from "../../utils/prodeFns";
+import { getTournamentData } from "@utils/ProdeFns";
 
 
 

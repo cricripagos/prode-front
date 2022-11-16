@@ -14,7 +14,7 @@ import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from '../../components/constants';
 import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
-import {getParticipants, getTournamentData} from '@utils/prodeFns';
+import {getParticipants, getTournamentData} from '@utils/ProdeFns';
 import HeaderComponent  from '@components/Header/Header';
 
 const columns = [

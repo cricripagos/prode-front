@@ -19,7 +19,7 @@ import {
   getParticipants,
   getAllProdes,
   getTournamentData,
-} from "@utils/prodeFns";
+} from "@utils/ProdeFns";
 const columns = [
   {
     key: "name",
