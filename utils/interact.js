@@ -131,7 +131,7 @@ export const createProde = async (address, prode) => {
   try {
     await ethereum.request({
       method: 'wallet_switchEthereumChain',
-      params: [{ chainId: '0x64' }],
+      params: [{ chainId: '0x64' }], //Gnosis 100 in hex
     });
   } catch (switchError) {
     // This error code indicates that the chain has not been added to MetaMask.
