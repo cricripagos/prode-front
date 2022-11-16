@@ -158,7 +158,7 @@ function CreateTournament() {
                     {waiting? <div>
                                     <span>
                                 ✅{" "}
-                                    <a target="_blank" rel="noreferrer" href={`https://gnosisscan.io/${transaction}`}>
+                                    <a target="_blank" rel="noopener noreferrer" href={`https://gnosisscan.io/${transaction}`}>
                                         View the status of your transaction on Gnosisscan!
                                     </a>
                                     <br />
