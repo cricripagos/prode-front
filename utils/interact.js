@@ -18,7 +18,7 @@ const web3 = new Web3(ws)
 const contractABI = require('./abi/prodeFactory.json');
 const singleProdeABI = require('./abi/prodeBeta.json'); // tomo el ABI del prode puntualmente
 
-const contractAddress ='0xdaD33dA150B986E89d6fd7B62542462604BFb19d';
+const contractAddress ='0xa2995Fb375a4ab5E9F61931E0d7B50B24bD10E37';
 
 const prodeContract = new web3.eth.Contract(
     contractABI,
