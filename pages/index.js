@@ -1,8 +1,8 @@
 import React from "react";
-import LandingPage from './landing';
+import Tournaments from "./tournaments";
 
 export default function index() {
   return (
-    <LandingPage />
+    <Tournaments />
   );
 }

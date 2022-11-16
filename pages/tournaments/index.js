@@ -246,7 +246,7 @@ export default function Tournaments() {
                         }
                       }
                       return (
-                        <tr key={prode.prodeAddress}>
+                        <tr  key={prode.prodeAddress}>
                           <td>{prode.prodeNickname}</td>
                           <td
                             className={styles.a}
@@ -256,7 +256,7 @@ export default function Tournaments() {
                           >
                             {prode.prodeAddress}
                           </td>
-                          <td>{prode.buyIn}</td>
+                          <td>{prode.buyIn/1000000000000000000} xDai</td>
                           <td>
                             {loader ? (
                               <div className={styles.spinner}></div>
