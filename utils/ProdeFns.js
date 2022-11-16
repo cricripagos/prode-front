@@ -1,6 +1,6 @@
 const Web3 = require('web3');
 const chainstackURL = process.env.NEXT_PUBLIC_CHAINSTACK;
-const factoryAddress ='0xdaD33dA150B986E89d6fd7B62542462604BFb19d';
+const factoryAddress ='0xF2a497D82ABe5b2092C446eE3da4c2adf126D931';
 const options = {
   // Enable auto reconnection
   reconnect: {
