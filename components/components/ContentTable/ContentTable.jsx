@@ -16,12 +16,12 @@ const ContentTable = (props) => {
                 <div className='w-full md:p-12'>
                     <div className='flex flex-col mb-4 md:mb-5'>
                         <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
-                            Join Tournament
+                            Joining Tournament
                         </Text>
                     </div>
                     <div className='flex flex-col mb-[20px]  mt-[20px] pt-5'>
                         <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
-                            Tournament settings
+                            Tournament Information
                         </Text>
                     </div>
                     <div className='gap-10 grid grid-cols-6'>
@@ -34,10 +34,10 @@ const ContentTable = (props) => {
                             </Text>
                             <div className=' grid grid-start-2'>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'}>
-                                Earnings:
+                                Earnings: <span className='text-[#E4168F]'> 100% For Winner</span>
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='16px' fontSizeSm={'16px'} className="mt-[5px]">
-                                100% <span className='text-[#E4168F]'>Winner</span>
+                                
                             </Text>
                             </div>
                         </div>
@@ -46,7 +46,7 @@ const ContentTable = (props) => {
                                 Participants: <span className='text-[14px]'>{props.tdata?.participants}  </span>
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                TLV: <span className='text-[14px]'>{props.tdata?.pot} xDAI</span>
+                                Total Value Locked: <span className='text-[14px]'>{props.tdata?.pot} xDAI</span>
                             </Text>
                         </div>
                     </div>

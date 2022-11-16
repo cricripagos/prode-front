@@ -26,7 +26,7 @@ const Matches = (props) => {
         let allValid = true
         props.indexesSlip.map((idx, i)=>{
             allValid = allValid && Number.isInteger(props.slip.groups[idx][0])&&Number.isInteger(props.slip.groups[idx][1])
-            key={i}
+            
         })
         props.setChecked(allValid)
         if (allValid==true){
@@ -36,8 +36,8 @@ const Matches = (props) => {
         //console.log(['groupsmatch-'+nextMatchIndex+"-"+nextSideIndex,nextMatchIndex, nextSideIndex], 'next')
     }
     return (
-        <div className='flex flex-col ' style={{ background: props.number % 2 === 0 ? '#262333' : null, padding: '10px', borderRadius: '15px' }}>
-            <div class="grid grid-cols-6">
+        <div key={props.forkey.toString()} className='flex flex-col ' style={{ background: props.number % 2 === 0 ? '#262333' : null, padding: '10px', borderRadius: '15px' }}>
+            <div className="grid grid-cols-6">
                 <Text
                     fontSize='19px'
                     lineHeight='40px'
@@ -59,7 +59,7 @@ const Matches = (props) => {
                     </Text>
                 </div>
             </div>
-            <div class="flex justify-center ">
+            <div className="flex justify-center ">
                 <div>
                     <Text
                         fontSize='19px'

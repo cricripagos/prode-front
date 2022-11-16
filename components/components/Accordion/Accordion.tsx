@@ -31,7 +31,7 @@ export default function ControlledAccordions(props) {
                     </Text>
                 </AccordionSummary>
                 <AccordionDetails>
-                    {props.data.matches?.map((dataMatch, i) => <Matches setSlip={props.setSlip} slip={props.slip} setExpanded={setExpanded}  data={dataMatch} setChecked={setChecked} indexesSlip={props.data.indexesSlip} key={i}/>)}  
+                    {props.data.matches?.map((dataMatch, i) => <Matches setSlip={props.setSlip} slip={props.slip} setExpanded={setExpanded}  data={dataMatch} setChecked={setChecked} indexesSlip={props.data.indexesSlip} forkey={i}/>)}  
                 </AccordionDetails>
             </Accordion>
             <div style={{marginTop: '10px'}}/>

@@ -102,7 +102,7 @@ export default function TournamentDetails() {
                 <CardGradient className="md:!p-16 !z-10" borderless="true">
                 <div className='grid grid-cols-4'>
                     <Text tag={'h2'} color={'#00E5AE'} fontSize='36px' fontSizeSm={'20px'} className='col-start-1 col col-span-2'>Tournament name</Text>
-                    <Button onClick={() => setShare(!share)} className='col-start-3 col col-span-2 !font-bold'>Invite your friends!</Button>   
+                    {/*<Button onClick={() => setShare(!share)} className='col-start-3 col col-span-2 !font-bold'>Invite your friends!</Button>   */}
                 </div> 
                 <div className='flex flex-row w-full justify-between mt-4'>
                             <Button type="submit" withtBorder={false} variant={Variant.tertiary} className="!px-5">{
@@ -110,12 +110,34 @@ export default function TournamentDetails() {
                             }
                             </Button>
                     </div>
+                    <div className=' bg-[#262333] drop-shadow-md rounded-md pl-[15px] pt-[20px] mt-10'>
+                        <div className='col-start-1 col-span-3'>
+                            <Text
+                                fontSize='16px'
+                                lineHeight='20px'
+                                fontSizeSm={'12px'}
+                                >
+                                Invite your friends!
+                            </Text>
+
+                        </div>
+                        <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
+                           <Button_alt className='!col-start-1 !font-bold' onClick={() =>  {navigator.clipboard.writeText('Hi there! Join my tournament at ' + 
+                                                                                            `https://qatarprode.xyz/betting-slip/${tid}`);
+                                                                                            alert("link copied!");
+                                                                                            }}>
+                                Copy link
+                            </Button_alt>
+                            <Button_alt className='!col-start-2 !font-bold' onClick={() => (window.open(whats)) }>Whatsapp</Button_alt>
+                            <Button_alt className='!col-start-3 !font-bold' onClick={() => (window.open(tlgm)) }>Telegram</Button_alt>
+                        </HeaderComponent> 
+                    </div>
                     <div className='flex flex-col gap-5 mt-16'>
                         <Text tag={'h2'} color={'#00E5AE'} fontSize='36px' fontSizeSm={'20px'}>Tournament settings</Text>
                         <div className='gap-10 grid grid-cols-6'>
                         <div className=' gap-1 col-start-1 col-span-3'>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Name: <span className='text-[14px]'>prueba</span>
+                                Name: <span className='text-[14px]'>{tdata?.prodeNickname}</span>
                             </Text>
                             <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
                                 Buy-in: <span className='text-[14px]'>{tdata?.buyin} xDAI</span>
@@ -136,9 +158,6 @@ export default function TournamentDetails() {
                             </div>
                         </div>
                         <div className=' gap-1 col-span-3'>
-                            <Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
-                                Name: <span className='text-[14px]'>{tdata?.prodeNickname}</span>
-                            </Text>
                             {/*<Text color={'background: #FFFFFF'} fontSize='18px' fontSizeSm={'16px'} className='mb-[10px]'>
                                 UBI donation: <span className='text-[14px]'>3%</span>
                             </Text>*/}
@@ -153,32 +172,9 @@ export default function TournamentDetails() {
                             </Text>
                         </div>
                     </div>
-                    </div>                
-                    {
-                        share ?
-                        (   <div className=' bg-[#262333] drop-shadow-md rounded-md pl-[15px] pt-[20px]'>
-                        <div className='col-start-1 col-span-3'>
-                            <Text
-                                fontSize='16px'
-                                lineHeight='20px'
-                                fontSizeSm={'12px'}
-                                >
-                                Share the link to your friends!
-                            </Text>
-
-                        </div>
-                        <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
-                           <Button_alt className='!col-start-1 !font-bold' onClick={() =>  {navigator.clipboard.writeText('Hi there! Join my tournament at ' + 
-                                                                                            `https://qatarprode.xyz/betting-slip/${tid}`);
-                                                                                            alert("link copied!");
-                                                                                            }}>
-                                Copy link
-                            </Button_alt>
-                            <Button_alt className='!col-start-2 !font-bold' onClick={() => (window.open(whats)) }>Whatsapp</Button_alt>
-                            <Button_alt className='!col-start-3 !font-bold' onClick={() => (window.open(tlgm)) }>Telegram</Button_alt>
-                        </HeaderComponent> 
-                    </div>) : null
-                }
+                    </div>    
+                    
+                
 
                     { participants?.length > 0 ?
                     (<div>
