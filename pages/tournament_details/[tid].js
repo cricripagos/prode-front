@@ -105,7 +105,7 @@ export default function TournamentDetails() {
                     {/*<Button onClick={() => setShare(!share)} className='col-start-3 col col-span-2 !font-bold'>Invite your friends!</Button>   */}
                 </div> 
                 <div className='flex flex-row w-full justify-between mt-4'>
-                            <Button type="submit" withtBorder={false} variant={Variant.tertiary} className="!px-5">{
+                            <Button disabled withtBorder={false} variant={Variant.tertiary} className="!px-5">{
                                 tid
                             }
                             </Button>

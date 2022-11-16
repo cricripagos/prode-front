@@ -222,13 +222,20 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
   //set up transaction parameters
   const valueHex = parseInt(tdata.weiBuyin).toString(16)
 
-  const transactionParameters = {
-    to: tid, // Required except during contract publications.
-    from: address, // must match user's active address.
-    data: singleProdeContract.methods.createParticipant(slip.groups, slip.topPicks, slip.nickname).encodeABI(),
-    value: valueHex,
-    gasLimit: '300000',
-  };
+  try{
+    const transactionParameters = {
+      to: tid, // Required except during contract publications.
+      from: address, // must match user's active address.
+      data: singleProdeContract.methods.createParticipant(slip.groups, slip.topPicks, slip.nickname).encodeABI(),
+      value: valueHex,
+      gasLimit: '300000',
+    };
+  }catch (e){
+    return {
+      status:
+        "💡 Your Betting Slip seems to be incomplete.",
+    };
+  }
 
 
   //sign the transaction

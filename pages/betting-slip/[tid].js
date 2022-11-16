@@ -13,6 +13,7 @@ import { placeBet } from '@utils/interact';
 import Header from '@components/Header/Header';
 import { useRouter } from 'next/router'
 import { getTournamentData } from "@utils/ProdeFns";
+import Text from '@components/Text/Text';
 
 
 
@@ -124,6 +125,16 @@ function handleChangeGroups(event) {
           tdata={tdata}
         />
       </Grid>
+      
+      <Text
+          fontSize='36px'
+          lineHeight='40px'
+          fontSizeSm={'10px'}
+          className="mt-6 text-center"
+          style={{ color: '#E4168F', marginTop: '30px' }}
+      >
+          {status}
+      </Text>
       <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
         <Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button>
       </div>
