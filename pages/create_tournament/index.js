@@ -57,9 +57,9 @@ function CreateTournament() {
             //hidden: event.target.hidden.value,
             nickname: event.target.nickname.value,
         };
-        console.log(prode)
-        setWaiting(true)
         const { validator, transaction, status } = await createProde(walletAddress, prode);
+        setWaiting(true)
+
         console.log(validator, transaction, status)
         try{
             const [trxMined, newContractAdddress] = await getTransactionReceiptMined(transaction, 1)
