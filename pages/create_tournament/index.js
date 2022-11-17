@@ -4,11 +4,9 @@ import Blur from '@components/Blur/Blur';
 import Header from '@components/Header/Header'
 import Text from '@components/Text/Text';
 import CardGradient from '@components/CardGradient/CardGradient';
-import { createProde, waitTransaction, getTransactionReceiptMined } from '../../utils/interact';
+import { createProde, getTransactionReceiptMined } from '@utils/interact';
 import { useRouter } from 'next/router'
-import { UserContext } from '../../context'
 import { useConnect } from '@hooks/useConnect';
-import { useWeb3 } from '@hooks/useWeb3';
 
 
 function CreateTournament() {
@@ -59,9 +57,9 @@ function CreateTournament() {
             //hidden: event.target.hidden.value,
             nickname: event.target.nickname.value,
         };
-        console.log(prode)
-        setWaiting(true)
         const { validator, transaction, status } = await createProde(walletAddress, prode);
+        setWaiting(true)
+
         console.log(validator, transaction, status)
         try{
             const [trxMined, newContractAdddress] = await getTransactionReceiptMined(transaction, 1)

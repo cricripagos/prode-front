@@ -127,6 +127,38 @@ export const createProde = async (address, prode) => {
       status: <span>"❌ Your tourney need a buy-in amount."</span>
     };
   }
+
+  try {
+    await ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: '0x64' }], //Gnosis 100 in hex
+    });
+  } catch (switchError) {
+    // This error code indicates that the chain has not been added to MetaMask.
+    if (switchError.code === 4902) {
+      try {
+        await ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: "0x64",
+              chainName: "Gnosis",
+              nativeCurrency: {
+                  name: "xDai",
+                  symbol: "xDai",
+                  decimals: 18,
+              },
+              rpcUrls: ["https://rpc.gnosischain.com/"],
+              blockExplorerUrls: ["https://gnosisscan.io/"],
+          }
+          ],
+        });
+      } catch (addError) {
+        // handle "add" error
+      }
+    }
+    // handle other "switch" errors
+  }
   
   //set up transaction parameters
   const transactionParameters = {
@@ -216,6 +248,38 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
       status:
         "💡 Connect your Metamask wallet to update the message on the blockchain.",
     };
+  }
+
+  try {
+    await ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: '0x64' }],
+    });
+  } catch (switchError) {
+    // This error code indicates that the chain has not been added to MetaMask.
+    if (switchError.code === 4902) {
+      try {
+        await ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: "0x64",
+              chainName: "Gnosis",
+              nativeCurrency: {
+                  name: "xDai",
+                  symbol: "xDai",
+                  decimals: 18,
+              },
+              rpcUrls: ["https://rpc.gnosischain.com/"],
+              blockExplorerUrls: ["https://gnosisscan.io/"],
+          }
+          ],
+        });
+      } catch (addError) {
+        // handle "add" error
+      }
+    }
+    // handle other "switch" errors
   }
 
   // NO PUEDO HARDCODEAR EL VALOR DE VALUE. 
