@@ -67,11 +67,10 @@ const SearchBox = ({ search, prodes }) => {
         }
       }
     });
-  console.log(results);
   return (
     <div className="absolute z10 top-16 w-full bg-gray-500 rounded p-2">
       {results.map((result, index) => {
-        return <p  className='cursor-pointer' className={styles.a} onClick={() =>
+        return <p  className={'cursor-pointer ' + styles.a } onClick={() =>
           router.push(`tournament_details/${result[1]}`)
         }  key={result[0] + index.toString()}>
           {result[0]} </p>;
