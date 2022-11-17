@@ -40,37 +40,40 @@ const columns = [
 
 const SearchBox = ({ search, prodes }) => {
   let results = [];
+  const router = useRouter();
 
   prodes
     ?.slice(0)
     .reverse()
     .map((prode, index) => {
       if (prode.prodeAddress == search && prode.hidden) {
-        results.push("Hidden Address: " + prode.prodeAddress);
+        results.push(["Hidden Address: " + prode.prodeAddress,prode.prodeAddress]);
       } else {
         if (prode.prodeAddress?.includes(search) && !prode.hidden) {
-          results.push("Address: " + prode.prodeAddress);
+          results.push(["Address: " + prode.prodeAddress,prode.prodeAddress]);
         }
       }
       if (
         prode.prodeNickname?.toLowerCase() == search.toLowerCase() &&
         prode.hidden
       ) {
-        results.push("Hidden Name: " + prode.prodeNickname);
+        results.push(["Hidden Name: " + prode.prodeNickname,prode.prodeAddress]);
       } else {
         if (
           prode.prodeNickname?.toLowerCase().includes(search.toLowerCase()) &&
           !prode.hidden
         ) {
-          results.push("Name: " + prode.prodeNickname);
+          results.push(["Name: " + prode.prodeNickname,prode.prodeAddress]);
         }
       }
     });
-  console.log(results);
   return (
     <div className="absolute z10 top-16 w-full bg-gray-500 rounded p-2">
       {results.map((result, index) => {
-        return <p key={result + index.toString()}>{result} </p>;
+        return <p  className={'cursor-pointer ' + styles.a } onClick={() =>
+          router.push(`tournament_details/${result[1]}`)
+        }  key={result[0] + index.toString()}>
+          {result[0]} </p>;
       })}
     </div>
   );
@@ -125,14 +128,14 @@ export default function Tournaments() {
   }, []);
   console.log(loader);
   return (
-    <div className="w-full relative bg-black">
+    <div className="w-full min-h-screen relative bg-black">
       <Blur
-        bottom="0%"
-        left="-7px"
+        bottom="5%"
+        left="20px"
         height="25%"
         width="20%"
         image={BallPNG.src}
-        bottomImage="-83px"
+        bottomImage="0px"
         leftImage="0px"
       />
       <Header>
@@ -147,7 +150,7 @@ export default function Tournaments() {
           <Button onClick={connectWalletPressed}>Connect Wallet</Button>
         )}
       </Header>
-      <div className="container relative w-full px-8 pt-8 mx-auto md:px-28">
+      <div className="container relative w-full  px-8 pt-8 mx-auto md:px-28">
         <CardGradient className="md:!p-16 !z-10">
           <Text
             tag={"h2"}
@@ -155,14 +158,14 @@ export default function Tournaments() {
             fontSize="36px"
             fontSizeSm={"16px"}
           >
-            Search tournament
+            Search tournaments
           </Text>
           <div className="flex flex-row w-full justify-between mt-4">
             <form className="flex flex-row" onChange={onChangeFilters}>
-              <div className="h-full relative">
+              <div className="h-full relative ">
                 <input
                   type="text"
-                  className="h-full rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3"
+                  className="h-full rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3 w-96"
                   onChange={onChangeSearch}
                 />
                 {search.length > 0 && (
@@ -174,7 +177,7 @@ export default function Tournaments() {
                 type="submit"
                 withtBorder={false}
                 variant={Variant.quaternary}
-                className="!px-5"
+                className="!px-5 pointer-events-none"
               >
                 <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
               </Button>
@@ -189,7 +192,7 @@ export default function Tournaments() {
             </Text>
             {walletAddress.length > 0 ? (
               <Link href="/create_tournament">
-                <Button className="leading-[15px]">Create your own</Button>
+                <Button className="leading-[15px]">Create Your Own Tournament</Button>
               </Link>
             ) : (
               <Button onClick={connectWalletPressed}>Connect Wallet</Button>
@@ -223,11 +226,11 @@ export default function Tournaments() {
               </Button>
             </div>
             <div className="relative">
-              <Table className="table-auto">
+              <Table className="table-auto rounded-lg">
                 <thead>
                   <tr>{columnList}</tr>
                 </thead>
-                <tbody>
+                <tbody style={{border: "0px"}}>
                   {prodes
                     ?.slice(0)
                     .reverse()
@@ -246,22 +249,25 @@ export default function Tournaments() {
                         }
                       }
                       return (
-                        <tr  key={prode.prodeAddress}>
-                          <td>{prode.prodeNickname}</td>
+                        <tr className={styles.a}
+                        onClick={() =>
+                          router.push(`tournament_details/${prode.prodeAddress}`)
+                        }  key={prode.prodeAddress}>
+                          <td><p class="text-lg mx-2 ...">{prode.prodeNickname}</p></td>
                           <td
-                            className={styles.a}
-                            onClick={() =>
-                              router.push(`tournament_details/${prode.prodeAddress}`)
-                            }
+                            
                           >
                             {prode.prodeAddress}
                           </td>
-                          <td>{prode.buyIn/1000000000000000000} xDai</td>
+                          <td>
+                          <p class="text-lg ...">{prode.buyIn/1000000000000000000} xDai</p>
+                            </td>
                           <td>
                             {loader ? (
                               <div className={styles.spinner}></div>
                             ) : (
-                              prode.participantArray?.length
+                              <p class="text-lg ...">{ prode.participantArray?.length} </p>
+                             
                             )}
                           </td>
                         </tr>
