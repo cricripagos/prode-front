@@ -284,9 +284,9 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
   // NO PUEDO HARDCODEAR EL VALOR DE VALUE. 
   //set up transaction parameters
   const valueHex = parseInt(tdata.weiBuyin).toString(16)
-
+  let transactionParameters
   try{
-    const transactionParameters = {
+    transactionParameters = {
       to: tid, // Required except during contract publications.
       from: address, // must match user's active address.
       data: singleProdeContract.methods.createParticipant(slip.groups, slip.topPicks, slip.nickname).encodeABI(),
@@ -294,6 +294,8 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
       gasLimit: '300000',
     };
   }catch (e){
+    console.log(slip.groups, slip.topPicks, slip.nickname)
+    console.log(e, tid, address, valueHex)
     return {
       status:
         "💡 Your Betting Slip seems to be incomplete.",
