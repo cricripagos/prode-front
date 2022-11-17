@@ -232,7 +232,7 @@ export const waitTransaction = async(txn) => {
 
 export const loadSingleProde = async() => {
   /// Falta quitar hardcodeo y usar prode['prodeAddress']
-  const singleProdeContract = new web3.eth.Contract( singleProdeABI, '0xF4C1EF14c8d0659D95D972f093442eF715cB5186')
+  const singleProdeContract = new web3.eth.Contract( singleProdeABI, '0xeE04C13A9260D5C07335B0212650b19d601Fe62D')
   const singleProdeData = await singleProdeContract.methods.debugRetrieveParticipants().call();
   //console.log(singleProdeData)
   return singleProdeData
