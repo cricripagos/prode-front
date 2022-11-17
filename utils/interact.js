@@ -119,8 +119,7 @@ export const createProde = async (address, prode) => {
       status: <span>"❌ Your tourney need a name."</span>,
     };
   }
-
-  if (prode.buyin?.trim() === '') {
+  if (!prode.buyin>0) {
     return {
       validator: '',
       transaction: '',
@@ -159,7 +158,7 @@ export const createProde = async (address, prode) => {
     }
     // handle other "switch" errors
   }
-  
+  //return
   //set up transaction parameters
   const transactionParameters = {
     to: contractAddress, // Required except during contract publications.

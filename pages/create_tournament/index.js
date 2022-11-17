@@ -7,6 +7,7 @@ import CardGradient from '@components/CardGradient/CardGradient';
 import { createProde, getTransactionReceiptMined } from '@utils/interact';
 import { useRouter } from 'next/router'
 import { useConnect } from '@hooks/useConnect';
+const Web3 = require('web3');
 
 
 function CreateTournament() {
@@ -44,15 +45,15 @@ function CreateTournament() {
     }, [txn]);
 */
 
-
     const onCreatePressed = async (event) => {
-
         // Stop the form from submitting and refreshing the page.
         event.preventDefault()
+        
 
         
         const prode = {
-            buyin: event.target.buyin.value,
+            //buyin: (),
+            buyin: Web3.utils.BN((event.target.buyin.value*1000000000000000000).toString()),
             hidden: hidden, 
             //hidden: event.target.hidden.value,
             nickname: event.target.nickname.value,
@@ -65,7 +66,7 @@ function CreateTournament() {
             const [trxMined, newContractAdddress] = await getTransactionReceiptMined(transaction, 1)
             router.push('/tournament_details/'+ newContractAdddress)
         }catch (error){
-            console.log(error)
+            console.log(error, 'ak')
             //
         }
         setWaiting(false)
