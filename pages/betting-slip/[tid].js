@@ -135,7 +135,7 @@ function handleChangeGroups(event) {
       >
           {status}
       </Text>
-      <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
+      <div className='w-full container px-8 md:px-28 mx-auto mt-10 md:mt-24'>
         <Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button>
       </div>
 

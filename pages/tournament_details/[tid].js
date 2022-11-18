@@ -14,6 +14,7 @@ import { CREATEDBYME, MYTOURNEYSBUTTONNAME } from '../../components/constants';
 import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
+import CopaPNG from '@assets/images/copa.png'
 import {getParticipants, getTournamentData} from '@utils/ProdeFns';
 import HeaderComponent  from '@components/Header/Header';
 
@@ -76,11 +77,22 @@ export default function TournamentDetails() {
 
 
     return (
-        <div className='w-full relative bg-black'>
-            <Blur bottom='0%' left='-7px' height='25%' width='20%'
-                image={BallPNG.src}
-                bottomImage='-83px'
-                rightImage='0px'
+        <div className='w-full min-h-screen  relative bg-black'>
+            <Blur bottom="5%"
+        left="20px"
+        height="25%"
+        width="20%"
+        image={BallPNG.src}
+        bottomImage="0px"
+        leftImage="0px"
+            />
+            <Blur top="-4%"
+        left="-70px"
+        height="25%"
+        width="20%"
+        image={CopaPNG.src}
+        topImage="0px"
+        leftImage="0px"
             />
             <Header>
                 {
@@ -101,7 +113,7 @@ export default function TournamentDetails() {
             <div className='container relative w-full px-8 pt-8 mx-auto md:px-28'>
                 <CardGradient className="md:!p-16 !z-10" borderless="true">
                 <div className='grid grid-cols-4'>
-                    <Text tag={'h2'} color={'#00E5AE'} fontSize='36px' fontSizeSm={'20px'} className='col-start-1 col col-span-2'>Tournament name</Text>
+                    <Text tag={'h2'} color={'#00E5AE'} fontSize='36px' fontSizeSm={'20px'} className='col-start-1 col col-span-2'>{tdata?.prodeNickname}</Text>
                     {/*<Button onClick={() => setShare(!share)} className='col-start-3 col col-span-2 !font-bold'>Invite your friends!</Button>   */}
                 </div> 
                 <div className='flex flex-row w-full justify-between mt-4'>
@@ -178,16 +190,16 @@ export default function TournamentDetails() {
 
                     { participants?.length > 0 ?
                     (<div>
-                    <Table>
+                    <Table className="table-auto rounded-lg">
                         <thead>
                             <tr>{columnList}</tr>
                         </thead>
-                        <tbody >
+                        <tbody  style={{border: "0px"}} >
                                 {participants?.slice(0).reverse().map((participant, index) => {
                                     return (
                                         <tr key={participant.beneficiary}>
-                                            <td>{participant.nickname}</td>
-                                            <td>{participant.points || 0}</td>
+                                            <td><p class="text-lg mx-2 ...">{participant.nickname}</p></td>
+                                            <td><p class="text-lg mx-2 ...">{participant.points || 0}</p></td>
                                             <td><Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
                                                     <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
                                                 </Button>
@@ -198,24 +210,7 @@ export default function TournamentDetails() {
                         </tbody>
                     </Table>
                 </div>) : 
-                (   <div className=' bg-[#262333] drop-shadow-md rounded-md pl-[15px] pt-[20px]'>
-                        <div className='col-start-1 col-span-3'>
-                            <Text
-                                fontSize='16px'
-                                lineHeight='20px'
-                                fontSizeSm={'12px'}
-                                >
-                                There are currently no participants for
-                                your tournament please share so people join
-                            </Text>
-
-                        </div>
-                        <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
-                           <Button_alt className='!col-start-1 !font-bold' onClick={() =>  navigator.clipboard.writeText('Hi there! Join my tournament at ' + `https://qatarprode.xyz/betting-slip/${tid}`)}>Copy link</Button_alt>
-                            <Button_alt className='!col-start-2 !font-bold' onClick={() => (window.open(whats)) }>Whatsapp</Button_alt>
-                            <Button_alt className='!col-start-3 !font-bold' onClick={() => (window.open(tlgm)) }>Telegram</Button_alt>
-                        </HeaderComponent> 
-                    </div>)
+                ( <p>Empty Tournament</p> )
             }
 
 

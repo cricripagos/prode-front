@@ -12,7 +12,9 @@ const ContentTable = (props) => {
     //console.log(props.slip, 'slip')
     return (
         <section className='w-full container relative px-8 md:px-28 mx-auto pb-36c pt-52'>
-            <SimpleCard>
+            <SimpleCard
+             className=''
+            >
                 <div className='w-full md:p-12'>
                     <div className='flex flex-col mb-4 md:mb-5'>
                         <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
