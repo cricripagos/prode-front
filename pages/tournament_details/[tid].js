@@ -61,9 +61,9 @@ export default function TournamentDetails() {
                 creator: tdata[4],
                 pot: tdata[0]/1000000000000000000*tdata[2],
             })
-        const wa = `https://wa.me/?text=${'Hi there! Join my tournament at '}&url=https://qatarprode.xyz/betting-slip/${tid}`;
+        const wa = `https://wa.me/?text=${'Hi there! Join my tournament at '}&url=https://app.qatarprode.xyz/betting-slip/${tid}`;
         setWhats(wa)
-        const tm = `https://telegram.me/share/url?url={https://qatarprode.xyz/betting-slip/${tid}&text=${'Hi there! Join my tournament at '}`
+        const tm = `https://telegram.me/share/url?url={https://app.qatarprode.xyz/betting-slip/${tid}&text=${'Hi there! Join my tournament at '}`
         setTlgm(tm)
         }
         fetchParticipants()
@@ -134,9 +134,8 @@ export default function TournamentDetails() {
 
                         </div>
                         <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
-                           <Button_alt className='!col-start-1 !font-bold' onClick={() =>  {navigator.clipboard.writeText('Hi there! Join my tournament at ' + 
-                                                                                            `https://qatarprode.xyz/betting-slip/${tid}`);
-                                                                                            alert("link copied!");
+                           <Button_alt className='!col-start-1 !font-bold' onClick={() =>  {navigator.clipboard.writeText('' + 
+                                                                                            `https://app.qatarprode.xyz/betting-slip/${tid}`);
                                                                                             }}>
                                 Copy link
                             </Button_alt>
