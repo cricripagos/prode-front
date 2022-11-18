@@ -21,7 +21,7 @@ const Matches = (props) => {
         try{
             nextElem.focus()
         }catch(e){
-            console.log('no hay next')
+            console.log('')
         }
         let allValid = true
         props.indexesSlip.map((idx, i)=>{

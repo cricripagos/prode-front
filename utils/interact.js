@@ -198,36 +198,6 @@ export const createProde = async (address, prode) => {
   };
 
 
-
-/*
-
-export const waitTransaction = async(txn) => {
-  
-  const transactionReceipt = await web3.eth.getTransactionReceipt(txn);
-  
-  if (transactionReceipt!=null) {
-    console.log(`Mined... ${transactionReceipt}`);
-      return {
-        validator: 'success',
-      }
-  } else { console.log(`error`) }
-  /*
-  web3.eth.subscribe('logs', {
-    address: contractAddress, topics: [ walletAddess ]
-    }, function(error, result){
-    if (!error)
-      return {validator: result}
-    })
-    .on("data", function(log){
-      return {validator: log}
-    })
-    .on("changed", function(log){
-      return {validator: log}
-    });
-
-    
-};*/
-
 /////////////////////////////////////////////////// BETTING SLIP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 export const loadSingleProde = async() => {
@@ -238,7 +208,7 @@ export const loadSingleProde = async() => {
   return singleProdeData
 }
 
-export const placeBet = async (address, betSlip, tid, slip, tdata) => {
+export const placeBet = async (address, tid, slip, tdata) => {
 
   const singleProdeContract = new web3.eth.Contract( singleProdeABI, tid )
   //input error handling
@@ -248,7 +218,24 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
         "💡 Connect your Metamask wallet to update the message on the blockchain.",
     };
   }
+  /*
+  if (slip.nickname?.trim() === '') {
+    return {
+      validator: '',
+      transaction: '',
+      status: <span>"❌ You need a nickname."</span>,
+    };
+  }
 
+  if (!prode.buyin>0) {
+    return {
+      validator: '',
+      transaction: '',
+      status: <span>"💡 Your Betting Slip seems to be incomplete."</span>
+    };
+  }
+  slip.groups, slip.topPicks, slip.nickname
+ */
   try {
     await ethereum.request({
       method: 'wallet_switchEthereumChain',
@@ -280,11 +267,9 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
     }
     // handle other "switch" errors
   }
-
-  // NO PUEDO HARDCODEAR EL VALOR DE VALUE. 
-  //set up transaction parameters
+  /*  //set up transaction parameters
   const valueHex = parseInt(tdata.weiBuyin).toString(16)
-  let transactionParameters
+  let transactionParameters;
   try{
     transactionParameters = {
       to: tid, // Required except during contract publications.
@@ -301,46 +286,60 @@ export const placeBet = async (address, betSlip, tid, slip, tdata) => {
         "💡 Your Betting Slip seems to be incomplete.",
     };
   }
+*/
+  const valueHex = parseInt(tdata.weiBuyin).toString(16);
 
+  let transactionParameters;
+  try{
+    transactionParameters = {
+      to: tid, // Required except during contract publications.
+      from: address, // must match user's active address.
+      data: singleProdeContract.methods.createParticipant(slip.groups, slip.topPicks, slip.nickname).encodeABI(),
+      value: valueHex,
+      gasLimit: '300000',
+        //sign the transaction
+    }
 
-  //sign the transaction
-  try {
-   
-      window.ethereum.request({
-      method: "eth_sendTransaction",
-      params: [transactionParameters],
-    }).then( 
-      async (result) => 
-      {
-      console.log("Minting... please wait");
-      const transactionReceipt = await web3.eth.getTransactionReceipt(result);
+    let txn;
+    try{
+        txn = window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [transactionParameters],
+      })} catch(e){
+        console.log(e, tid, address, valueHex)
+        return {
+          status:
+            "💡 Your Betting Slip seems to be incomplete.",
+          validator: 'false',
+        }
+      }
 
-      if (transactionReceipt!=null) {
-        console.log(`Mined... ${transactionReceipt}`);
-      } else { console.log(`error`) }; //getting this
-    })  
-    
+    } catch (e){
+    console.log(slip.groups, slip.topPicks, slip.nickname)
+    console.log(e, tid, address, valueHex)
+    return {
+      status:
+        "💡 Your Betting Slip seems to be incomplete.",
+      validator: 'false',
+    }};
+  
 
     return {
+      validator: 'false',
+      transaction: txn,
       status: (
         <span>
           ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io`}>
+          <a target="_blank" href={`https://gnosisscan.io/tx/${txn}`}>
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
-          ℹ️ Once the transaction is verified by the network, the message will
-          be updated automatically.
+          ℹ️ Once the transaction is verified by the network, you will be redirect to the tournament details.
+          Enjoy the game! 
         </span>
-    ),
-    };
-  } catch (error) {
-    console.log(error);   
-    return {
-      status: "😥 " + error.message,
-    };
-  }
-};
+      ),
+    }
+  };
 
 export const getTransactionReceiptMined = (txHash, interval) => {
   const self = this;
@@ -370,63 +369,36 @@ export const getTransactionReceiptMined = (txHash, interval) => {
       throw new Error("Invalid Type: " + txHash);
   }
 };
-/*
 
 
-export const createProde = async (address, prode) => {
-  //input error handling
-  if (!window.ethereum || address === null) {
-    return {
-      validator: false,
-      status:
-        "💡 Connect your Metamask wallet to update the message on the blockchain.",
-    };
-  }
-  
-  if (prode.nickname?.trim() === "Choose a cool name for your tourney!") {
-    return {
-      validator: false,
-      status: <span>"❌ Your tourney need a name."</span>,
-    };
-  }
 
-  if (prode.buyin?.trim() === '') {
-    return {
-      validator: false,
-      status: <span>"❌ Your tourney need a buy-in amount."</span>
-    };
-  }
-  
-  //set up transaction parameters
-  const transactionParameters = {
-    to: contractAddress, // Required except during contract publications.
-    from: address, // must match user's active address.
-    data: prodeContract.methods.createProde(prode.buyin, prode.hidden, prode.nickname).encodeABI(),
+export const getParticipantReceiptMined = (txHash, interval) => {
+  const self = this;
+  const transactionReceiptAsync = function(resolve, reject) {
+          web3.eth.getTransactionReceipt(txHash, (error, receipt) => {
+          if (error) {
+              reject(error);
+          } else if (receipt == null) {
+            console.log('Waiting for the receipt...')
+              setTimeout(
+                  () => transactionReceiptAsync(resolve, reject),
+                  interval ? interval : 500);
+          } else {
+              const newContractAdddress =  web3.eth.abi.decodeParameter("address", receipt.logs[0].data)
+              console.log('Welcome to the game')
+              resolve([receipt, newContractAdddress]);
+          }
+      });
   };
 
-  //sign the transaction
-  try {
-    const txHash = await window.ethereum.request({
-      method: "eth_sendTransaction",
-      params: [transactionParameters],
-    });
-    return {
-      validator: true,
-      status: (
-        <span>
-          ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io/${txHash.hash}`}>
-            View the status of your transaction on Gnosisscan!
-          </a>
-          <br />
-          ℹ️ Once the transaction is verified by the network, you can start the game.
-        </span>
-      ),
-    };
-  } catch (error) {
-    return {
-      status: "😥 " + error.message,
-    };
+  if (Array.isArray(txHash)) {
+      return Promise.all(self.getParticipantReceiptMined(txHash, interval));
+  } else if (typeof txHash === "string") {
+      return new Promise(transactionReceiptAsync);
+  } else {
+      console.log('Waiting the receipt...' + txHash);
   }
 };
-*/
+
+
+

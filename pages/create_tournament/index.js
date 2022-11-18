@@ -19,31 +19,9 @@ function CreateTournament() {
     const [ transaction, setTransaction ] =  useState('');
     const [ waiting, setWaiting] = useState(false) // estado para esperar transaccion
     const [hidden, setHidden] = useState(false)
-    //const { validator, transactionListener } = useWeb3()
-    const [txn, setTxn] = useState('');
     const router = useRouter()
 
 
-/*
-    useEffect(() => {
-        if(validator != '')
-            router.push('/tournaments'); 
-    }, [validator]);
-
-
-
-
-    useEffect(() => {
-        async function txnListener() {
-             await  waitTransaction(txn);
-            //setValidator(await  waitTransaction(txn));
-            console.log('validator 2:' + validator) 
-            console.log(txn)
-
-        }
-        txnListener()
-    }, [txn]);
-*/
 
     const onCreatePressed = async (event) => {
         // Stop the form from submitting and refreshing the page.
@@ -61,13 +39,12 @@ function CreateTournament() {
         const { validator, transaction, status } = await createProde(walletAddress, prode);
         setWaiting(true)
 
-        console.log(validator, transaction, status)
         try{
             const [trxMined, newContractAdddress] = await getTransactionReceiptMined(transaction, 1)
             router.push('/tournament_details/'+ newContractAdddress)
         }catch (error){
-            console.log(error, 'ak')
-            //
+            console.log(error)
+            
         }
         setWaiting(false)
         };

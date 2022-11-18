@@ -9,7 +9,7 @@ import ContentTable from "../../components/components/ContentTable/ContentTable"
 import { jsonData, jsonGroups, dataTule } from "../../utils/jsonData/data";
 import Button, { Variant } from '@components/Button/Button';
 import { useConnect } from '@hooks/useConnect';
-import { placeBet } from '@utils/interact';
+import { placeBet, getParticipantReceiptMined } from '@utils/interact';
 import Header from '@components/Header/Header';
 import { useRouter } from 'next/router'
 import { getTournamentData } from "@utils/ProdeFns";
@@ -21,11 +21,28 @@ export default function BettingSlip() {
   const { walletAddress, connectWalletPressed } = useConnect();
   const [status, setStatus] = useState("");
   const [tid, setTid] = useState()
+  const [ validator, setValidator ] =  useState('false');
   const [tdata, setTdata] = useState()
+  const [ waiting, setWaiting] = useState(false) // estado para esperar transaccion
+  const [ transaction, setTransaction ] =  useState('');
   const [slipGroup, setSlipGroup] = useState([[],[]])
   const [fixtureId, setFixtureId] = useState()
-  const [slip, setSlip] = useState({groups:[[null, null], [null, null], [null, null], [null, null], [null, null], [null, null], 
-    [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null]],
+  const [slip, setSlip] = useState({groups:[[null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null],
+                                            [null, null], [null, null], [null, null],
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null], 
+                                            [null, null], [null, null], [null, null]],
     topPicks:[null,null,null,null],nickname:''})
   const router = useRouter()
 
@@ -54,38 +71,37 @@ export default function BettingSlip() {
     // Stop the form from submitting and refreshing the page.
   event.preventDefault()
 
-  const betSlip = {
+  try{
+  const { validator, transaction, status } = await placeBet(walletAddress, tid, slip, tdata);
+  console.log(transaction)
+  setValidator(validator)
+  setStatus(status)
+  setWaiting(true)
+  }catch (error){
+    return status
     
-    picksGroups: [[3, 0], [2, 4], [0, 3], [1, 0], 
-                  [0, 3], [4, 0], [2, 1], [4, 0], 
-                  [3, 2], [0, 2], [2, 0], [1, 4],
-                  [4, 1], [2, 1], [4, 1], [3, 0], 
-                  [2, 4], [1, 2], [1, 0], [1, 0], 
-                  [4, 1], [4, 0], [0, 2], [1, 0],
-                  [0, 3], [2, 0], [4, 0], [2, 1], 
-                  [2, 0], [4, 3], [3, 1], [4, 3], 
-                  [3, 0], [0, 1], [0, 3], [4, 1], 
-                  [4, 0], [1, 3], [4, 1], [3, 0], 
-                  [1, 0], [1, 0], [2, 0], [0, 1], 
-                  [3, 2], [2, 3], [2, 1], [2, 1]],
-    picksTops: [1, 3, 4, 5],
-    nickname: 'Cool participant',
+  }
+
+  try{
+    const [trxMined, newContractAdddress] = await getParticipantReceiptMined(transaction, 1)
+    console.log("Mining..." + trxMined)
+
+
+  }catch (error){
+    return status
+  }
+
+  if(await trxMined !== undefined){
+    router.push('/tournament_details/'+ tid)
+    setWaiting(false)
+  } 
+
   };
 
-  const { status } = await placeBet(walletAddress, betSlip, tid, slip, tdata);
-  setStatus(status);
 
-
-};
-
-function handleChangeGroups(event) {
-  //const newSlipGroup = slipGroup;
-  //newSlipGroup[fixtureId] = [evt.target.home.value, evt.target.away.value];
-  //setSlipGroup(newSlipGroup)
-  event.preventDefault()
-
-
-}
+  function handleChangeGroups(event) {
+    event.preventDefault()
+  };
 
   
 
@@ -133,7 +149,10 @@ function handleChangeGroups(event) {
           className="mt-6 text-center"
           style={{ color: '#E4168F', marginTop: '30px' }}
       >
-          {status}
+          {waiting? <div>
+            {status}
+          </div> : null
+          }
       </Text>
       <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
         <Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button>
