@@ -215,12 +215,15 @@ export default function TournamentDetails() {
 
                 </CardGradient>
             </div>
-            <div className='w-full container px-8 md:px-28 mx-auto mt-40 md:mt-24'>
-                    <Button onClick={() =>
-                              router.push(`/betting-slip/${tid}`)
-                            } className='w-full !font-bold' >
-                        Place Bet
-                    </Button>
+            <div className="pt-5 pb-10"> 
+                <div className='w-full container px-8 md:px-28 mx-auto  '>
+                        <Button onClick={() =>
+                                router.push(`/betting-slip/${tid}`)
+                                } className='w-full !font-bold' >
+                            Place Bet
+                        </Button>
+                </div>
+
             </div>
 
         </div>
