@@ -208,7 +208,8 @@ export default function TournamentDetails() {
                                             <td>
                                                 <Button onClick={() =>  router.push({
                                                                         pathname: `/check-slip/${tid}`,
-                                                                        query: {pid: index                                                                            
+                                                                        query: {pid: index,
+                                                                                open: open,                                                                            
                                                                         }})} 
                                                         withtBorder={false} variant={Variant.quaternary} className="!px-5">
                                                     <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
@@ -231,8 +232,10 @@ export default function TournamentDetails() {
                     {
                         open?.toString()==='true' ?
                         <Button onClick={() =>
-                                router.push(`/betting-slip/${tid}`)
-                                } className='w-full !font-bold' >
+                            router.push({
+                                pathname: `/betting-slip/${tid}`,
+                                query: {open: open                                                                            
+                                }})}  className='w-full !font-bold' >
                             Place Bet
                         </Button> :
                         null

@@ -238,7 +238,7 @@ export const loadSingleProde = async() => {
   return singleProdeData
 }
 
-export const placeBet = async (address, betSlip, tid, slip, tdata) => {
+export const placeBet = async (address,  tid, slip, tdata) => {
 
   const singleProdeContract = new web3.eth.Contract( singleProdeABI, tid )
   //input error handling

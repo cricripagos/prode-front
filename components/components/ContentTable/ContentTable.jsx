@@ -59,7 +59,7 @@ const ContentTable = (props) => {
                     </div>
                     {props.data.map((dataGroup, i) => <Accordion setSlip={props.setSlip} slip={props.slip} data={dataGroup} key={i} /> )}
                 </div>
-                <Paper setSlip={props.setSlip} slip={props.slip}  />
+                {/*<Paper setSlip={props.setSlip} slip={props.slip}  />*/}
                 <div class="grid grid-cols-4 gap-1">
                     <div>
                         <Text

@@ -70,21 +70,5 @@ export const dataOctavos = [
           "index":"7",
           "date":"Mon, 21/11/2022 20:00"
        },
-       {
-          "homeName":"Wales",
-          "homeLogo":"https://media.api-sports.io/football/teams/767.png",
-          "awayName":"Iran",
-          "awayLogo":"https://media.api-sports.io/football/teams/22.png",
-          "index":"8",
-          "date":"Fri, 25/11/2022 11:00"
-       },
-       {
-          "homeName":"England",
-          "homeLogo":"https://media.api-sports.io/football/teams/10.png",
-          "awayName":"USA",
-          "awayLogo":"https://media.api-sports.io/football/teams/2384.png",
-          "index":"9",
-          "date":"Fri, 25/11/2022 20:00"
-       },
      ]
 }]

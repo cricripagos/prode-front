@@ -27,7 +27,7 @@ export default function ControlledAccordions(props) {
                 >
                     <Image src={checked?CheckBox:rectangleImage} alt="img" style={{ marginLeft: '20px', marginRight: '30px' }} />
                     <Text tag={'h1'} color={'white'} fontSize='22px' fontSizeSm={'22px'}>
-                        Group {props.data.group?.toUpperCase()}
+                    {props.data.group?.toUpperCase()}
                     </Text>
                 </AccordionSummary>
                 <AccordionDetails>

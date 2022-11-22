@@ -6,7 +6,7 @@ import Blur, { BlurColor } from "@components/Blur/Blur";
 import imageBG from "@assets/images/ballRight.png";
 import copaImage from "@assets/images/copa.png";
 import ContentTable from "../../components/components/ContentTable/ContentTable";
-import { jsonData, jsonGroups, dataTule } from "../../utils/jsonData/data";
+import { dataOctavos } from "@utils/jsonData/octavos";
 import Button, { Variant } from '@components/Button/Button';
 import { useConnect } from '@hooks/useConnect';
 import { placeBet } from '@utils/interact';
@@ -23,7 +23,7 @@ export default function BettingSlip() {
   const [tid, setTid] = useState()
   const [tdata, setTdata] = useState()
   const [slipGroup, setSlipGroup] = useState([[],[]])
-  const [fixtureId, setFixtureId] = useState()
+  const [open, setOpen] = useState()
   const [slip, setSlip] = useState({groups:[[null, null], [null, null], [null, null], [null, null], [null, null], [null, null], 
     [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null]],
     topPicks:[null,null,null,null],nickname:''})
@@ -31,8 +31,9 @@ export default function BettingSlip() {
 
   useEffect(()=>{
       if(!router.isReady) return;
-      const { tid } = router.query
+      const { tid, open } = router.query
       setTid(tid)
+      setOpen(open)
       const fetchTdata = async () => {
           const tdata = await getTournamentData(tid)
           setTdata({ // esto lo pongo para no tene q lidiar con indexes de un array
@@ -54,43 +55,14 @@ export default function BettingSlip() {
     // Stop the form from submitting and refreshing the page.
   event.preventDefault()
 
-  const betSlip = {
-    
-    picksGroups: [[3, 0], [2, 4], [0, 3], [1, 0], 
-                  [0, 3], [4, 0], [2, 1], [4, 0], 
-                  [3, 2], [0, 2], [2, 0], [1, 4],
-                  [4, 1], [2, 1], [4, 1], [3, 0], 
-                  [2, 4], [1, 2], [1, 0], [1, 0], 
-                  [4, 1], [4, 0], [0, 2], [1, 0],
-                  [0, 3], [2, 0], [4, 0], [2, 1], 
-                  [2, 0], [4, 3], [3, 1], [4, 3], 
-                  [3, 0], [0, 1], [0, 3], [4, 1], 
-                  [4, 0], [1, 3], [4, 1], [3, 0], 
-                  [1, 0], [1, 0], [2, 0], [0, 1], 
-                  [3, 2], [2, 3], [2, 1], [2, 1]],
-    picksTops: [1, 3, 4, 5],
-    nickname: 'Cool participant',
-  };
-
-  const { status } = await placeBet(walletAddress, betSlip, tid, slip, tdata);
+  const { status } = await placeBet(walletAddress, tid, slip, tdata);
   setStatus(status);
-
 
 };
 
-function handleChangeGroups(event) {
-  //const newSlipGroup = slipGroup;
-  //newSlipGroup[fixtureId] = [evt.target.home.value, evt.target.away.value];
-  //setSlipGroup(newSlipGroup)
-  event.preventDefault()
-
-
-}
+function handleChangeGroups(event) { event.preventDefault() };
 
   
-
-  const formatData = jsonGroups.map((group) => jsonData.response.filter((partido) => partido.teams.group === group.key));
-  //console.log('vista globla', slip)
   return (
     <div className="bg-black">
     <Layout>
@@ -119,7 +91,7 @@ function handleChangeGroups(event) {
         image={imageBG.src}
       />
            <Grid container spacing={8}>
-        <ContentTable data={dataTule} setFixtureId={setFixtureId} handleChangeGroups={handleChangeGroups} 
+        <ContentTable data={dataOctavos} handleChangeGroups={handleChangeGroups} 
           slip={slip}
           setSlip={setSlip}
           tdata={tdata}
