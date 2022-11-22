@@ -123,28 +123,32 @@ export default function TournamentDetails() {
                                 tid
                             }
                             </Button>
-                    </div>
+                </div>
+                    {
+                        open?.toString()==='true' ?
                     <div className=' bg-[#262333] drop-shadow-md rounded-md pl-[15px] pt-[20px] mt-10'>
-                        <div className='col-start-1 col-span-3'>
-                            <Text
-                                fontSize='16px'
-                                lineHeight='20px'
-                                fontSizeSm={'12px'}
-                                >
-                                Invite your friends!
-                            </Text>
 
-                        </div>
-                        <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
-                           <Button_alt className='!col-start-1 !font-bold' onClick={() =>  {navigator.clipboard.writeText('' + 
-                                                                                            `https://app.qatarprode.xyz/betting-slip/${tid}`);
-                                                                                            }}>
-                                Copy link
-                            </Button_alt>
-                            <Button_alt className='!col-start-2 !font-bold' onClick={() => (window.open(whats)) }>Whatsapp</Button_alt>
-                            <Button_alt className='!col-start-3 !font-bold' onClick={() => (window.open(tlgm)) }>Telegram</Button_alt>
-                        </HeaderComponent> 
-                    </div>
+                            <div className='col-start-1 col-span-3'>
+                                <Text
+                                    fontSize='16px'
+                                    lineHeight='20px'
+                                    fontSizeSm={'12px'}
+                                    >
+                                    Invite your friends!
+                                </Text>
+                            </div>
+
+                            <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
+                            <Button_alt className='!col-start-1 !font-bold' onClick={() =>  {navigator.clipboard.writeText('' + 
+                                                                                                `https://app.qatarprode.xyz/betting-slip/${tid}`);                                                                                            }}>
+                                    Copy link
+                                </Button_alt>
+                                <Button_alt className='!col-start-2 !font-bold' onClick={() => (window.open(whats)) }>Whatsapp</Button_alt>
+                                <Button_alt className='!col-start-3 !font-bold' onClick={() => (window.open(tlgm)) }>Telegram</Button_alt>
+                            </HeaderComponent>  
+                    </div> :
+                    null
+                    }
                     <div className='flex flex-col gap-5 mt-16'>
                         <Text tag={'h2'} color={'#00E5AE'} fontSize='36px' fontSizeSm={'20px'}>Tournament settings</Text>
                         <div className='gap-10 grid grid-cols-6'>
@@ -233,7 +237,6 @@ export default function TournamentDetails() {
                         </Button> :
                         null
                     }
-                    {console.log('holis' + open)}
                 </div>
 
             </div>
