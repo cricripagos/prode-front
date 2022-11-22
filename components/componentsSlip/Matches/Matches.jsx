@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Text from '@components/Text/Text'
 
 const Matches = (props) => {
-    const { data, player, key } = props;
+    const { data, player } = props;
     const home = player?.prediccionFaseGrupos ? player?.prediccionFaseGrupos[data.index][0] : player.prediccionFaseGrupos;
     const away = player?.prediccionFaseGrupos ? player?.prediccionFaseGrupos[data.index][1] : player.prediccionFaseGrupos;
     const handleOnChangeText = (e, side) => {
