@@ -5,9 +5,7 @@ import Accordion from '../Accordion/Accordion';
 import Paper from '../Paper/Paper';
 
 const ContentTable = (props) => {
-    const handleNicknameChange = (e) => {
-        props.setSlip({...props.slip, nickname: e.target.value})
-    }
+
     //console.log(props.slip, 'slip')
     return (
         <section className='w-full container relative px-8 md:px-28 mx-auto pb-36c pt-52'>
@@ -59,9 +57,9 @@ const ContentTable = (props) => {
                             Betting Slip
                         </Text>
                     </div>
-                    {props.data.map((dataGroup, i) => <Accordion setSlip={props.setSlip} slip={props.slip} data={dataGroup} player={props.player} key={i} /> )}
+                    {props.data.map((dataGroup, i) => <Accordion data={dataGroup} player={props.player} key={i} /> )}
                 </div>
-                <Paper setSlip={props.setSlip} slip={props.slip} player={props.player} />
+                <Paper player={props.player} />
             </SimpleCard>
         </section>
     )

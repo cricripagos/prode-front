@@ -1,42 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Text from '@components/Text/Text'
 
 const Matches = (props) => {
     const { data, player } = props;
-    const home = player?.prediccionFaseGrupos ? player?.prediccionFaseGrupos[data.index][0] : player.prediccionFaseGrupos;
-    const away = player?.prediccionFaseGrupos ? player?.prediccionFaseGrupos[data.index][1] : player.prediccionFaseGrupos;
-    const handleOnChangeText = (e, side) => {
-        let newSlip = props.slip
-        newSlip.groups[data.index][side] = parseInt(e.target.value)
-        props.setSlip(newSlip)
-        const [_, matchIndex, sideIndex] = e.target.id.split('-')
-        let nextSideIndex
-        let nextMatchIndex
-        if (sideIndex=='0'){
-            nextSideIndex='1'
-            nextMatchIndex=matchIndex
-        }else{
-            nextSideIndex='0'
-            nextMatchIndex=(parseInt(matchIndex)+1).toString()
-        }
-        const nextElem = document.getElementById('groupsmatch-'+nextMatchIndex+"-"+nextSideIndex);
-        try{
-            nextElem.focus()
-        }catch(e){
-            console.log('no hay next')
-        }
-        let allValid = true
-        props.indexesSlip.map((idx, i)=>{
-            allValid = allValid && Number.isInteger(props.slip.groups[idx][0])&&Number.isInteger(props.slip.groups[idx][1])
-            
-        })
-        props.setChecked(allValid)
-        if (allValid==true){
-            props.setExpanded(false)
-        }
-        //console.log([matchIndex, sideIndex], 'actual')
-        //console.log(['groupsmatch-'+nextMatchIndex+"-"+nextSideIndex,nextMatchIndex, nextSideIndex], 'next')
-    }
+    const home = player?.prediccionFaseGrupos ? player?.prediccionFaseGrupos?.[data.index]?.[0] : player.prediccionFaseGrupos;
+    const away = player?.prediccionFaseGrupos ? player?.prediccionFaseGrupos?.[data.index]?.[1] : player.prediccionFaseGrupos;
+
     return (
         <div key={props.forkey.toString()} className='flex flex-col ' style={{ background: props.number % 2 === 0 ? '#262333' : null, padding: '10px', borderRadius: '15px' }}>
             <div className="grid grid-cols-6">

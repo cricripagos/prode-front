@@ -4,17 +4,13 @@ import Text from '@components/Text/Text';
 import { paisesTule } from "@utils/jsonData/data";
 
 const Paper = (props) => {
-    const handleTopChange = (e,position) => {
-        let newSlip = props.slip
-        newSlip.topPicks[position] = parseInt(e.target.value)
-        props.setSlip(newSlip)
-    }
-    const {player} = props;
-    const champion = player?.prediccionTopFour ? paisesTule[player?.prediccionTopFour[0]][0] : player.prediccionTopFour;
-    const second = player?.prediccionTopFour ? paisesTule[player?.prediccionTopFour[1]][0] : player.prediccionTopFour;
-    const third = player?.prediccionTopFour ? paisesTule[player?.prediccionTopFour[2]][0] : player.prediccionTopFour;
-    const fourth = player?.prediccionTopFour ? paisesTule[player?.prediccionTopFour[3]][0] : player.prediccionTopFour;
 
+    const { player } = props;
+    const topFour = player?.prediccionTopFour 
+    const champion = topFour ? paisesTule[topFour?.[0]]?.[0] : topFour;
+    const second = topFour ? paisesTule[topFour?.[1]]?.[0] : topFour;
+    const third = topFour ? paisesTule[topFour?.[2]]?.[0] : topFour;
+    const fourth = topFour ? paisesTule[topFour?.[3]]?.[0] : topFour;
     //console.log('aca', paisesTule)
     return (
         <section className='w-full container relative px-1 md:px-10 mx-auto pb-10 pt-4'>
