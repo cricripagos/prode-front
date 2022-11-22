@@ -199,7 +199,12 @@ export default function TournamentDetails() {
                                         <tr key={participant.beneficiary}>
                                             <td><p class="text-lg mx-2 ...">{participant.nickname}</p></td>
                                             <td><p class="text-lg mx-2 ...">{participant.points || 0}</p></td>
-                                            <td><Button type="submit" withtBorder={false} variant={Variant.quaternary} className="!px-5">
+                                            <td>
+                                                <Button onClick={() =>  router.push({
+                                                                        pathname: `/check-slip/${tid}`,
+                                                                        query: {pid: index                                                                            
+                                                                        }})} 
+                                                        withtBorder={false} variant={Variant.quaternary} className="!px-5">
                                                     <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
                                                 </Button>
                                             </td>

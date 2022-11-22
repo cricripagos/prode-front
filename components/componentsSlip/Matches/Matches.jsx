@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import Text from '@components/Text/Text'
 
 const Matches = (props) => {
-    const { data } = props;
+    const { data, player } = props;
+    const home = player?.prediccionFaseGrupos ? player?.prediccionFaseGrupos[data.index][0] : player.prediccionFaseGrupos;
+    const away = player?.prediccionFaseGrupos ? player?.prediccionFaseGrupos[data.index][1] : player.prediccionFaseGrupos;
     const handleOnChangeText = (e, side) => {
         let newSlip = props.slip
         newSlip.groups[data.index][side] = parseInt(e.target.value)
@@ -46,8 +48,8 @@ const Matches = (props) => {
                     {data.homeName}
                 </Text>
                 <img src={data.homeLogo} alt="img" style={{ height: '40px', marginTop: '25px' }} />
-                <input type="number"  id={'groupsmatch-'+data.index+'-0'} name="home" onChange={(e) => handleOnChangeText(e, 0)} label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }} min="0" max="9"/>
-                <input type="number"  id={'groupsmatch-'+data.index+'-1'} name="away" onChange={(e) => handleOnChangeText(e, 1)} label="Outlined" style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }} min="0" max="9"/>
+                <Text style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }}>{home}</Text>
+                <Text style={{ background: '#00E5AE', borderRadius: '10px', marginTop: '30px', width: '60px', height: '40px', color: '#7C3AED', padding: '10px' }}>{away}</Text>
                 
                 <img src={data.awayLogo} alt="img" style={{ height: '40px', marginTop: '25px' }} />
                 <div>
