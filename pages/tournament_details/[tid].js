@@ -39,14 +39,16 @@ export default function TournamentDetails() {
     const [participants, setParticipants] = useState()
     const [tdata, setTdata] = useState()
     const [tid, setTid] = useState()
+    const [open, setOpen] = useState()
     const [whats, setWhats] = useState()
     const [tlgm, setTlgm] = useState()
     const [share, setShare] = useState(false)
 
     useEffect(()=>{
         if(!router.isReady) return;
-        const { tid } = router.query
+        const { tid, open } = router.query
         setTid(tid)
+        setOpen(open)
         const fetchParticipants = async () => {
             const participants = await getParticipants(tid)
             setParticipants(participants)
@@ -222,11 +224,16 @@ export default function TournamentDetails() {
             </div>
             <div className="pt-5 pb-10"> 
                 <div className='w-full container px-8 md:px-28 mx-auto  '>
+                    {
+                        open?.toString()==='true' ?
                         <Button onClick={() =>
                                 router.push(`/betting-slip/${tid}`)
                                 } className='w-full !font-bold' >
                             Place Bet
-                        </Button>
+                        </Button> :
+                        null
+                    }
+                    {console.log('holis' + open)}
                 </div>
 
             </div>

@@ -38,54 +38,13 @@ const columns = [
   },
 ];
 
-const SearchBox = ({ search, prodes }) => {
-  let results = [];
-  const router = useRouter();
-
-  prodes
-    ?.slice(0)
-    .reverse()
-    .map((prode, index) => {
-      if (prode.prodeAddress == search && prode.hidden) {
-        results.push(["Hidden Address: " + prode.prodeAddress,prode.prodeAddress]);
-      } else {
-        if (prode.prodeAddress?.includes(search) && !prode.hidden) {
-          results.push(["Address: " + prode.prodeAddress,prode.prodeAddress]);
-        }
-      }
-      if (
-        prode.prodeNickname?.toLowerCase() == search.toLowerCase() &&
-        prode.hidden
-      ) {
-        results.push(["Hidden Name: " + prode.prodeNickname,prode.prodeAddress]);
-      } else {
-        if (
-          prode.prodeNickname?.toLowerCase().includes(search.toLowerCase()) &&
-          !prode.hidden
-        ) {
-          results.push(["Name: " + prode.prodeNickname,prode.prodeAddress]);
-        }
-      }
-    });
-  return (
-    <div className="absolute z10 top-16 w-full bg-gray-500 rounded p-2">
-      {results.map((result, index) => {
-        return <p  className={'cursor-pointer ' + styles.a } onClick={() =>
-          router.push(`tournament_details/${result[1]}`)
-        }  key={result[0] + index.toString()}>
-          {result[0]} </p>;
-      })}
-    </div>
-  );
-};
-
 export default function Tournaments() {
   const [filters, setFilters] = useState({
     addressFilter: null,
     nicknameFilter: null,
   });
   const router = useRouter();
-  const [search, setSearch] = useState("");
+  const [open, setOpen] = useState(true);
   const [loader, setLoader] = useState(false);
   const { walletAddress, connectWalletPressed } = useConnect();
   const [prodes, setProdes] = useState();
@@ -109,6 +68,7 @@ export default function Tournaments() {
 
   const handleOnClickFilters = (inp) => {
     setFilters({ ...filters, addressFilter: inp });
+    setOpen(!open);
   };
   useEffect(() => {
     const fetchProdes = async () => {
@@ -164,7 +124,9 @@ export default function Tournaments() {
                 activated={filters.addressFilter == null}
                 variant={Variant.tertiary}
                 withtBorder={false}
-                onClick={() => handleOnClickFilters(null)}
+                onClick={() => {
+                  handleOnClickFilters(null);
+                }}
               >
                 Round of 16
               </Button>
@@ -172,7 +134,9 @@ export default function Tournaments() {
                 variant={Variant.tertiary}
                 withtBorder={false}
                 activated={filters.addressFilter !== null}
-                onClick={() => handleOnClickFilters(walletAddress)}
+                onClick={() => {
+                  handleOnClickFilters(walletAddress);
+                }}
               >
                 Group Stage
               </Button>
@@ -203,8 +167,10 @@ export default function Tournaments() {
                       return (
                         <tr className={styles.a}
                         onClick={() =>
-                          router.push(`tournament_details/${prode.prodeAddress}`)
-                        }  key={prode.prodeAddress}>
+                          router.push({
+                            pathname: `/tournament_details/${prode.prodeAddress}`,
+                            query: {open: open                                                                            
+                            }})} key={prode.prodeAddress}>
                           <td><p class="text-lg mx-2 ...">{prode.prodeNickname}</p></td>
                           <td
                             
