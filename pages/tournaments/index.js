@@ -150,52 +150,6 @@ export default function Tournaments() {
       </Header>
       <div className="container relative w-full  px-8 pt-8 mx-auto md:px-28">
         <CardGradient className="md:!p-16 !z-10">
-          <Text
-            tag={"h2"}
-            color={"#64CC98"}
-            fontSize="36px"
-            fontSizeSm={"16px"}
-          >
-            Search tournaments
-          </Text>
-          <div className="flex flex-row w-full justify-between mt-4">
-            <form className="flex flex-row" onChange={onChangeFilters}>
-              <div className="h-full relative ">
-                <input
-                  type="text"
-                  className="h-full rounded-md text-[#262333] focus:outline-none px-3 py-3 mr-3 w-96"
-                  onChange={onChangeSearch}
-                />
-                {search.length > 0 && (
-                  <SearchBox search={search} prodes={prodes} />
-                )}
-                {/*filters.searchFilter.length>0 && */}
-              </div>
-              <Button
-                type="submit"
-                withtBorder={false}
-                variant={Variant.quaternary}
-                className="!px-5 pointer-events-none"
-              >
-                <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
-              </Button>
-            </form>
-            <Text
-              tag={"h1"}
-              color={"#64CC98"}
-              fontSize="36px"
-              fontSizeSm={"16px"}
-            >
-              or
-            </Text>
-            {walletAddress.length > 0 ? (
-              <Link href="/create_tournament">
-                <Button className="leading-[15px]">Create Your Own Tournament</Button>
-              </Link>
-            ) : (
-              <Button onClick={connectWalletPressed}>Connect Wallet</Button>
-            )}
-          </div>
           <div className="flex flex-col gap-5 mt-16">
             <Text
               tag={"h2"}
@@ -212,7 +166,7 @@ export default function Tournaments() {
                 withtBorder={false}
                 onClick={() => handleOnClickFilters(null)}
               >
-                Public tournaments
+                Round of 16
               </Button>
               <Button
                 variant={Variant.tertiary}
@@ -220,7 +174,7 @@ export default function Tournaments() {
                 activated={filters.addressFilter !== null}
                 onClick={() => handleOnClickFilters(walletAddress)}
               >
-                My Tournaments
+                Group Stage
               </Button>
             </div>
             <div className="relative">
