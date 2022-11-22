@@ -109,7 +109,6 @@ export default function Tournaments() {
 
   const handleOnClickFilters = (inp) => {
     setFilters({ ...filters, addressFilter: inp });
-    console.log(filters, "ver ak");
   };
   useEffect(() => {
     const fetchProdes = async () => {
@@ -126,7 +125,6 @@ export default function Tournaments() {
     };
     fetchProdes();
   }, []);
-  console.log(loader);
   return (
     <div className="w-full min-h-screen relative bg-black">
       <Blur

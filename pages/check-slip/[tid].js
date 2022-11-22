@@ -20,16 +20,11 @@ import { getParticipants } from "../../utils/ProdeFns";
 
 export default function BettingSlip() {
   const { walletAddress, connectWalletPressed } = useConnect();
-  const [status, setStatus] = useState("");
   const [tid, setTid] = useState();
-  const [pid, setPid] = useState()
-  const [tdata, setTdata] = useState()
-  const [fixtureId, setFixtureId] = useState()
-  const [player, setPlayer] = useState([])
-  const [slip, setSlip] = useState({groups:[[null, null], [null, null], [null, null], [null, null], [null, null], [null, null], 
-    [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null]],
-    topPicks:[null,null,null,null],nickname:''})
-  const router = useRouter()
+  const [pid, setPid] = useState();
+  const [tdata, setTdata] = useState();
+  const [player, setPlayer] = useState([]);
+  const router = useRouter();
 
   useEffect(()=>{
       if(!router.isReady) return;
@@ -49,11 +44,6 @@ export default function BettingSlip() {
               pot: tdata[0]/1000000000000000000*tdata[2],
               weiBuyin: tdata[0]
           })
-          setSlip({
-            groups: player[0],
-            topPicks: player[1],
-            nickname: player[4],
-          })
       }
       fetchTdata()
   }, [router.isReady]);
@@ -72,7 +62,7 @@ function handleChangeGroups(event) {
   
 
   const formatData = jsonGroups.map((group) => jsonData.response.filter((partido) => partido.teams.group === group.key));
-  //console.log('vista globla', slip)
+
   return (
     <div className="bg-black">
     <Layout>
@@ -101,12 +91,7 @@ function handleChangeGroups(event) {
         image={imageBG.src}
       />
       <Grid container spacing={8}>
-        <ContentTable data={dataTule} setFixtureId={setFixtureId} handleChangeGroups={handleChangeGroups} 
-          slip={slip}
-          setSlip={setSlip}
-          tdata={tdata}
-          player={player}
-        />
+        <ContentTable data={dataTule} tdata={tdata} player={player} />
       </Grid>
       <div className='w-full container px-8 md:px-28 mx-auto mt-10 md:mt-24'>
         <Button className='w-full' onClick={() =>
