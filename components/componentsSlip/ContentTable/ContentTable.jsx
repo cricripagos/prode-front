@@ -15,26 +15,11 @@ const ContentTable = (props) => {
              className=''
             >
                 <div className='w-full md:p-12'>
-                    {/* <div className='flex flex-col mb-4 md:mb-5'>
+                    <div className='flex flex-col mb-4 md:mb-5'>
                             <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
-                                Joining Tournament
+                                {props.player.nickname}
                             </Text>
-                        </div>*/}
-                    <div className='flex flex-col mb-[20px]  mt-[20px] pt-5'>
-                    <div>
-                        <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'} className="mt-6 text-center">
-                            Player: 
-                        </Text>
                     </div>
-                    <div>
-                        <Text
-                        style={{ background: '#00E5AE', borderRadius: '10px', 
-                        marginTop: '30px', width: '200px', height: '40px', 
-                        color: '#7C3AED', padding: '10px' }}>
-                        {props.player.nickname}
-                        </Text>
-                    </div>
-                </div>
                     <div className='flex flex-col mb-[20px]  mt-[20px] pt-5'>
                         <Text tag={'h1'} color={'#64CC98'} fontSize='36px' fontSizeSm={'20px'}>
                             Tournament Information
