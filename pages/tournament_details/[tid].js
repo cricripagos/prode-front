@@ -203,8 +203,8 @@ export default function TournamentDetails() {
                                 {participants?.slice(0).reverse().map((participant, index) => {
                                     return (
                                         <tr key={participant.beneficiary}>
-                                            <td><p class="text-lg mx-2 ...">{participant.nickname}</p></td>
-                                            <td><p class="text-lg mx-2 ...">{participant.points || 0}</p></td>
+                                            <td><p className="text-lg mx-2 ...">{participant.nickname}</p></td>
+                                            <td><p className="text-lg mx-2 ...">{participant.points || 0}</p></td>
                                             <td>
                                                 <Button onClick={() =>  router.push({
                                                                         pathname: `/check-slip/${tid}`,

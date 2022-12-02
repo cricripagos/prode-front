@@ -19,6 +19,7 @@ import {
   getAllProdes,
   getTournamentData,
 } from "@utils/ProdeFns";
+import { getOctavos } from "../../utils/ProdeFns";
 const columns = [
   {
     key: "name",
@@ -39,42 +40,46 @@ const columns = [
 ];
 
 export default function Tournaments() {
-  const [filters, setFilters] = useState({
-    addressFilter: null,
-    nicknameFilter: null,
-  });
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const [loader, setLoader] = useState(false);
   const { walletAddress, connectWalletPressed } = useConnect();
   const [prodes, setProdes] = useState();
+  const [octavos, setOctavos] = useState([]);
 
   const columnList = columns.map((item) => (
     <th className="px-4 py-2 text-white" key={item.key}>
       {item.label}
     </th>
   ));
-  const onChangeFilters = (event) => {
-    event.preventDefault();
-    setFilters((prevFilters) => ({ ...prevFilters }));
-  };
-
-  const onChangeSearch = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSearch(value);
-  };
 
   const handleOnClickFilters = (inp) => {
-    setFilters({ ...filters, addressFilter: inp });
-    setOpen(!open);
+    setOpen(inp);
   };
+
+  const OpenTournaments = ['0xF32C81669d5488004DB3ba2115302b394B0eB71F']
+
   useEffect(() => {
     const fetchProdes = async () => {
       setLoader(true);
       const prodes = await getAllProdes();
       setProdes(prodes);
+      let octavosFull = [];
+      
+      for (const prodeAddress of OpenTournaments) {
+        
+        const tournament = await getOctavos(prodeAddress);
+
+        const ttt = {
+          prodeNickname : tournament[1],
+          prodeAddress : prodeAddress,
+          buyIn : tournament[0],
+          players : tournament[2]
+        }
+        
+        octavosFull.push({...ttt})
+      }
+      setOctavos(octavosFull);
       let prodesFull = [];
       for (const prode of prodes) {
         const singleData = await getParticipants(prode["prodeAddress"]);
@@ -121,24 +126,24 @@ export default function Tournaments() {
             </Text>
             <div className="flex flex-row w-full space-x-4">
               <Button
-                activated={filters.addressFilter == null}
+                activated={open == true}
                 variant={Variant.tertiary}
                 withtBorder={false}
                 onClick={() => {
-                  handleOnClickFilters(null);
+                  handleOnClickFilters(true);
                 }}
               >
-                Round of 16
+                Round of 16 (open)
               </Button>
               <Button
                 variant={Variant.tertiary}
                 withtBorder={false}
-                activated={filters.addressFilter !== null}
+                activated={open == false}
                 onClick={() => {
-                  handleOnClickFilters(walletAddress);
+                  handleOnClickFilters(false);
                 }}
               >
-                Group Stage
+                Group Stage (closed)
               </Button>
             </div>
             <div className="relative">
@@ -147,23 +152,10 @@ export default function Tournaments() {
                   <tr>{columnList}</tr>
                 </thead>
                 <tbody style={{border: "0px"}}>
-                  {prodes
+                {(open ? octavos : prodes)
                     ?.slice(0)
                     .reverse()
                     .map((prode, index) => {
-                      if (filters.addressFilter !== null) {
-                        let participantAddressList =
-                          prode.participantArray?.map(({ beneficiary }) =>
-                            beneficiary.toLowerCase()
-                          );
-                        if (
-                          !participantAddressList?.includes(
-                            filters.addressFilter
-                          )
-                        ) {
-                          return;
-                        }
-                      }
                       return (
                         <tr className={styles.a}
                         onClick={() =>
@@ -171,20 +163,20 @@ export default function Tournaments() {
                             pathname: `/tournament_details/${prode.prodeAddress}`,
                             query: {open: open                                                                            
                             }})} key={prode.prodeAddress}>
-                          <td><p class="text-lg mx-2 ...">{prode.prodeNickname}</p></td>
+                          <td><p className="text-lg mx-2 ...">{prode.prodeNickname}</p></td>
                           <td
                             
                           >
                             {prode.prodeAddress}
                           </td>
                           <td>
-                          <p class="text-lg ...">{prode.buyIn/1000000000000000000} xDai</p>
+                          <p className="text-lg ...">{prode.buyIn/1000000000000000000} xDai</p>
                             </td>
                           <td>
                             {loader ? (
                               <div className={styles.spinner}></div>
                             ) : (
-                              <p class="text-lg ...">{ prode.participantArray?.length} </p>
+                              <p className="text-lg ...">{ prode.participantArray ? prode.participantArray?.length : prode.players} </p>
                              
                             )}
                           </td>

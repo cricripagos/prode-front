@@ -14,6 +14,7 @@ const ws = new Web3.providers.WebsocketProvider(chainstackURL, options)
 const web3 = new Web3(ws)
 const singleProdeABI = require('./abi/prodeBeta.json'); // tomo el ABI del prode puntualmente
 const factoryABI =  require('./abi/prodeFactory.json');
+const octavosABI = require('./abi/ProdeOct.json');
 
 export const getParticipants = async (address) => {
     const prode = await new web3.eth.Contract( singleProdeABI, address )
@@ -29,4 +30,10 @@ export const getAllProdes = async () => {
   const prode = await new web3.eth.Contract( factoryABI, factoryAddress )
   const allprodes = await prode.methods.retrieveProdes().call()
   return allprodes
+}
+
+export const getOctavos = async (address) => {
+  const prode = await new web3.eth.Contract( octavosABI, address )
+  const octavos = await prode.methods.debugRetrieveProdeData().call()
+  return octavos
 }
