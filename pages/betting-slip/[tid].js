@@ -12,7 +12,7 @@ import { useConnect } from '@hooks/useConnect';
 import { placeBetOctavos } from '@utils/interact';
 import Header from '@components/Header/Header';
 import { useRouter } from 'next/router'
-import { getOctavos } from "@utils/ProdeFns";
+import { getOctavos, onNewParticipant, suscription } from "@utils/ProdeFns";
 import Text from '@components/Text/Text';
 
 
@@ -22,7 +22,9 @@ export default function BettingSlip() {
   const [status, setStatus] = useState("");
   const [tid, setTid] = useState()
   const [tdata, setTdata] = useState()
-  const [open, setOpen] = useState()
+  const [subs, setSubs] = useState(false)
+  const [open, setOpen] = useState();
+  const [nickname, setNickname] = useState('');
   const [slip, setSlip] = useState({octavos:[[null, null], [null, null], 
                                             [null, null], [null, null], 
                                             [null, null], [null, null],
@@ -35,6 +37,8 @@ export default function BettingSlip() {
       const { tid, open } = router.query
       setTid(tid)
       setOpen(open)
+      const subscription = async() => { await subscription(tid) }
+
       const fetchTdata = async () => {
           const tdata = await getOctavos(tid)
           setTdata({ // esto lo pongo para no tene q lidiar con indexes de un array
@@ -58,8 +62,22 @@ export default function BettingSlip() {
 
   const { status } = await placeBetOctavos(walletAddress, tid, slip, tdata);
   setStatus(status);
+  setNickname(slip.nickname);
 
 };
+
+
+useEffect(() => {
+/*
+  onNewParticipant(nickname, tid);
+  */
+ // unsubscribes the subscription
+ suscription();
+
+
+
+}, []);
+
 
 function handleChangeGroups(event) { event.preventDefault() };
 
@@ -108,9 +126,18 @@ function handleChangeGroups(event) { event.preventDefault() };
       >
           {status}
       </Text>
+      {status != '' ?
+      <div className='w-full container px-8 md:px-28 mx-auto mt-10 md:mt-24'>
+            <Button className='w-full' onClick={() =>
+                            router.push({
+                                pathname: `/tournament_details/${tid}`,
+                                query: {open: open                                                                            
+                                }})}   >Back to tournament details.</Button>
+      </div> :
       <div className='w-full container px-8 md:px-28 mx-auto mt-10 md:mt-24'>
         <Button className='w-full' onClick={onPlaceBetPressed} >Place Bet</Button>
       </div>
+      }
 
       <Blur
         left="0%"
