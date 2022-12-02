@@ -62,7 +62,7 @@ export default function BettingSlip() {
 
   const { status } = await placeBetOctavos(walletAddress, tid, slip, tdata);
   setStatus(status);
-  setNickname(slip.nickname)
+  setNickname(slip.nickname);
 
 };
 
