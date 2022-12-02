@@ -43,7 +43,7 @@ export default function TournamentDetails() {
     const [open, setOpen] = useState()
     const [whats, setWhats] = useState()
     const [tlgm, setTlgm] = useState()
-    const [share, setShare] = useState(false)
+    const [status, setStatus] = useState(false)
 
     useEffect(()=>{
         if(!router.isReady) return;
@@ -79,7 +79,7 @@ export default function TournamentDetails() {
 
     useEffect(() => {
 
-        onNewParticipant();
+        onNewParticipant(tid);
       }, []);
 
     const { walletAddress, connectWalletPressed } = useConnect();

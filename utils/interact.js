@@ -186,7 +186,10 @@ export const createProde = async (address, prode) => {
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
-          ℹ️ Once the transaction is verified by the network, you can start the game.
+          ℹ️ Once the transaction is verified by the network, you can 
+          check your slip on tournament details.
+                    
+          may take up to 90 seconds⌚. Be patient 😊
         </span>
       ),
     }
@@ -330,8 +333,10 @@ export const placeBet = async (address,  tid, slip, tdata) => {
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
-          ℹ️ Once the transaction is verified by the network, the message will
-          be updated automatically.
+          ℹ️ Once the transaction is verified by the network, you can 
+          check your slip on tournament details.
+                    
+          may take up to 90 seconds⌚. Be patient 😊
         </span>
     ),
     };
@@ -464,8 +469,10 @@ export const placeBetOctavos = async (address,  tid, slip, tdata) => {
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
-          ℹ️ Once the transaction is verified by the network, the message will
-          be updated automatically.
+          ℹ️ Once the transaction is verified by the network, you can 
+          check your slip on tournament details.
+                    
+          may take up to 90 seconds⌚. Be patient 😊
         </span>
     ),
     };

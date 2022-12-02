@@ -47,10 +47,10 @@ export const dataOctavos = [
            "date":"Tue, 05/12/2022 10:00"
         },
         {
-           "homeName":"Portugal",
-           "homeLogo":"https://media.api-sports.io/football/teams/27.png",
-           "awayName":"Serbia",
-           "awayLogo":"https://media.api-sports.io/football/teams/14.png",
+           "homeName":"Brazil",
+           "homeLogo":"https://media.api-sports.io/football/teams/6.png",
+           "awayName":"South Korea",
+           "awayLogo":"https://media.api-sports.io/football/teams/17.png",
            "index":"5",
            "date":"Tue, 05/12/2022 14:00"
         },
@@ -63,12 +63,13 @@ export const dataOctavos = [
           "date":"Mon, 06/12/2022 10:00"
        },
        {
-          "homeName":"Brazil",
-          "homeLogo":"https://media.api-sports.io/football/teams/6.png",
-          "awayName":"Uruguay",
-          "awayLogo":"https://media.api-sports.io/football/teams/7.png",
+         "homeName":"Portugal",
+         "homeLogo":"https://media.api-sports.io/football/teams/27.png",
+          "awayName":"Switzerland",
+          "awayLogo":"https://media.api-sports.io/football/teams/15.png",
           "index":"7",
           "date":"Mon, 06/12/2022 14:00"
        },
      ]
 }]
+
