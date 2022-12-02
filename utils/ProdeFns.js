@@ -55,3 +55,8 @@ export const getOctavos = async (address) => {
   const octavos = await prode.methods.debugRetrieveProdeData().call()
   return octavos
 }
+
+export const onNewParticipant = () => {
+
+};
+

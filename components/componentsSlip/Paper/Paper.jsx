@@ -15,7 +15,7 @@ const Paper = (props) => {
     return (
         <section className='w-full container relative px-1 md:px-10 mx-auto pb-10 pt-4'>
             <SimpleCard>
-                <div class="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                     <div>
                         <Text
                             fontSize='22px'

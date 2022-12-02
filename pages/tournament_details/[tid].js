@@ -15,7 +15,8 @@ import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
 import CopaPNG from '@assets/images/copa.png'
-import {getParticipants, getTournamentData, getParticipantsOctavos, onNewParticipant} from '@utils/ProdeFns';
+import {getParticipants, getTournamentData, getParticipantsOctavos, onNewParticipant
+} from '@utils/ProdeFns';
 import HeaderComponent  from '@components/Header/Header';
 
 const columns = [

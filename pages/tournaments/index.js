@@ -17,9 +17,9 @@ import styles from "../../styles/Home.module.css";
 import {
   getParticipants,
   getAllProdes,
-  getTournamentData,
+  getOctavos,
 } from "@utils/ProdeFns";
-import { getOctavos } from "../../utils/ProdeFns";
+
 const columns = [
   {
     key: "name",
@@ -57,7 +57,9 @@ export default function Tournaments() {
     setOpen(inp);
   };
 
-  const OpenTournaments = ['0xF32C81669d5488004DB3ba2115302b394B0eB71F']
+  const OpenTournaments = ['0x1600b603F57B531B754A0E59841f799F987bC61f', // 1 xDAI
+                          '0x9385b38B56e4B08E700eb3f35293BB9547c14287', // 5 xDAI
+                          '0x473C7B2E1728a36dfBB42AAd736Fb8f7F55D61E8'] // 1 wei
 
   useEffect(() => {
     const fetchProdes = async () => {
