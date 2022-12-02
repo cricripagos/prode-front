@@ -15,7 +15,7 @@ import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
 import CopaPNG from '@assets/images/copa.png'
-import {getParticipants, getTournamentData} from '@utils/ProdeFns';
+import {getParticipants, getTournamentData, getParticipantsOctavos, onNewParticipant} from '@utils/ProdeFns';
 import HeaderComponent  from '@components/Header/Header';
 
 const columns = [
@@ -50,7 +50,11 @@ export default function TournamentDetails() {
         setTid(tid)
         setOpen(open)
         const fetchParticipants = async () => {
-            const participants = await getParticipants(tid)
+
+            const participants = open ? 
+            await getParticipantsOctavos(tid):
+            await getParticipants(tid);
+
             setParticipants(participants)
         }
         const fetchTdata = async () => {
@@ -71,6 +75,12 @@ export default function TournamentDetails() {
         fetchParticipants()
         fetchTdata()
     }, [router.isReady]);
+
+    useEffect(() => {
+
+        onNewParticipant();
+      }, []);
+
     const { walletAddress, connectWalletPressed } = useConnect();
 
     const columnList = columns.map(item => 

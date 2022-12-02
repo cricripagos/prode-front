@@ -17,6 +17,7 @@ const web3 = new Web3(ws)
 
 const contractABI = require('./abi/prodeFactory.json');
 const singleProdeABI = require('./abi/prodeBeta.json'); // tomo el ABI del prode puntualmente
+const octavosABI = require('./abi/ProdeOct.json');
 
 const contractAddress ='0xeE04C13A9260D5C07335B0212650b19d601Fe62D';
 
@@ -370,63 +371,108 @@ export const getTransactionReceiptMined = (txHash, interval) => {
       throw new Error("Invalid Type: " + txHash);
   }
 };
-/*
 
+//////////////////// OCTAVOS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-export const createProde = async (address, prode) => {
+export const placeBetOctavos = async (address,  tid, slip, tdata) => {
+
+  const singleProdeContract = new web3.eth.Contract( octavosABI, tid )
   //input error handling
   if (!window.ethereum || address === null) {
     return {
-      validator: false,
       status:
         "💡 Connect your Metamask wallet to update the message on the blockchain.",
     };
   }
-  
-  if (prode.nickname?.trim() === "Choose a cool name for your tourney!") {
+
+  try {
+    await ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: '0x64' }],
+    });
+  } catch (switchError) {
+    // This error code indicates that the chain has not been added to MetaMask.
+    if (switchError.code === 4902) {
+      try {
+        await ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: "0x64",
+              chainName: "Gnosis",
+              nativeCurrency: {
+                  name: "xDai",
+                  symbol: "xDai",
+                  decimals: 18,
+              },
+              rpcUrls: ["https://rpc.gnosischain.com/"],
+              blockExplorerUrls: ["https://gnosisscan.io/"],
+          }
+          ],
+        });
+      } catch (addError) {
+        // handle "add" error
+      }
+    }
+    // handle other "switch" errors
+  }
+
+  //set up transaction parameters
+  const valueHex = parseInt(tdata.weiBuyin).toString(16)
+  let transactionParameters
+  try{
+    transactionParameters = {
+      to: tid, // Required except during contract publications.
+      from: address, // must match user's active address.
+      data: singleProdeContract.methods.createParticipant(slip.octavos, slip.nickname).encodeABI(),
+      value: valueHex,
+      gasLimit: '300000',
+    };
+  }catch (e){
+    console.log(slip.octavos, slip.nickname)
+    console.log(e, tid, address, valueHex)
     return {
-      validator: false,
-      status: <span>"❌ Your tourney need a name."</span>,
+      status:
+        "💡 Your Betting Slip seems to be incomplete.",
     };
   }
 
-  if (prode.buyin?.trim() === '') {
-    return {
-      validator: false,
-      status: <span>"❌ Your tourney need a buy-in amount."</span>
-    };
-  }
-  
-  //set up transaction parameters
-  const transactionParameters = {
-    to: contractAddress, // Required except during contract publications.
-    from: address, // must match user's active address.
-    data: prodeContract.methods.createProde(prode.buyin, prode.hidden, prode.nickname).encodeABI(),
-  };
 
   //sign the transaction
   try {
-    const txHash = await window.ethereum.request({
+   
+      window.ethereum.request({
       method: "eth_sendTransaction",
       params: [transactionParameters],
-    });
+    }).then( 
+      async (result) => 
+      {
+      console.log("Minting... please wait");
+      const transactionReceipt = await web3.eth.getTransactionReceipt(result);
+
+      if (transactionReceipt!=null) {
+        console.log(`Mined... ${transactionReceipt}`);
+      } else { console.log(`error`) }; //getting this
+    })  
+    
+
     return {
-      validator: true,
       status: (
         <span>
           ✅{" "}
-          <a target="_blank" href={`https://gnosisscan.io/${txHash.hash}`}>
+          <a target="_blank" href={`https://gnosisscan.io`}>
             View the status of your transaction on Gnosisscan!
           </a>
           <br />
-          ℹ️ Once the transaction is verified by the network, you can start the game.
+          ℹ️ Once the transaction is verified by the network, the message will
+          be updated automatically.
         </span>
-      ),
+    ),
     };
   } catch (error) {
+    console.log(error);   
     return {
       status: "😥 " + error.message,
     };
   }
 };
-*/

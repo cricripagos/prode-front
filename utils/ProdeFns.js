@@ -15,17 +15,35 @@ const web3 = new Web3(ws)
 const singleProdeABI = require('./abi/prodeBeta.json'); // tomo el ABI del prode puntualmente
 const factoryABI =  require('./abi/prodeFactory.json');
 const octavosABI = require('./abi/ProdeOct.json');
+/*
+export const getParticipants = async (address, status) => {
+
+    const abi = !status ? singleProdeABI : octavosABI;
+    const prode = await new web3.eth.Contract( abi, address );
+    const participants = await prode.methods.debugRetrieveParticipants().call();
+    return participants
+}
+*/
 
 export const getParticipants = async (address) => {
-    const prode = await new web3.eth.Contract( singleProdeABI, address )
-    const participants = await prode.methods.debugRetrieveParticipants().call()
-    return participants
+
+  const prode = await new web3.eth.Contract( singleProdeABI, address );
+  const participants = await prode.methods.debugRetrieveParticipants().call();
+  return participants
+}
+export const getParticipantsOctavos = async (address) => {
+
+  const prode = await new web3.eth.Contract( octavosABI, address );
+  const participants = await prode.methods.debugRetrieveParticipants().call();
+  return participants
 }
 export const getTournamentData = async (address) => {
   const prode = await new web3.eth.Contract( singleProdeABI, address )
   const tdata = await prode.methods.debugRetrieveProdeData().call()
   return tdata
 }
+
+
 export const getAllProdes = async () => {
   const prode = await new web3.eth.Contract( factoryABI, factoryAddress )
   const allprodes = await prode.methods.retrieveProdes().call()

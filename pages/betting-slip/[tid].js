@@ -9,10 +9,10 @@ import ContentTable from "../../components/components/ContentTable/ContentTable"
 import { dataOctavos } from "@utils/jsonData/octavos";
 import Button, { Variant } from '@components/Button/Button';
 import { useConnect } from '@hooks/useConnect';
-import { placeBet } from '@utils/interact';
+import { placeBetOctavos } from '@utils/interact';
 import Header from '@components/Header/Header';
 import { useRouter } from 'next/router'
-import { getTournamentData } from "@utils/ProdeFns";
+import { getOctavos } from "@utils/ProdeFns";
 import Text from '@components/Text/Text';
 
 
@@ -22,11 +22,12 @@ export default function BettingSlip() {
   const [status, setStatus] = useState("");
   const [tid, setTid] = useState()
   const [tdata, setTdata] = useState()
-  const [slipGroup, setSlipGroup] = useState([[],[]])
   const [open, setOpen] = useState()
-  const [slip, setSlip] = useState({groups:[[null, null], [null, null], [null, null], [null, null], [null, null], [null, null], 
-    [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null]],
-    topPicks:[null,null,null,null],nickname:''})
+  const [slip, setSlip] = useState({octavos:[[null, null], [null, null], 
+                                            [null, null], [null, null], 
+                                            [null, null], [null, null],
+                                            [null, null], [null, null]],
+                                            nickname:''})
   const router = useRouter()
 
   useEffect(()=>{
@@ -35,7 +36,7 @@ export default function BettingSlip() {
       setTid(tid)
       setOpen(open)
       const fetchTdata = async () => {
-          const tdata = await getTournamentData(tid)
+          const tdata = await getOctavos(tid)
           setTdata({ // esto lo pongo para no tene q lidiar con indexes de un array
               buyin: tdata[0]/1000000000000000000,
               prodeNickname: tdata[1],
@@ -55,7 +56,7 @@ export default function BettingSlip() {
     // Stop the form from submitting and refreshing the page.
   event.preventDefault()
 
-  const { status } = await placeBet(walletAddress, tid, slip, tdata);
+  const { status } = await placeBetOctavos(walletAddress, tid, slip, tdata);
   setStatus(status);
 
 };
