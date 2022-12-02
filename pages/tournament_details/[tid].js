@@ -15,7 +15,8 @@ import Table from '@components/Table/Table';
 import Blur from '@components/Blur/Blur';
 import BallPNG from '@assets/images/ball-tournaments.png';
 import CopaPNG from '@assets/images/copa.png'
-import {getParticipants, getTournamentData} from '@utils/ProdeFns';
+import {getParticipants, getTournamentData, getParticipantsOctavos, onNewParticipant
+} from '@utils/ProdeFns';
 import HeaderComponent  from '@components/Header/Header';
 
 const columns = [
@@ -39,16 +40,22 @@ export default function TournamentDetails() {
     const [participants, setParticipants] = useState()
     const [tdata, setTdata] = useState()
     const [tid, setTid] = useState()
+    const [open, setOpen] = useState()
     const [whats, setWhats] = useState()
     const [tlgm, setTlgm] = useState()
     const [share, setShare] = useState(false)
 
     useEffect(()=>{
         if(!router.isReady) return;
-        const { tid } = router.query
+        const { tid, open } = router.query
         setTid(tid)
+        setOpen(open)
         const fetchParticipants = async () => {
-            const participants = await getParticipants(tid)
+
+            const participants = open ? 
+            await getParticipantsOctavos(tid):
+            await getParticipants(tid);
+
             setParticipants(participants)
         }
         const fetchTdata = async () => {
@@ -69,6 +76,12 @@ export default function TournamentDetails() {
         fetchParticipants()
         fetchTdata()
     }, [router.isReady]);
+
+    useEffect(() => {
+
+        onNewParticipant();
+      }, []);
+
     const { walletAddress, connectWalletPressed } = useConnect();
 
     const columnList = columns.map(item => 
@@ -121,28 +134,32 @@ export default function TournamentDetails() {
                                 tid
                             }
                             </Button>
-                    </div>
+                </div>
+                    {
+                        open?.toString()==='true' ?
                     <div className=' bg-[#262333] drop-shadow-md rounded-md pl-[15px] pt-[20px] mt-10'>
-                        <div className='col-start-1 col-span-3'>
-                            <Text
-                                fontSize='16px'
-                                lineHeight='20px'
-                                fontSizeSm={'12px'}
-                                >
-                                Invite your friends!
-                            </Text>
 
-                        </div>
-                        <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
-                           <Button_alt className='!col-start-1 !font-bold' onClick={() =>  {navigator.clipboard.writeText('' + 
-                                                                                            `https://app.qatarprode.xyz/betting-slip/${tid}`);
-                                                                                            }}>
-                                Copy link
-                            </Button_alt>
-                            <Button_alt className='!col-start-2 !font-bold' onClick={() => (window.open(whats)) }>Whatsapp</Button_alt>
-                            <Button_alt className='!col-start-3 !font-bold' onClick={() => (window.open(tlgm)) }>Telegram</Button_alt>
-                        </HeaderComponent> 
-                    </div>
+                            <div className='col-start-1 col-span-3'>
+                                <Text
+                                    fontSize='16px'
+                                    lineHeight='20px'
+                                    fontSizeSm={'12px'}
+                                    >
+                                    Invite your friends!
+                                </Text>
+                            </div>
+
+                            <HeaderComponent className='grid grid-cols-3 gap-[10px]'>
+                            <Button_alt className='!col-start-1 !font-bold' onClick={() =>  {navigator.clipboard.writeText('' + 
+                                                                                                `https://app.qatarprode.xyz/betting-slip/${tid}`);                                                                                            }}>
+                                    Copy link
+                                </Button_alt>
+                                <Button_alt className='!col-start-2 !font-bold' onClick={() => (window.open(whats)) }>Whatsapp</Button_alt>
+                                <Button_alt className='!col-start-3 !font-bold' onClick={() => (window.open(tlgm)) }>Telegram</Button_alt>
+                            </HeaderComponent>  
+                    </div> :
+                    null
+                    }
                     <div className='flex flex-col gap-5 mt-16'>
                         <Text tag={'h2'} color={'#00E5AE'} fontSize='36px' fontSizeSm={'20px'}>Tournament settings</Text>
                         <div className='gap-10 grid grid-cols-6'>
@@ -197,12 +214,13 @@ export default function TournamentDetails() {
                                 {participants?.slice(0).reverse().map((participant, index) => {
                                     return (
                                         <tr key={participant.beneficiary}>
-                                            <td><p class="text-lg mx-2 ...">{participant.nickname}</p></td>
-                                            <td><p class="text-lg mx-2 ...">{participant.points || 0}</p></td>
+                                            <td><p className="text-lg mx-2 ...">{participant.nickname}</p></td>
+                                            <td><p className="text-lg mx-2 ...">{participant.points || 0}</p></td>
                                             <td>
                                                 <Button onClick={() =>  router.push({
                                                                         pathname: `/check-slip/${tid}`,
-                                                                        query: {pid: index                                                                            
+                                                                        query: {pid: index,
+                                                                                open: open,                                                                            
                                                                         }})} 
                                                         withtBorder={false} variant={Variant.quaternary} className="!px-5">
                                                     <ReactSVG src={SeatchSVG.src} alt="search tournament prode" />
@@ -222,11 +240,17 @@ export default function TournamentDetails() {
             </div>
             <div className="pt-5 pb-10"> 
                 <div className='w-full container px-8 md:px-28 mx-auto  '>
+                    {
+                        open?.toString()==='true' ?
                         <Button onClick={() =>
-                                router.push(`/betting-slip/${tid}`)
-                                } className='w-full !font-bold' >
+                            router.push({
+                                pathname: `/betting-slip/${tid}`,
+                                query: {open: open                                                                            
+                                }})}  className='w-full !font-bold' >
                             Place Bet
-                        </Button>
+                        </Button> :
+                        null
+                    }
                 </div>
 
             </div>

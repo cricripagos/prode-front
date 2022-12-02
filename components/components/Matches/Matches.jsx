@@ -5,7 +5,7 @@ const Matches = (props) => {
     const { data } = props;
     const handleOnChangeText = (e, side) => {
         let newSlip = props.slip
-        newSlip.groups[data.index][side] = parseInt(e.target.value)
+        newSlip.octavos[data.index][side] = parseInt(e.target.value)
         props.setSlip(newSlip)
         const [_, matchIndex, sideIndex] = e.target.id.split('-')
         let nextSideIndex
@@ -25,7 +25,7 @@ const Matches = (props) => {
         }
         let allValid = true
         props.indexesSlip.map((idx, i)=>{
-            allValid = allValid && Number.isInteger(props.slip.groups[idx][0])&&Number.isInteger(props.slip.groups[idx][1])
+            allValid = allValid && Number.isInteger(props.slip.octavos[idx][0])&&Number.isInteger(props.slip.octavos[idx][1])
             
         })
         props.setChecked(allValid)
